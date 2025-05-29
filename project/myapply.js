@@ -1,7 +1,3 @@
-const nav = document.getElementById("nav");
-
-// myapply.js
-
 document.getElementById("addApplyBtn").addEventListener("click", function () {
   location.href = "myapply_add.html";
 });
@@ -25,4 +21,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const emptyRow = `<tr><td>-</td><td>-</td><td>-</td></tr>`;
     tableBody.insertAdjacentHTML("beforeend", emptyRow);
   }
+});
+
+const btn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
+
+// 메뉴 버튼 클릭 시 내비게이션 열고 닫기
+btn.addEventListener("click", () => {
+  nav.classList.toggle("show");
+});
+
+document.getElementById("mainButton").addEventListener("click", function() {
+    window.location.href = "main.html";
 });

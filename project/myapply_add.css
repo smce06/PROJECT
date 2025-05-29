@@ -1,99 +1,194 @@
 /* myapply_add.css */
 
 /* 공통 폰트 & 배경색 유지 */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+* {
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
-  color: #333;
+  box-sizing: border-box;
 }
 
-/* 메인 컨테이너 */
+body {
+  font-family: sans-serif;
+  background-color: #ffffff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 2px solid black;
+  position: relative;
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2F855A;
+}
+
+.logo {
+  all: unset; 
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2F855A;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-box {
+  background-color: #d1e7c8;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  line-height: 1.2    ;
+}
+
+.profile-icon {
+  font-size: 1.8rem;
+}
+
+h2{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+footer {
+  border-top: 2px solid black;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+#nav {
+  width: 230px;
+  height: 100vh;
+  background-color: #f6fff1;
+  color: black;
+  position: fixed;
+  top: 109px;
+  left: -230px;
+  transition: left 0.3s ease;
+  padding-top: 3em;
+  padding-left: 2em;
+  z-index: 1000;
+  font-size: 24px;
+
+  }
+#nav li{
+  margin-bottom: 2em;
+} 
+
+#nav.show {
+  left: 0;
+}
+
+#menuBtn {
+  font-size: 24px;
+  cursor: pointer;
+  margin: 1em;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.nav-link:hover {
+  background-color: #eee;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* 메인 컨테이너 크기 조정 및 가운데 정렬 */
 main {
-  padding: 40px 20px;
-  max-width: 600px;
-  margin: 60px auto 40px auto; /* 상단 여백 추가 */
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 720px; /* 기존 600px보다 더 큼 */
+  margin: 0px auto 0px auto;
+  padding: 40px 30px;
 }
 
 /* 제목 */
 h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-weight: 700;
-  color: #2F855A; /* 기존 nav 색상과 맞춤 */
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  margin-top: 0;
 }
 
-/* 폼 레이아웃 */
+/* 폼 정렬 개선 */
 form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
+  align-items: center;
 }
 
-/* 라벨 */
+/* 라벨 및 인풋 */
 label {
-  font-weight: 600;
-  margin-bottom: 5px;
-  color: #2F855A;
-  display: flex;
-  flex-direction: column;
-  font-size: 1rem;
+  width: 100%;
+  font-size: 1.1rem;
 }
 
-/* 입력창 */
 input[type="text"],
 input[type="date"] {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
   width: 100%;
-  transition: border-color 0.3s ease;
+  padding: 15px 20px;
+  font-size: 1.05rem;
+  border-radius: 10px;
+  background-color: #f9fdfb;
+  border: 1px solid #cbd5e0;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
 input[type="text"]:focus,
 input[type="date"]:focus {
-  border-color: #2F855A;
+  border-color: #68d391;
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.3);
   outline: none;
-  box-shadow: 0 0 5px rgba(47, 133, 90, 0.4);
 }
 
-/* 버튼 */
-button {
-  padding: 14px;
-  background-color: #2F855A; /* 녹색 계열 통일 */
+/* 추가하기 버튼 */
+button[type="submit"],
+#addApplyBtn {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background-color: #48bb78;
   color: white;
-  font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px;
 }
 
-button:hover {
-  background-color: #276c47;
+button[type="submit"]:hover,
+#addApplyBtn:hover {
+  background-color: #38a169;
+  transform: translateY(-2px);
 }
 
-/* 뒤로가기 버튼 스타일 */
-.back-button {
-  margin-top: 20px;
-  display: inline-block;
-  text-align: center;
-  padding: 10px 20px;
-  color: #2F855A;
-  text-decoration: none;
-  border: 2px solid #2F855A;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
 
-.back-button:hover {
-  background-color: #2F855A;
-  color: white;
-}
