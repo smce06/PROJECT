@@ -1,0 +1,18 @@
+# 운영체제 및 편집기 관련 불필요한 파일
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 빌드/캐시 파일 (빌드 도구 사용 시)
+dist/
+build/
+.cache/
+
+# 환경 설정 파일 (보안 관련)
+.env
+.env.local
+
+# npm 사용 시 (선택 사항)
+node_modules/
