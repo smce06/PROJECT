@@ -1,0 +1,173 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #ffffff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 2px solid black;
+  position: relative;
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2F855A;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2F855A;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-box {
+  background-color: #d1e7c8;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  line-height: 1.2;
+}
+
+.profile-icon {
+  font-size: 1.8rem;
+}
+
+.d-day-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  min-height: 570px;
+}
+
+.carousel {
+  position: relative;
+  width: 600px;
+  height: 400px;
+}
+
+/* 원을 중앙 정렬 후 좌우로 배치 */
+.d-day-card {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background-color: rgb(188, 246, 206);
+  color: #1c5533;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.4s ease;
+}
+
+.arrow {
+  position: absolute;       /* 위치 설정을 위해 필요 */
+  top: 50%;                 /* 수직 가운데 정렬 */
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  z-index: 4;
+}
+
+.d-day-card.active {
+  box-shadow: 15px 15px 15px rgba(105, 105, 105, 0.651); /* 오른쪽 아래 방향으로 그림자 */
+}
+
+
+#leftArrow {
+  left: 100px; 
+}
+
+/* 오른쪽 화살표 */
+#rightArrow {
+  right: 100px; 
+}
+
+footer {
+  border-top: 2px solid black;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+#nav {
+  width: 230px;
+  height: 100vh;
+  background-color: #f6fff1;
+  color: black;
+  position: fixed;
+  top: 109px;
+  left: -230px;
+  transition: left 0.3s ease;
+  padding-top: 3em;
+  padding-left: 2em;
+  z-index: 1000;
+  font-size: 24px;
+
+  }
+#nav li{
+  margin-bottom: 2em;
+} 
+
+#nav.show {
+  left: 0;
+}
+
+#menuBtn {
+  font-size: 24px;
+  cursor: pointer;
+  margin: 1em;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.nav-link:hover {
+  background-color: #eee;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
+}

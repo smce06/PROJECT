@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>원서 추가</title>
+  <link rel="stylesheet" href="myapply_add.css" />
+</head>
+<body>
+  <main class="add-form">
+    <h2>원서 추가</h2>
+    <form id="addForm"> <!-- id 변경 -->
+      <label>대학 이름: <input type="text" id="univ" required /></label><br> <!-- id 변경 -->
+      <label>전형: <input type="text" id="type" required /></label><br>
+      <label>마감일: <input type="date" id="deadline" required /></label><br>
+      <button type="submit">추가</button>
+    </form>
+  </main>
+
+  <script src="myapply_add.js"></script>
+</body>
+</html>

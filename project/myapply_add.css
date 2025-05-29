@@ -1,0 +1,99 @@
+/* myapply_add.css */
+
+/* 공통 폰트 & 배경색 유지 */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* 메인 컨테이너 */
+main {
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: 60px auto 40px auto; /* 상단 여백 추가 */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* 제목 */
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: #2F855A; /* 기존 nav 색상과 맞춤 */
+}
+
+/* 폼 레이아웃 */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 라벨 */
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #2F855A;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+
+/* 입력창 */
+input[type="text"],
+input[type="date"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  border-color: #2F855A;
+  outline: none;
+  box-shadow: 0 0 5px rgba(47, 133, 90, 0.4);
+}
+
+/* 버튼 */
+button {
+  padding: 14px;
+  background-color: #2F855A; /* 녹색 계열 통일 */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #276c47;
+}
+
+/* 뒤로가기 버튼 스타일 */
+.back-button {
+  margin-top: 20px;
+  display: inline-block;
+  text-align: center;
+  padding: 10px 20px;
+  color: #2F855A;
+  text-decoration: none;
+  border: 2px solid #2F855A;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #2F855A;
+  color: white;
+}
