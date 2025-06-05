@@ -90,7 +90,6 @@ footer a {
 #nav li{
   margin-bottom: 2em;
 } 
-
 #nav.show {
   left: 0;
 }
@@ -161,4 +160,13 @@ footer a {
     background-color: #2F855A;
     color: white;
     font-weight: bold;
+}
+
+.university-list a {
+    color: inherit; /* 부모 요소의 색상을 따르게 설정 */
+    text-decoration: none; /* 밑줄 없애기 */
+}
+
+.university-list a:hover {
+    color: #2F855A; /* 마우스를 올렸을 때 색상을 변경 */
 }

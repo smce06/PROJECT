@@ -7,7 +7,7 @@ btn.addEventListener("click", () => {
 });
 
 document.getElementById("mainButton").addEventListener("click", function() {
-    window.location.href = "main.html";
+    window.location.href = "index.html";
 });
 
 document.getElementById("regionSelect").addEventListener("change", function () {
@@ -53,4 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     showPage(currentPage); // 초기 페이지 로드
+});
+
+document.getElementById("mainButton").addEventListener("click", function() {
+    window.location.href = "index.html";
 });

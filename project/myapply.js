@@ -32,5 +32,5 @@ btn.addEventListener("click", () => {
 });
 
 document.getElementById("mainButton").addEventListener("click", function() {
-    window.location.href = "main.html";
+    window.location.href = "index.html";
 });
