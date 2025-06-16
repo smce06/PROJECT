@@ -53,13 +53,23 @@ function filterUniversities() {
     });
 }
 
-// 이벤트 리스너 추가
+// 이벤트 리스너 추가 (중복 제거)
 document.addEventListener("DOMContentLoaded", () => {
     updateUniversityInfo();
-    
     document.getElementById("menuBtn").addEventListener("click", toggleNavigation);
     document.getElementById("mainButton").addEventListener("click", () => {
         window.location.href = "index.html";
     });
-    document.getElementById("regionSelect").addEventListener("change", filterUniversities);
+    const regionSelect = document.getElementById("regionSelect");
+    if (regionSelect) {
+        regionSelect.addEventListener("change", filterUniversities);
+    }
 });
+
+// Google Maps 초기화 함수
+function initMap() {
+    var map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 37.5665, lng: 126.9780 },  
+        zoom: 12
+    });
+}

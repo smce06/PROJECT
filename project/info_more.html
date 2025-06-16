@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대학 정보 - Bravo Day</title>
+    <link rel="stylesheet" href="info_more.css">
+</head>
+<body>
+    <header>
+        <button id="menuBtn" class="menu-icon">≡</button>
+        <div id="nav">
+        <ul>
+            <li><a href="myapply.html" class="nav-link">내 원서</a></li>
+            <li><a href="schedule.html" class="nav-link">일정 추가</a></li>
+            <li><a href="info.html" class="nav-link">대학 정보</a></li>
+            <li><a href="community.html" class="nav-link">후기 커뮤니티</a></li>
+        </ul>
+        </div>
+
+        <div class="logo" id="mainButton">BRAVO DAY</div>
+        <div class="top-right">
+        <div class="login-box">로그인 / 로그아웃<br>회원가입</div>
+        <div class="profile-icon">🙂</div>
+        </div>
+    </header>
+
+    <main>
+        <h1 id="universityTitle">대학 이름</h1>
+        <p id="universityDescription">대학 설명</p>
+
+        <p><strong>입학처:</strong> <a id="admissionLink" href="#" target="_blank">입학처 바로가기</a></p>
+        <p><strong>공식 홈페이지:</strong> <a id="officialWebsite" href="#" target="_blank">홈페이지 바로가기</a></p>
+
+        <!-- 지도 표시 -->
+        <div id="map" style="width: 100%; height: 500px;"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Bravo Day</p>
+    </footer>
+
+    <script src="info_more.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0F6cZfdM8oMgz-yR1Y3-iFrSr5sNHmns&callback=initMap"></script>
+</body>
+</html>

@@ -38,21 +38,30 @@ document.addEventListener("DOMContentLoaded", function () {
                 index >= (page - 1) * itemsPerPage && index < page * itemsPerPage ? "block" : "none";
         });
 
-        // 페이지 버튼 업데이트
+        updatePaginationButtons(page);
+    }
+
+    function updatePaginationButtons(currentPage) {
         paginationContainer.innerHTML = "";
+
         for (let i = 1; i <= totalPages; i++) {
             let button = document.createElement("button");
             button.innerText = i;
-            button.classList.add(i === page ? "active" : "");
+            button.classList.add("pagination-btn");
+
+            if (i === currentPage) {
+                button.classList.add("active");
+            }
+
             button.addEventListener("click", () => {
-                currentPage = i;
-                showPage(currentPage);
+                showPage(i);
             });
+
             paginationContainer.appendChild(button);
         }
     }
 
-    showPage(currentPage); // 초기 페이지 로드
+    showPage(currentPage);
 });
 
 document.getElementById("mainButton").addEventListener("click", function() {
