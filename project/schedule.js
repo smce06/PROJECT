@@ -9,9 +9,9 @@ btn.addEventListener("click", () => {
 document.getElementById("mainButton").addEventListener("click", function() {
     window.location.href = "index.html";
 });
-    document.getElementById("menuBtn").addEventListener("click", () => {
-      document.getElementById("nav").classList.toggle("show");
-    });
+document.getElementById("menuBtn").addEventListener("click", () => {
+    document.getElementById("nav").classList.toggle("show");
+  });
 
     const calendarEl = document.getElementById('calendar');
     const eventsUl = document.getElementById('events');
@@ -59,3 +59,4 @@ document.getElementById("mainButton").addEventListener("click", function() {
     });
 
     calendar.render();
+
