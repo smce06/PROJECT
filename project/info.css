@@ -127,6 +127,10 @@ footer a {
   border-radius: 4px;
 }
 
+.university-list {
+    margin: 20px; /* 원하는 만큼 오른쪽으로 이동 */
+}
+
 .university-list ul {
   list-style: none;
 }

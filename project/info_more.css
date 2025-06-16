@@ -4,8 +4,8 @@
   box-sizing: border-box;
 }
 
-h3 {
-  font-weight: normal;
+a {
+    font-weight: normal; /* 링크의 굵기 해제 */
 }
 
 body {

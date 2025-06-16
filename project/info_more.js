@@ -83,54 +83,53 @@ const universityInfo = {
     },
     "kaist": {
         name: "카이스트",
-        description: "세상의 중심에서 세상을 바꾼다다",
+        description: "세상의 중심에서 세상을 바꾼다",
         admissionLink: "https://admission.kaist.ac.kr/",
         officialWebsite: "https://www.kaist.ac.kr/kr/",
-        location: { lat: 36.372274, lng: 36.372274 }
+        location: { lat: 36.372274, lng: 127.360475 }
     },
     "pknu": {
         name: "부경대학교",
-        description: "진리가 너희를 자유케 하리라",
-        admissionLink: "https://admission.yonsei.ac.kr",
-        officialWebsite: "https://www.yonsei.ac.kr",
-        location: { lat: 37.565784, lng: 126.938572 }
+        description: "모두의 미래, 함께하는 꿈",
+        admissionLink: "https://iphak.pknu.ac.kr/pknu/intro/intro.php",
+        officialWebsite: "https://www.pknu.ac.kr/main",
+        location: { lat: 35.134473, lng: 129.103284 }
     },
-    "yonsei": {
-        name: "연세대학교",
-        description: "진리가 너희를 자유케 하리라",
-        admissionLink: "https://admission.yonsei.ac.kr",
-        officialWebsite: "https://www.yonsei.ac.kr",
-        location: { lat: 37.565784, lng: 126.938572 }
+    "bist": {
+        name: "부산과학기술대학교",
+        description: "전문가를 만드는 전문가",
+        admissionLink: "https://ipsi.bist.ac.kr/ipsi/main/index.php",
+        officialWebsite: "http://www.bist.ac.kr/univ/main/intro_250429.php",
+        location: { lat: 35.195602, lng: 129.003907}
     },
-    "yonsei": {
-        name: "연세대학교",
-        description: "진리가 너희를 자유케 하리라",
-        admissionLink: "https://admission.yonsei.ac.kr",
-        officialWebsite: "https://www.yonsei.ac.kr",
-        location: { lat: 37.565784, lng: 126.938572 }
+    "pnu": {
+        name: "부산대학교",
+        description: "Arise PNU, 같이 더 높게",
+        admissionLink: "https://go.pusan.ac.kr/college_2016/main/main.asp",
+        officialWebsite: "https://www.pusan.ac.kr/kor/Main.do",
+        location: { lat: 35.234494, lng: 129.080628 }
     },
-    "yonsei": {
-        name: "연세대학교",
-        description: "진리가 너희를 자유케 하리라",
-        admissionLink: "https://admission.yonsei.ac.kr",
-        officialWebsite: "https://www.yonsei.ac.kr",
-        location: { lat: 37.565784, lng: 126.938572 }
+    "bufs": {
+        name: "부산외국어대학교",
+        description: "외성의 울림이 세상을 덮을 때 세상의 중심에 그대가 있다. Global B.U.F.S.",
+        admissionLink: "https://enter.bufs.ac.kr/",
+        officialWebsite: "https://www.bufs.ac.kr/bbs/board.php?bo_table=bufsmain_2023",
+        location: { lat: 35.267928, lng: 129.079032 }
     },
-    "yonsei": {
-        name: "연세대학교",
-        description: "진리가 너희를 자유케 하리라",
-        admissionLink: "https://admission.yonsei.ac.kr",
-        officialWebsite: "https://www.yonsei.ac.kr",
-        location: { lat: 37.565784, lng: 126.938572 }
+    "bwu": {
+        name: "부산여자대학교",
+        description: "다도정신 기반 글로컬 창의 여성 인재 양성",
+        admissionLink: "https://www.bwc.ac.kr/ipsi/index.asp",
+        officialWebsite: "https://www.bwc.ac.kr/sch/index.asp",
+        location: { lat: 35.168167, lng: 129.073223 }
     },
-    "yonsei": {
-        name: "연세대학교",
-        description: "진리가 너희를 자유케 하리라",
-        admissionLink: "https://admission.yonsei.ac.kr",
-        officialWebsite: "https://www.yonsei.ac.kr",
-        location: { lat: 37.565784, lng: 126.938572 }
+    "kmou": {
+        name: "한국해양대학교",
+        description: "해양의 미래를 설계하고 지식으로 항해하는 대학",
+        admissionLink: "https://www.kmou.ac.kr/ipsi/main.do",
+        officialWebsite: "https://www.kmou.ac.kr/kmou/main.do",
+        location: { lat: 35.076552, lng: 129.089216}
     },
-
 };
 
 // HTML 요소 업데이트 함수
