@@ -1,5 +1,26 @@
-document.getElementById("mainButton").addEventListener("click", function() {
-    window.location.href = "index.html";
+document.getElementById("addApplyBtn").addEventListener("click", function () {
+  location.href = "myapply_add.html";
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const tableBody = document.getElementById("applyTableBody");
+  const applyList = JSON.parse(localStorage.getItem("applyList") || "[]");
+
+  const totalRows = 6;
+  tableBody.innerHTML = ""; // 초기 표 비우기
+
+  // 데이터 행 추가
+  applyList.forEach(({ univ, type, deadline }) => {
+    const row = `<tr><td>${univ}</td><td>${type}</td><td>${deadline}</td></tr>`;
+    tableBody.insertAdjacentHTML("beforeend", row);
+  });
+
+  // 빈칸 행 채우기
+  const emptyRows = totalRows - applyList.length;
+  for (let i = 0; i < emptyRows; i++) {
+    const emptyRow = `<tr><td>-</td><td>-</td><td>-</td></tr>`;
+    tableBody.insertAdjacentHTML("beforeend", emptyRow);
+  }
 });
 
 const btn = document.getElementById("menuBtn");
@@ -10,30 +31,6 @@ btn.addEventListener("click", () => {
   nav.classList.toggle("show");
 });
 
-const postList = [
-  { id: 1, title: "가나다대 면접 후기", author: "지원자1", date: "2025-06-10" },
-  { id: 2, title: "나라대는 분위기 좋아요", author: "수험생", date: "2025-06-11" },
-];
-
-const tbody = document.getElementById("postList");
-
-postList.forEach((post) => {
-  const tr = document.createElement("tr");
-
-  const titleTd = document.createElement("td");
-  const titleLink = document.createElement("a");
-  titleLink.href = `post.html?id=${post.id}`;
-  titleLink.textContent = post.title;
-  titleTd.appendChild(titleLink);
-
-  const authorTd = document.createElement("td");
-  authorTd.textContent = post.author;
-
-  const dateTd = document.createElement("td");
-  dateTd.textContent = post.date;
-
-  tr.appendChild(titleTd);
-  tr.appendChild(authorTd);
-  tr.appendChild(dateTd);
-  tbody.appendChild(tr);
+document.getElementById("mainButton").addEventListener("click", function() {
+    window.location.href = "index.html";
 });

@@ -6,25 +6,131 @@ const universityName = urlParams.get("name");
 const universityInfo = {
     "smwu": {
         name: "숙명여자대학교",
-        description: "숙명여자대학교는 여성 교육과 연구에 특화된 대학입니다.",
+        description: "여성의 미래를 선도하는 아웃씽커스(Outthinkers) 숙명",
         admissionLink: "https://admission.sookmyung.ac.kr",
         officialWebsite: "https://www.sookmyung.ac.kr",
         location: { lat: 37.544579, lng: 126.964843 }
     },
     "snu": {
         name: "서울대학교",
-        description: "서울대학교는 대한민국 대표적인 연구 중심 대학입니다.",
+        description: "누군가 조국의 미래를 묻거든, 고개를 들어 관악을 보게 하라",
         admissionLink: "https://admission.snu.ac.kr",
         officialWebsite: "https://www.snu.ac.kr",
         location: { lat: 37.459882, lng: 126.951905 }
     },
     "yonsei": {
         name: "연세대학교",
-        description: "연세대학교는 세계적으로 인정받는 명문 대학입니다.",
+        description: "진리가 너희를 자유케 하리라",
         admissionLink: "https://admission.yonsei.ac.kr",
         officialWebsite: "https://www.yonsei.ac.kr",
         location: { lat: 37.565784, lng: 126.938572 }
-    }
+    },
+    "korea": {
+        name: "고려대학교",
+        description: "너의 젊음을 고대에 걸어라, 고대는 너에게 세계를 걸겠다",
+        admissionLink: "https://oku.korea.ac.kr",
+        officialWebsite: "https://www.korea.ac.kr/sites/ko/index.do",
+        location: { lat:  37.5894, lng: 127.0336 }
+    },
+    "skku": {
+        name: "성균관대학교",
+        description: "예로부터 나라의 인재는 성균에 모여왔으니, 그대 머묾이 우연이겠는가",
+        admissionLink: "https://admission.skku.edu/admission/html/main/main.html",
+        officialWebsite: "https://www.skku.edu/skku/index.do",
+        location: { lat: 37.5872, lng: 126.9942 }
+    },
+    "cau": {
+        name: "중앙대학교",
+        description: "한국의 중앙에서 세계의 중앙으로",
+        admissionLink: "https://admission.cau.ac.kr/mainIntro/intro.do",
+        officialWebsite: "https://www.cau.ac.kr/index.do",
+        location: { lat: 37.5049, lng: 126.9575 }
+    },
+    "kyu": {
+        name: "건양대학교",
+        description: "학생교육에 진심을 다하는 대학,‘Design You’",
+        admissionLink: "https://ipsi.konyang.ac.kr/ipsi.dor",
+        officialWebsite: "https://www.konyang.ac.kr/kor.do",
+        location: { lat: 36.306998, lng: 127.343176 }
+    },
+    "dst": {
+        name: "대전과학기술대학교",
+        description: "Good to Great - 좋은 인재를 최고의 인재로",
+        admissionLink: "https://ipsi.dst.ac.kr/ipsi/Main.do",
+        officialWebsite: "https://www.dst.ac.kr/kor/Main.do",
+        location: { lat: 36.302433, lng: 127.375304 }
+    },
+    "hit": {
+        name: "대전보건대학교",
+        description: "의미와 가치가 살아있는 매력적인 대학",
+        admissionLink: "https://ipsi.hit.ac.kr",
+        officialWebsite: "https://www.hit.ac.kr/main",
+        location: { lat: 36.350062, lng: 127.455239}
+    },
+    "mwu": {
+        name: "목원대학교",
+        description: "대전 최초의 사립대학에서 중부권 최강의 혁신대학으로",
+        admissionLink: "https://enter.mokwon.ac.kr/enter",
+        officialWebsite: "https://www.mokwon.ac.kr",
+        location: { lat: 36.326484, lng: 127.338548 }
+    },
+    "cnu": {
+        name: "충남대학교",
+        description: "The Strong CNU - 미래 사회를 선도할 강한 대학",
+        admissionLink: "https://ipsi.cnu.ac.kr/intro.html",
+        officialWebsite: "https://plus.cnu.ac.kr/html/kr/",
+        location: { lat: 36.369396, lng: 127.346951}
+    },
+    "kaist": {
+        name: "카이스트",
+        description: "세상의 중심에서 세상을 바꾼다다",
+        admissionLink: "https://admission.kaist.ac.kr/",
+        officialWebsite: "https://www.kaist.ac.kr/kr/",
+        location: { lat: 36.372274, lng: 36.372274 }
+    },
+    "pknu": {
+        name: "부경대학교",
+        description: "진리가 너희를 자유케 하리라",
+        admissionLink: "https://admission.yonsei.ac.kr",
+        officialWebsite: "https://www.yonsei.ac.kr",
+        location: { lat: 37.565784, lng: 126.938572 }
+    },
+    "yonsei": {
+        name: "연세대학교",
+        description: "진리가 너희를 자유케 하리라",
+        admissionLink: "https://admission.yonsei.ac.kr",
+        officialWebsite: "https://www.yonsei.ac.kr",
+        location: { lat: 37.565784, lng: 126.938572 }
+    },
+    "yonsei": {
+        name: "연세대학교",
+        description: "진리가 너희를 자유케 하리라",
+        admissionLink: "https://admission.yonsei.ac.kr",
+        officialWebsite: "https://www.yonsei.ac.kr",
+        location: { lat: 37.565784, lng: 126.938572 }
+    },
+    "yonsei": {
+        name: "연세대학교",
+        description: "진리가 너희를 자유케 하리라",
+        admissionLink: "https://admission.yonsei.ac.kr",
+        officialWebsite: "https://www.yonsei.ac.kr",
+        location: { lat: 37.565784, lng: 126.938572 }
+    },
+    "yonsei": {
+        name: "연세대학교",
+        description: "진리가 너희를 자유케 하리라",
+        admissionLink: "https://admission.yonsei.ac.kr",
+        officialWebsite: "https://www.yonsei.ac.kr",
+        location: { lat: 37.565784, lng: 126.938572 }
+    },
+    "yonsei": {
+        name: "연세대학교",
+        description: "진리가 너희를 자유케 하리라",
+        admissionLink: "https://admission.yonsei.ac.kr",
+        officialWebsite: "https://www.yonsei.ac.kr",
+        location: { lat: 37.565784, lng: 126.938572 }
+    },
+
 };
 
 // HTML 요소 업데이트 함수

@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BRAVO DAY | 후기 커뮤니티</title>
-  <link rel="stylesheet" href="community.css"/>
+  <title>BRAVO DAY</title>
+    <link rel="stylesheet" href="community.css"/>
+    
 </head>
 <body>
   <!-- 헤더 -->
@@ -12,12 +13,13 @@
     <button id="menuBtn" class="menu-icon">≡</button>
     <div id="nav">
       <ul>
-        <li><a href="myapply.html"    class="nav-link">내 원서</a></li>
-        <li><a href="schedule.html"   class="nav-link">일정 추가</a></li>
-        <li><a href="info.html"       class="nav-link">대학 정보</a></li>
-        <li><a href="community.html"  class="nav-link on">후기 커뮤니티</a></li>
-      </ul>
+        <li><a href="myapply.html" class="nav-link">내 원서</a></li>
+        <li><a href="schedule.html" class="nav-link">일정 추가</a></li>
+        <li><a href="info.html" class="nav-link">대학 정보</a></li>
+        <li><a href="community.html" class="nav-link">후기 커뮤니티</a></li>
+    </ul>
     </div>
+
     <div class="logo" id="mainButton">BRAVO DAY</div>
     <div class="top-right">
       <div class="login-box">로그인 / 로그아웃<br>회원가입</div>
@@ -26,20 +28,53 @@
   </header>
 
   <!-- 메인 -->
-  <main class="container">
-    <div class="board-header">
-      <h2>면접 후기 게시판</h2>
-      <button class="add-btn" id="writeBtn">＋ 글쓰기</button>
-    </div>
+  <main>
+    <section class="apply-section">
+    <h2>내 원서 목록</h2>
+    <button id="addApplyBtn">+ 추가하기</button>
 
-    <table class="post-table">
+    <table class="apply-table">
       <thead>
-        <tr><th style="width:60%">제목</th><th style="width:20%">작성자</th><th style="width:20%">등록일</th></tr>
+        <tr>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>등록일</th>
+        </tr>
       </thead>
-      <tbody id="postList"></tbody>
+      <tbody id="applyTableBody">
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      </tbody>
     </table>
-
-    <div class="pagination" id="pagination"></div>
+  </section>
   </main>
 
   <!-- 푸터 -->
@@ -50,5 +85,5 @@
   </footer>
 
   <script src="community.js"></script>
-</body>
+</body> 
 </html>
