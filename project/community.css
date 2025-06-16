@@ -111,3 +111,48 @@ footer a {
 .nav-link:hover {
   background-color: #eee;
 }
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.add-btn {
+  all: unset;
+  font-size: 1.1rem;
+  border: 2px solid #2F855A;
+  padding: 0.25em 0.75em;
+  border-radius: 8px;
+  color: #2F855A;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.add-btn:hover {
+  background: rgba(47, 133, 90, 0.1);
+}
+
+.post-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.post-table th, .post-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+.post-table td a {
+  color: #2B6CB0;
+  text-decoration: none;
+}
+.post-table td a:hover {
+  text-decoration: underline;
+}
+

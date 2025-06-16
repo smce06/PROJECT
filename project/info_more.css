@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+h3 {
+  font-weight: normal;
+}
+
 body {
   font-family: sans-serif;
   background-color: #ffffff;
@@ -85,11 +89,12 @@ footer a {
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
+}
 
-  }
-#nav li{
+#nav li {
   margin-bottom: 2em;
-} 
+}
+
 #nav.show {
   left: 0;
 }
@@ -110,4 +115,24 @@ footer a {
 
 .nav-link:hover {
   background-color: #eee;
+}
+
+/* ✅ Flex 레이아웃으로 본문 정렬 */
+main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* ✅ 텍스트 정보 영역 */
+.info-section {
+  width: 35%;
+}
+
+/* ✅ 지도 영역 */
+#map {
+  width: 50%;
+  height: 500px;
 }

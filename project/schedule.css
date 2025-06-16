@@ -1,0 +1,200 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #ffffff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 2px solid black;
+  position: relative;
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2F855A;
+}
+
+.logo {
+  all: unset; 
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2F855A;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-box {
+  background-color: #d1e7c8;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  line-height: 1.2;
+}
+
+.profile-icon {
+  font-size: 1.8rem;
+}
+
+footer {
+  border-top: 2px solid black;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+#nav {
+  width: 230px;
+  height: 100vh;
+  background-color: #f6fff1;
+  color: black;
+  position: fixed;
+  top: 109px;
+  left: -230px;
+  transition: left 0.3s ease;
+  padding-top: 3em;
+  padding-left: 2em;
+  z-index: 1000;
+  font-size: 24px;
+
+  }
+#nav li{
+  margin-bottom: 2em;
+} 
+
+#nav.show {
+  left: 0;
+}
+
+#menuBtn {
+  font-size: 24px;
+  cursor: pointer;
+  margin: 1em;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.nav-link:hover {
+  background-color: #eee;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
+}
+/* 레이아웃 */
+.container {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  height: calc(100vh - 120px); /* 헤더+푸터 제외 대략 */
+  box-sizing: border-box;
+}
+
+/* 달력 영역 */
+.calendar-box {
+  flex: 3;                 /* 왼쪽 넓게 */
+  display: flex;
+  flex-direction: column;
+}
+
+.cal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+
+.cal-header button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+#calendar {
+  width: 100%;
+  border-collapse: collapse;
+  flex: 1;
+}
+
+#calendar th,
+#calendar td {
+  width: 14.28%;
+  text-align: right;
+  padding: .35rem .25rem;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+
+#calendar td.event-day {
+  background: #d1e7c8;
+  font-weight: 600;
+}
+
+/* 우측 일정 리스트 */
+.schedule-box {
+  flex: 1;                 /* 오른쪽 좁게 */
+  border-left: 2px solid #eee;
+  padding-left: 1rem;
+  overflow-y: auto;
+}
+
+.schedule-box h2 {
+  margin-top: 0;
+}
+
+.schedule-box li {
+  margin-bottom: .5rem;
+  line-height: 1.3;
+}
+
+.schedule-header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:.5rem;
+}
+.add-btn{
+  all:unset;          /* 기본 버튼 스타일 제거 */
+  padding:.15em .45em;
+  font-size:1.6rem;
+  line-height:1;
+  cursor:pointer;
+  border:2px solid var(--green-d,#2F855A);
+  border-radius:8px;
+  color:var(--green-d,#2F855A);
+  transition:background .25s;
+}
+.add-btn:hover{background:rgba(47,133,90,.1);}

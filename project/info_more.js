@@ -8,19 +8,22 @@ const universityInfo = {
         name: "숙명여자대학교",
         description: "숙명여자대학교는 여성 교육과 연구에 특화된 대학입니다.",
         admissionLink: "https://admission.sookmyung.ac.kr",
-        officialWebsite: "https://www.sookmyung.ac.kr"
+        officialWebsite: "https://www.sookmyung.ac.kr",
+        location: { lat: 37.544579, lng: 126.964843 }
     },
     "snu": {
         name: "서울대학교",
         description: "서울대학교는 대한민국 대표적인 연구 중심 대학입니다.",
         admissionLink: "https://admission.snu.ac.kr",
-        officialWebsite: "https://www.snu.ac.kr"
+        officialWebsite: "https://www.snu.ac.kr",
+        location: { lat: 37.459882, lng: 126.951905 }
     },
     "yonsei": {
         name: "연세대학교",
         description: "연세대학교는 세계적으로 인정받는 명문 대학입니다.",
         admissionLink: "https://admission.yonsei.ac.kr",
-        officialWebsite: "https://www.yonsei.ac.kr"
+        officialWebsite: "https://www.yonsei.ac.kr",
+        location: { lat: 37.565784, lng: 126.938572 }
     }
 };
 
@@ -57,7 +60,7 @@ function filterUniversities() {
 document.addEventListener("DOMContentLoaded", () => {
     updateUniversityInfo();
     document.getElementById("menuBtn").addEventListener("click", toggleNavigation);
-    document.getElementById("mainButton").addEventListener("click", () => {
+    document.getElementById("mainButton").adSdEventListener("click", () => {
         window.location.href = "index.html";
     });
     const regionSelect = document.getElementById("regionSelect");
@@ -66,10 +69,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Google Maps 초기화 함수
 function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 37.5665, lng: 126.9780 },  
-        zoom: 12
-    });
+  let location = { lat: 37.5665, lng: 126.9780 }; // 기본값: 서울
+  if (universityName && universityInfo[universityName] && universityInfo[universityName].location) {
+    location = universityInfo[universityName].location;
+  }
+
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: location,
+    zoom: 16
+  });
+
+  new google.maps.Marker({
+    position: location,
+    map: map,
+    title: universityInfo[universityName]?.name || "선택한 위치"
+  });
 }
+
+document.getElementById("mainButton").addEventListener("click", function() {
+    window.location.href = "index.html";
+});
