@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>입시가이드</title>
+    <link rel="stylesheet" href="guide.css"/>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>    
+</head>
+<body>
+  <!-- 헤더 -->
+  <header>
+    <button id="menuBtn" class="menu-icon">≡</button>
+    <div id="nav">
+      <ul>
+        <li><a href="myapply.html" class="nav-link">내 원서</a></li>
+        <li><a href="schedule.html" class="nav-link">일정 추가</a></li>
+        <li><a href="info.html" class="nav-link">대학 정보</a></li>
+        <li><a href="guide.html" class="nav-link">입시 가이드</a></li>
+        <li><a href="community.html" class="nav-link">후기 커뮤니티</a></li>
+    </ul>
+    </div>
+
+    <div class="logo" id="mainButton">UNI DAY</div>
+    <div class="top-right">
+        <div class="login-box">
+          <button id="kakaoLogoutBtn" style="display: none;">로그아웃</button>
+          <div class="profile-icon" style="display: none;">🙂</div>
+        </div>
+    </div>
+  </header>
+
+  <!-- 메인 -->
+<main>
+  <h1>입시가이드</h1>
+  <p>입시에 도움이 되는 정보를 세 가지 분야로 나누어 제공합니다.</p>
+
+  <section class="guide-categories">
+<article>
+  <h2>전형 종류</h2>
+  <p>
+    대학 입시에서 많이 사용되는 다양한 전형 유형을 자세히 소개합니다.
+    학생부종합전형, 수시, 정시 등 각 전형의 특징과 준비 방법을 쉽게 이해할 수 있습니다.
+    올바른 전형 선택에 도움이 되는 정보가 가득합니다.
+  </p>
+  <button onclick="location.href='types.html'">자세히 보기</button>
+</article>
+
+<article>
+  <h2>입시 용어 정리</h2>
+  <p>
+    입시에서 자주 등장하는 어려운 용어들을 알기 쉽게 설명합니다.
+    수험생과 학부모가 꼭 알아야 할 기본 용어부터 최신 트렌드 용어까지 폭넓게 다룹니다.
+    헷갈리는 입시 용어를 명확히 이해하는 데 도움이 됩니다.
+  </p>
+  <button onclick="location.href='terms.html'">자세히 보기</button>
+</article>
+
+<article>
+  <h2>수험 스트레스 해소법</h2>
+  <p>
+    수험생들이 겪는 스트레스를 효과적으로 줄이는 다양한 방법을 소개합니다.
+    집중력 향상, 긴장 완화, 건강 관리 등 실생활에 바로 적용할 수 있는 팁들을 제공합니다.
+    마음 건강을 챙기며 성공적인 입시 준비를 할 수 있도록 돕습니다.
+  </p>
+  <button onclick="location.href='stress.html'">자세히 보기</button>
+</article>
+
+  </section>
+</main>
+
+
+  <!-- 푸터 -->
+  <footer>
+    <a href="#">광고주를 구합니다</a>
+    <a href="#">문의</a>
+    <a href="#">개인정보보호정책</a>
+  </footer>
+
+  <script src="guide.js"></script>
+  <script src="auth.js"></script>
+</body> 
+</html>

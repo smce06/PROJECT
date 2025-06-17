@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>입시가이드</title>
+    <link rel="stylesheet" href="types.css"/>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>    
+</head>
+<body>
+  <!-- 헤더 -->
+  <header>
+    <button id="menuBtn" class="menu-icon">≡</button>
+    <div id="nav">
+      <ul>
+        <li><a href="myapply.html" class="nav-link">내 원서</a></li>
+        <li><a href="schedule.html" class="nav-link">일정 추가</a></li>
+        <li><a href="info.html" class="nav-link">대학 정보</a></li>
+        <li><a href="guide.html" class="nav-link">입시 가이드</a></li>
+        <li><a href="community.html" class="nav-link">후기 커뮤니티</a></li>
+    </ul>
+    </div>
+
+    <div class="logo" id="mainButton">UNI DAY</div>
+    <div class="top-right">
+        <div class="login-box">
+          <button id="kakaoLogoutBtn" style="display: none;">로그아웃</button>
+          <div class="profile-icon" style="display: none;">🙂</div>
+        </div>
+    </div>
+  </header>
+
+  <!-- 메인 -->
+<main class="types-main">
+  <h1>전형 종류 한눈에 보기</h1>
+  <p>대학 입시에 사용되는 주요 전형 유형을 표로 정리했습니다.<br/>
+     각 전형이 요구하는 서류와 특징을 간단히 비교해 보세요.</p>
+
+  <div class="table-wrapper">
+    <table class="type-table">
+      <thead>
+        <tr>
+          <th>전형명</th>
+          <th>평가요소</th>
+          <th>주요 특징</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>학생부종합전형</td>
+          <td>학생부&nbsp;+&nbsp;자소서&nbsp;+&nbsp;면접</td>
+          <td>학교생활 전반을 종합 평가. 전공적합성과 활동의 질이 중요</td>
+        </tr>
+        <tr>
+          <td>학생부교과전형</td>
+          <td>내신 성적(교과)</td>
+          <td>교과 성적 비중이 높음. 일부 대학은 출결·봉사 가산점</td>
+        </tr>
+        <tr>
+          <td>논술전형</td>
+          <td>논술&nbsp;+&nbsp;교과/수능 최저</td>
+          <td>논술 실력이 관건. 대학별 기출 문제 분석 필수</td>
+        </tr>
+        <tr>
+          <td>실기/특기전형</td>
+          <td>실기(예·체능)&nbsp;or&nbsp;특기 증빙</td>
+          <td>예체능‧체육, 특성화 분야에서 실기·포트폴리오 평가</td>
+        </tr>
+        <tr>
+          <td>정시(수능)전형</td>
+          <td>수능 성적</td>
+          <td>수능 점수 중심. 일부 대학은 면접/실기 포함</td>
+        </tr>
+        <tr>
+          <td>특별전형 (농어촌‧기초 등)</td>
+          <td>학생부&nbsp;+&nbsp;수능&nbsp;등</td>
+          <td>지원 자격 충족 필수. 전형 방법은 대학마다 다름</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+
+
+  <!-- 푸터 -->
+  <footer>
+    <a href="#">광고주를 구합니다</a>
+    <a href="#">문의</a>
+    <a href="#">개인정보보호정책</a>
+  </footer>
+
+  <script src="types.js"></script>
+  <script src="auth.js"></script>
+</body> 
+</html>

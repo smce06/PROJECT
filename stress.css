@@ -1,0 +1,224 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #ffffff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 2px solid black;
+  position: relative;
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2F855A;
+}
+
+.logo {
+  all: unset; 
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2F855A;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-box {
+  background-color: #d1e7c8;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  line-height: 1.2;
+}
+
+.profile-icon {
+  font-size: 1.8rem;
+}
+
+
+/* main.css */
+main{
+  margin-bottom: 100px;
+}
+
+.apply-section {
+  padding: 20px;
+}
+
+#addBtn {
+  width: 100px;
+  padding: 8px 16px;
+  margin-bottom: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 93%;
+}
+
+.apply-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.apply-table th, .apply-table td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: center;
+}
+
+.apply-table th {
+  background-color: #d1e7c8;
+}
+
+.empty-cell {
+  color: #888;
+  padding: 20px;
+  text-align: center;
+}
+
+
+footer {
+  border-top: 2px solid black;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+#nav {
+  width: 230px;
+  height: 100vh;
+  background-color: #f6fff1;
+  color: black;
+  position: fixed;
+  top: 109px;
+  left: -230px;
+  transition: left 0.3s ease;
+  padding-top: 3em;
+  padding-left: 2em;
+  z-index: 1000;
+  font-size: 24px;
+
+  }
+#nav li{
+  margin-bottom: 2em;
+} 
+
+#nav.show {
+  left: 0;
+}
+
+#menuBtn {
+  font-size: 24px;
+  cursor: pointer;
+  margin: 1em;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.nav-link:hover {
+  background-color: #eee;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 8px;
+}
+#kakaoLoginBtn {
+  background-color: #d1e7c8;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#kakaoLogoutBtn {
+  background-color: #d1e7c8;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.stress-main {
+  padding: 2rem 1rem;
+  text-align: center;
+  margin-bottom: -5px;
+}
+
+.stress-main h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #2F855A;
+}
+
+.stress-main p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.stress-list {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  list-style: disc inside;
+  color: #444;
+  padding: 30px;
+  background-color: #f6fff1;
+  border-radius: 50px;
+}
+
+.stress-list li strong {
+  color: #2F855A;
+}

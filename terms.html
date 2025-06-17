@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title> 커뮤니티</title>
-    <link rel="stylesheet" href="community.css"/>
+  <title>입시가이드</title>
+    <link rel="stylesheet" href="terms.css"/>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>    
 </head>
 <body>
@@ -26,59 +27,48 @@
         <div class="login-box">
           <button id="kakaoLogoutBtn" style="display: none;">로그아웃</button>
           <div class="profile-icon" style="display: none;">🙂</div>
+        </div>
     </div>
   </header>
 
   <!-- 메인 -->
-  <main>
-    <section class="apply-section">
-    <h2>후기 커뮤니티</h2>
-    <button id="addBtn">+ 추가하기</button>
-
-    <table class="apply-table">
-      <thead>
-        <tr>
-          <th>제목</th>
-          <th>작성자</th>
-          <th>등록일</th>
-        </tr>
-      </thead>
-      <tbody id="applyTableBody">
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="pagination"></div>
-  </section>
+  <main class="terms-main">
+    <h1>입시 전형 용어 안내</h1>
+    <p>입시에서 자주 사용되는 전형 용어들을 정리했습니다.</p>
+    <div class="table-wrapper">
+      <table class="term-table">
+        <thead>
+          <tr>
+            <th>용어</th>
+            <th>설명</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>수능</td>
+            <td>대학수학능력시험, 대학 입학을 위한 국가 시험</td>
+          </tr>
+          <tr>
+            <td>내신</td>
+            <td>학교에서 평가한 학생의 성적</td>
+          </tr>
+          <tr>
+            <td>면접</td>
+            <td>지원자와 대학 관계자가 직접 대면하여 평가하는 시험</td>
+          </tr>
+          <tr>
+            <td>논술</td>
+            <td>글쓰기 능력을 평가하는 시험</td>
+          </tr>
+          <tr>
+            <td>실기</td>
+            <td>예체능 계열에서 실시하는 실습 평가</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </main>
+
 
   <!-- 푸터 -->
   <footer>
@@ -87,7 +77,7 @@
     <a href="#">개인정보보호정책</a>
   </footer>
 
-  <script src="community.js"></script>
+  <script src="terms.js"></script>
   <script src="auth.js"></script>
 </body> 
 </html>
