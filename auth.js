@@ -1,5 +1,5 @@
 // Kakao SDK 초기화
-Kakao.init("d61b73b4ade01cd5c7c857994467bc66"); // 본인 JavaScript 키로 변경
+Kakao.init("20a4cb322ca444c9d7f0c2c32254e02c"); // 본인 JavaScript 키로 변경
 console.log("Kakao SDK 초기화 완료");
 
 // 카카오 로그인 기능
