@@ -7,9 +7,9 @@ function kakaoLogin() {
     Kakao.Auth.login({
         success: function(authObj) {
             console.log("로그인 성공:", authObj);
-            
-            // 로그인 성공 시 토큰을 쿠키에 저장 (1시간 유지)
-            document.cookie = `kakaoToken=${authObj.access_token}; path=/; max-age=3600`;
+
+            // 로그인 성공 시 쿠키 저장 (1시간 동안 유지)
+            document.cookie = `kakaoToken=${authObj.access_token}; path=/; max-age=3600; SameSite=None; Secure`;
 
             getUserInfo(); // 사용자 정보 가져오기 호출
         },
