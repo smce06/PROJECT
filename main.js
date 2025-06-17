@@ -55,3 +55,14 @@ btn.addEventListener("click", () => {
 updateCarousel();
 
 Kakao.init("20a4cb322ca444c9d7f0c2c32254e02c"); // JavaScript 키를 본인의 것으로 변경
+
+document.getElementById("kakaoLoginBtn").addEventListener("click", function() {
+  Kakao.Auth.login({
+    success: function(authObj) {
+      console.log("로그인 성공:", authObj);
+    },
+    fail: function(err) {
+      console.error("로그인 실패:", err);
+    }
+  });
+});

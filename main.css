@@ -171,3 +171,16 @@ ul {
 li {
   margin-bottom: 8px;
 }
+
+#kakaoLoginBtn {
+  background-color: #FEE500;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+#kakaoLoginBtn:hover {
+  background-color: #F7D900;
+}
