@@ -1,5 +1,5 @@
 document.getElementById("addApplyBtn").addEventListener("click", function () {
-  location.href = "myapply_add.html";
+  location.href = "community_add.html";
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -33,4 +33,71 @@ btn.addEventListener("click", () => {
 
 document.getElementById("mainButton").addEventListener("click", function() {
     window.location.href = "index.html";
+});
+
+// 샘플 글 데이터 (서버 없이 테스트용)
+const posts = [
+  { title: '합격 후기 1', author: '학생A', date: '2025-06-01' },
+  { title: '합격 후기 2', author: '학생B', date: '2025-06-02' },
+  // ... 20개 이상 채워도 됨
+];
+
+
+const postsPerPage = 8;
+let currentPage = 1;
+
+function renderTable(page) {
+  const tbody = document.getElementById('applyTableBody');
+  tbody.innerHTML = '';
+
+  const start = (page - 1) * postsPerPage;
+  const end = start + postsPerPage;
+  const pagePosts = posts.slice(start, end);
+
+  // 최대 10줄 유지
+  for (let i = 0; i < postsPerPage; i++) {
+    if (i < pagePosts.length) {
+      const post = pagePosts[i];
+      tbody.innerHTML += `
+        <tr>
+          <td>${post.title}</td>
+          <td>${post.author}</td>
+          <td>${post.date}</td>
+        </tr>
+      `;
+    } else {
+      tbody.innerHTML += `
+        <tr>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+      `;
+    }
+  }
+}
+
+
+function renderPagination() {
+  const paginationDiv = document.querySelector('.pagination');
+  paginationDiv.innerHTML = ''; // 초기화
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    btn.className = 'page-btn';
+    if (i === currentPage) btn.style.backgroundColor = '#4CAF50', btn.style.color = '#fff';
+    btn.addEventListener('click', () => {
+      currentPage = i;
+      renderTable(currentPage);
+      renderPagination();
+    });
+    paginationDiv.appendChild(btn);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderTable(currentPage);
+  renderPagination();
 });
