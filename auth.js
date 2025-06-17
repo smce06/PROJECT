@@ -1,5 +1,5 @@
 // Kakao SDK 초기화
-Kakao.init("20a4cb322ca444c9d7f0c2c32254e02c"); // 본인 JavaScript 키로 변경
+Kakao.init("d61b73b4ade01cd5c7c857994467bc66"); // 본인 JavaScript 키로 변경
 console.log("Kakao SDK 초기화 완료");
 
 // 카카오 로그인 기능
@@ -13,6 +13,8 @@ function kakaoLogin() {
 
             getUserInfo(); // 사용자 정보 가져오기 호출
             updateLoginUI(true); // 로그인 UI 업데이트
+            
+            window.location.href = "index.html"; 
         },
         fail: function(error) {
             console.error("로그인 실패:", error);
@@ -33,13 +35,16 @@ function kakaoLogout() {
 function updateLoginUI(isLoggedIn) {
     const loginBtn = document.getElementById("kakaoLoginBtn");
     const logoutBtn = document.getElementById("kakaoLogoutBtn");
+    const profileIcon = document.querySelector(".profile-icon");
 
     if (isLoggedIn) {
         loginBtn.style.display = "none"; // 로그인 버튼 숨기기
         logoutBtn.style.display = "inline-block"; // 로그아웃 버튼 표시
+        profileIcon.style.display = "inline-block"; // 이모티콘 표시
     } else {
         loginBtn.style.display = "inline-block"; // 로그인 버튼 표시
         logoutBtn.style.display = "none"; // 로그아웃 버튼 숨기기
+        profileIcon.style.display = "none"; // 이모티콘 숨기기
     }
 }
 
@@ -54,9 +59,7 @@ function getUserInfo() {
 
     Kakao.API.request({
         url: '/v2/user/me',
-        headers: {
-            Authorization: `Bearer ${token}` // 저장된 토큰 포함
-        },
+        token: token, // 올바른 방식으로 토큰 전달
         success: function(res) {
             console.log("사용자 정보:", res);
         },
@@ -68,11 +71,9 @@ function getUserInfo() {
 
 // 쿠키 가져오는 함수 추가
 function getCookie(name) {
-    const cookies = document.cookie.split("; ");
-    for (let cookie of cookies) {
-        const [key, value] = cookie.split("=");
-        if (key === name) return value;
-    }
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
     return null;
 }
 
