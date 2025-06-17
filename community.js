@@ -1,103 +1,96 @@
-document.getElementById("addApplyBtn").addEventListener("click", function () {
-  location.href = "community_add.html";
-});
+/* ===================== 기본 설정 ===================== */
+/* 사이드 메뉴 토글 & 로고 홈 이동 */
+const menuBtn = document.getElementById("menuBtn");
+const nav     = document.getElementById("nav");
+const mainBtn = document.getElementById("mainButton");
+menuBtn.addEventListener("click", () => nav.classList.toggle("show"));
+mainBtn.addEventListener("click", () => location.href = "index.html");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const tableBody = document.getElementById("applyTableBody");
-  const applyList = JSON.parse(localStorage.getItem("applyList") || "[]");
+/* 추가하기 → 글 작성 페이지로 이동 */
+const addBtn = document.getElementById("addBtn");      // HTML에 id="addPostBtn"이어야 함
+addBtn.addEventListener("click", () => location.href = "community_add.html");
 
-  const totalRows = 6;
-  tableBody.innerHTML = ""; // 초기 표 비우기
-
-  // 데이터 행 추가
-  applyList.forEach(({ univ, type, deadline }) => {
-    const row = `<tr><td>${univ}</td><td>${type}</td><td>${deadline}</td></tr>`;
-    tableBody.insertAdjacentHTML("beforeend", row);
-  });
-
-  // 빈칸 행 채우기
-  const emptyRows = totalRows - applyList.length;
-  for (let i = 0; i < emptyRows; i++) {
-    const emptyRow = `<tr><td>-</td><td>-</td><td>-</td></tr>`;
-    tableBody.insertAdjacentHTML("beforeend", emptyRow);
-  }
-});
-
-const btn = document.getElementById("menuBtn");
-const nav = document.getElementById("nav");
-
-// 메뉴 버튼 클릭 시 내비게이션 열고 닫기
-btn.addEventListener("click", () => {
-  nav.classList.toggle("show");
-});
-
-document.getElementById("mainButton").addEventListener("click", function() {
-    window.location.href = "index.html";
-});
-
-// 샘플 글 데이터 (서버 없이 테스트용)
-const posts = [
-  { title: '합격 후기 1', author: '학생A', date: '2025-06-01' },
-  { title: '합격 후기 2', author: '학생B', date: '2025-06-02' },
-  // ... 20개 이상 채워도 됨
-];
+/* ===================== 데이터 로드 ===================== */
+/* community_add.html에서 저장한 게시글을 불러온다 */
+let posts = JSON.parse(localStorage.getItem("communityPosts") || "[]");
 
 
-const postsPerPage = 8;
-let currentPage = 1;
+/* ===================== 상수 ===================== */
+const PER_PAGE   = 10;          // 페이지당 10개
+let   current    = 1;           // 현재 페이지
+const tableBody  = document.getElementById("applyTableBody");
+const pagination = document.querySelector(".pagination");
 
+/* ===================== 테이블 렌더 ===================== */
+/* ===================== 테이블 렌더 ===================== */
 function renderTable(page) {
-  const tbody = document.getElementById('applyTableBody');
-  tbody.innerHTML = '';
+  tableBody.innerHTML = "";
+  const start  = (page - 1) * PER_PAGE;
+  const slice  = posts.slice(start, start + PER_PAGE);
 
-  const start = (page - 1) * postsPerPage;
-  const end = start + postsPerPage;
-  const pagePosts = posts.slice(start, end);
+  for (let i = 0; i < PER_PAGE; i++) {
+    if (i < slice.length) {
+      const { title, author, date } = slice[i];
 
-  // 최대 10줄 유지
-  for (let i = 0; i < postsPerPage; i++) {
-    if (i < pagePosts.length) {
-      const post = pagePosts[i];
-      tbody.innerHTML += `
-        <tr>
-          <td>${post.title}</td>
-          <td>${post.author}</td>
-          <td>${post.date}</td>
-        </tr>
-      `;
+      // tr 생성
+      const tr = document.createElement("tr");
+
+      // 제목 td
+      const tdTitle = document.createElement("td");
+      tdTitle.textContent = title;
+      tdTitle.style.color = "#2F855A";
+      tdTitle.style.cursor = "pointer";
+
+      // 클릭 시 상세 페이지로 이동, postId는 실제 데이터 인덱스 계산 필요
+      tdTitle.addEventListener("click", () => {
+        // 전체 posts 기준 인덱스 = start + i
+        location.href = `community_show.html?postId=${start + i}`;
+      });
+
+      // 작성자 td
+      const tdAuthor = document.createElement("td");
+      tdAuthor.textContent = author;
+
+      // 날짜 td
+      const tdDate = document.createElement("td");
+      tdDate.textContent = date;
+
+      tr.appendChild(tdTitle);
+      tr.appendChild(tdAuthor);
+      tr.appendChild(tdDate);
+
+      tableBody.appendChild(tr);
     } else {
-      tbody.innerHTML += `
-        <tr>
-          <td>-</td>
-          <td>-</td>
-          <td>-</td>
-        </tr>
-      `;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>-</td><td>-</td><td>-</td>`;
+      tableBody.appendChild(tr);
     }
   }
 }
 
 
+
+/* ===================== 페이지네이션 렌더 ===================== */
 function renderPagination() {
-  const paginationDiv = document.querySelector('.pagination');
-  paginationDiv.innerHTML = ''; // 초기화
-  const totalPages = Math.ceil(posts.length / postsPerPage);
+  pagination.innerHTML = "";
+  const totalPages = Math.ceil(posts.length / PER_PAGE) || 1;
 
   for (let i = 1; i <= totalPages; i++) {
-    const btn = document.createElement('button');
+    const btn = document.createElement("button");
     btn.textContent = i;
-    btn.className = 'page-btn';
-    if (i === currentPage) btn.style.backgroundColor = '#4CAF50', btn.style.color = '#fff';
-    btn.addEventListener('click', () => {
-      currentPage = i;
-      renderTable(currentPage);
+    btn.className   = "page-btn" + (i === current ? " active" : "");
+    btn.addEventListener("click", () => {
+      current = i;
+      renderTable(current);
       renderPagination();
+      window.scrollTo({ top: 0 });
     });
-    paginationDiv.appendChild(btn);
+    pagination.appendChild(btn);
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderTable(currentPage);
+/* ===================== 최초 실행 ===================== */
+document.addEventListener("DOMContentLoaded", () => {
+  renderTable(current);
   renderPagination();
 });

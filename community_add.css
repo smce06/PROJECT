@@ -170,7 +170,7 @@ input[type="date"]:focus {
 
 /* 추가하기 버튼 */
 button[type="submit"],
-#addApplyBtn {
+#addBtn {
   padding: 15px 30px;
   font-size: 1.1rem;
   font-weight: 700;
@@ -184,9 +184,30 @@ button[type="submit"],
 }
 
 button[type="submit"]:hover,
-#addApplyBtn:hover {
+#addBtn:hover {
   background-color: #38a169;
   transform: translateY(-2px);
 }
+
+/* ================== 글 내용(textarea) 크기·폰트 조정 ================== */
+textarea#content{
+  width:100%;         /* 제목 입력칸과 같은 너비 */
+  height:240px;       /* 원하는 높이, 필요하면 px 값 조정 */
+  padding:15px 20px;
+  font-size:1.15rem;  /* 제목 입력보다 살짝 큰 글씨 */
+  line-height:1.5;
+  border-radius:10px;
+  background:#f9fdfb;
+  border:1px solid #cbd5e0;
+  resize:vertical;    /* 사용자가 세로로만 늘리기 가능 */
+  transition:border .2s, box-shadow .2s;
+}
+
+textarea#content:focus{
+  border-color:#68d391;
+  box-shadow:0 0 0 3px rgba(72,187,120,.3);
+  outline:none;
+}
+
 
 

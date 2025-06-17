@@ -1,10 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
+/* ========== 글 작성 폼 처리 ========== */
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("addForm");
 
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const title = document.getElementById("title").value.trim();
+    const title   = document.getElementById("title").value.trim();
     const content = document.getElementById("content").value.trim();
 
     if (!title || !content) {
@@ -12,40 +13,27 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // 현재 날짜 yyyy-mm-dd 형식
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
-    const createdAt = `${year}-${month}-${day}`;
+    /* 오늘 날짜 yyyy-mm-dd */
+    const today  = new Date().toISOString().slice(0, 10);
+    const author = "익명1";
 
-    const writer = "익명1";
+    /* 기존 글 목록 불러오기 */
+    const posts = JSON.parse(localStorage.getItem("communityPosts") || "[]");
 
-    // 기존 저장된 데이터 가져오기
-    const savedData = JSON.parse(localStorage.getItem("communityPosts") || "[]");
-
-    // 새 글 추가
-    savedData.push({ title, content, writer, createdAt });
-
-    // 저장
-    localStorage.setItem("communityPosts", JSON.stringify(savedData));
+    /* 새 글 저장 (목록에서 쓰는 필드명: title / author / date) */
+    posts.push({ title, content, author, date: today });
+    localStorage.setItem("communityPosts", JSON.stringify(posts));
 
     alert("글이 등록되었습니다!");
-
-    // community.html로 이동
     location.href = "community.html";
   });
 });
 
+/* ========== 사이드 메뉴 & 로고 ========== */
+const menuBtn = document.getElementById("menuBtn");
+const nav     = document.getElementById("nav");
+menuBtn.addEventListener("click", () => nav.classList.toggle("show"));
 
-const btn = document.getElementById("menuBtn");
-const nav = document.getElementById("nav");
-
-// 메뉴 버튼 클릭 시 내비게이션 열고 닫기
-btn.addEventListener("click", () => {
-  nav.classList.toggle("show");
-});
-
-document.getElementById("mainButton").addEventListener("click", function() {
-    window.location.href = "index.html";
+document.getElementById("mainButton").addEventListener("click", () => {
+  location.href = "index.html";
 });
