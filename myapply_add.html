@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BRAVO DAY</title>
-    <link rel="stylesheet" href="main.css"/>
+  <title>원서 추가</title>
+  <link rel="stylesheet" href="myapply_add.css" />
 </head>
 <body>
-  <!-- 헤더 -->
   <header>
     <button id="menuBtn" class="menu-icon">≡</button>
     <div id="nav">
@@ -19,33 +18,29 @@
     </ul>
     </div>
 
-    <div class="logo">BRAVO DAY</div>
+    <div class="logo" id="mainButton">BRAVO DAY</div>
     <div class="top-right">
       <div class="login-box">로그인 / 로그아웃<br>회원가입</div>
       <div class="profile-icon">🙂</div>
     </div>
   </header>
 
-  <!-- 메인 디데이 -->
-  <main>
-    <div class="d-day-container">
-      <button class="arrow" id="leftArrow">❮</button>
-      <div class="carousel">
-        <div class="d-day-card">가나대<br>추합 마감까지<br><br>D-5</div>
-        <div class="d-day-card">다라대<br>면접까지<br><br>D-12</div>
-        <div class="d-day-card">마바대<br>원서 접수 마감까지<br><br>D-30</div>
-      </div>
-      <button class="arrow" id="rightArrow">❯</button>      
-    </div>
+  <main class="add-form">
+    <h2>원서 추가</h2>
+    <form id="addForm"> <!-- id 변경 -->
+      <label>대학 이름: <input type="text" id="univ" required /></label><br> <!-- id 변경 -->
+      <label>전형: <input type="text" id="type" required /></label><br>
+      <label>마감일: <input type="date" id="deadline" required /></label><br>
+      <button type="submit">추가</button>
+    </form>
   </main>
 
-  <!-- 푸터 -->
   <footer>
     <a href="#">광고주를 구합니다</a>
     <a href="#">문의</a>
     <a href="#">개인정보보호정책</a>
   </footer>
 
-  <script src="main.js"></script>
-</body> 
+  <script src="myapply_add.js"></script>
+</body>
 </html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRAVO DAY</title>
+    <link rel="stylesheet" href="info.css"> 
+</head>
+<body>
+    <header>
+      <button id="menuBtn" class="menu-icon">≡</button>
+      <div id="nav">
+        <ul>
+          <li><a href="myapply.html" class="nav-link">내 원서</a></li>
+          <li><a href="schedule.html" class="nav-link">일정 추가</a></li>
+          <li><a href="info.html" class="nav-link">대학 정보</a></li>
+          <li><a href="community.html" class="nav-link">후기 커뮤니티</a></li>
+      </ul>
+      </div>
+
+      <div class="logo" id="mainButton">BRAVO DAY</div>
+      <div class="top-right">
+        <div class="login-box">로그인 / 로그아웃<br>회원가입</div>
+        <div class="profile-icon">🙂</div>
+      </div>
+  </header>
+
+
+    <nav id="nav">
+        <ul>
+            <li><a href="#" class="nav-link">서울</a></li>
+            <li><a href="#" class="nav-link">부산</a></li>
+            <li><a href="#" class="nav-link">대전</a></li>
+            <li><a href="#" class="nav-link">전체 보기</a></li>
+        </ul>yy
+    </nav>
+
+    <main>
+        <section class="filter">
+            <label for="regionSelect">지역 선택:</label>
+            <select id="regionSelect">
+                <option value="all">전체</option>
+                <option value="seoul">서울</option>
+                <option value="busan">부산</option>
+                <option value="daejeon">대전</option>
+            </select>
+        </section>
+
+        <section class="university-list">
+            <ul id="universityList">
+                <li data-region="daejeon"><a href="info_more.html?name=kyu">건양대학교</a></li>
+                <li data-region="seoul"><a href="info_more.html?name=korea">고려대학교</a></li>
+                <li data-region="daejeon"><a href="info_more.html?name=dst">대전과학기술대학교</a></li>
+                <li data-region="daejeon"><a href="info_more.html?name=hit">대전보건대학교</a></li>
+                <li data-region="daejeon"><a href="info_more.html?name=mwu">목원대학교</a></li>
+                <li data-region="busan"><a href="info_more.html?name=pknu">부경대학교</a></li>
+                <li data-region="busan"><a href="info_more.html?name=bist">부산과학기술대학교</a></li>
+                <li data-region="busan"><a href="info_more.html?name=pnu">부산대학교</a></li>
+                <li data-region="busan"><a href="info_more.html?name=bufs">부산외국어대학교</a></li>
+                <li data-region="busan"><a href="info_more.html?name=bwu">부산여자대학교</a></li>
+                <li data-region="seoul"><a href="info_more.html?name=skku">성균관대학교</a></li>
+                <li data-region="seoul"><a href="info_more.html?name=snu">서울대학교</a></li>
+                <li data-region="seoul"><a href="info_more.html?name=smwu">숙명여자대학교</a></li>
+                <li data-region="seoul"><a href="info_more.html?name=yonsei">연세대학교</a></li>
+                <li data-region="seoul"><a href="info_more.html?name=cau">중앙대학교</a></li>
+                <li data-region="daejeon"><a href="info_more.html?name=cnu">충남대학교</a></li>
+                <li data-region="daejeon"><a href="info_more.html?name=kaist">카이스트</a></li>
+                <li data-region="busan"><a href="info_more.html?name=kmou">한국해양대학교</a></li>
+            </ul>
+        </section>
+        <div class="pagination" id="pagination"></div>
+
+    </main>
+
+    <footer>
+      <a href="#">광고주를 구합니다</a>
+      <a href="#">문의</a>
+      <a href="#">개인정보보호정책</a>
+    </footer>
+    <script src="info.js"></script> 
+</body>
+</html>
