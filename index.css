@@ -174,7 +174,7 @@ li {
 }
 
 #kakaoLoginBtn {
-  background-color: #FEE500;
+  background-color: #d1e7c8;
   border: none;
   padding: 8px 12px;
   font-size: 14px;
@@ -183,5 +183,7 @@ li {
   border-radius: 4px;
 }
 #kakaoLoginBtn:hover {
-  background-color: #F7D900;
+  border: 2px;
+  background-color: #d1e7c8;
+  border-color: #F7D900;
 }
