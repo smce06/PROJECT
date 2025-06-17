@@ -160,3 +160,13 @@ ul {
 li {
   margin-bottom: 8px;
 }
+
+#kakaoLogoutBtn {
+  background-color: #d1e7c8;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}

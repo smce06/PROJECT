@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>대학 상세 정보</title>
     <link rel="stylesheet" href="info_more.css">
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
     <header>
@@ -20,8 +21,10 @@
 
         <div class="logo" id="mainButton">UNI DAY</div>
         <div class="top-right">
-        <div class="login-box">로그인 / 로그아웃<br>회원가입</div>
-        <div class="profile-icon">🙂</div>
+            <div class="login-box">
+                <button id="kakaoLogoutBtn" style="display: none;">로그아웃</button>
+                <div class="profile-icon" style="display: none;">🙂</div>
+            </div>
         </div>
     </header>
 
@@ -42,5 +45,6 @@
 
     <script src="info_more.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0F6cZfdM8oMgz-yR1Y3-iFrSr5sNHmns&callback=initMap"></script>
+    <script src="auth.js"></script>
 </body>
 </html>

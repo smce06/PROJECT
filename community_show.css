@@ -193,3 +193,13 @@ h2{
 #backBtn:hover{
   background:#38a169;
 }
+
+#kakaoLogoutBtn {
+  background-color: #d1e7c8;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}

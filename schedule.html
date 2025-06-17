@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>일정 추가</title>
   <link rel="stylesheet" href="schedule.css"/>
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
   <!-- 기존 헤더 그대로 붙여넣기 -->
@@ -20,8 +21,10 @@
     </div>
     <div class="logo" id="mainButton">UNI DAY</div>
     <div class="top-right">
-      <div class="login-box">로그인 / 로그아웃<br>회원가입</div>
-      <div class="profile-icon">🙂</div>
+        <div class="login-box">
+          <button id="kakaoLogoutBtn" style="display: none;">로그아웃</button>
+          <div class="profile-icon" style="display: none;">🙂</div>
+        </div>
     </div>
   </header>
 
@@ -60,5 +63,6 @@
   </footer>
 
   <script src="schedule.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>

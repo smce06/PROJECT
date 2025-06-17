@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BRAVO DAY</title>
+  <title> 커뮤니티</title>
     <link rel="stylesheet" href="community.css"/>
-    
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>    
 </head>
 <body>
   <!-- 헤더 -->
@@ -20,10 +20,11 @@
     </ul>
     </div>
 
-    <div class="logo" id="mainButton">BRAVO DAY</div>
+    <div class="logo" id="mainButton">UNI DAY</div>
     <div class="top-right">
-      <div class="login-box">로그인 / 로그아웃<br>회원가입</div>
-      <div class="profile-icon">🙂</div>
+        <div class="login-box">
+          <button id="kakaoLogoutBtn" style="display: none;">로그아웃</button>
+          <div class="profile-icon" style="display: none;">🙂</div>
     </div>
   </header>
 
@@ -86,5 +87,6 @@
   </footer>
 
   <script src="community.js"></script>
+  <script src="auth.js"></script>
 </body> 
 </html>

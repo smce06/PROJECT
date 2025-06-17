@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>대학 정보</title>
-    <link rel="stylesheet" href="info.css"> 
+    <link rel="stylesheet" href="info.css">
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script> 
 </head>
 <body>
     <header>
@@ -19,10 +20,12 @@
       </div>
 
       <div class="logo" id="mainButton">UNI DAY</div>
-      <div class="top-right">
-        <div class="login-box">로그인 / 로그아웃<br>회원가입</div>
-        <div class="profile-icon">🙂</div>
-      </div>
+        <div class="top-right">
+            <div class="login-box">
+                <button id="kakaoLogoutBtn" style="display: none;">로그아웃</button>
+                <div class="profile-icon" style="display: none;">🙂</div>
+            </div>
+        </div>
   </header>
 
 
@@ -78,5 +81,6 @@
       <a href="#">개인정보보호정책</a>
     </footer>
     <script src="info.js"></script> 
+    <script src="auth.js"></script>
 </body>
 </html>

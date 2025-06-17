@@ -198,3 +198,13 @@ li {
   transition:background .25s;
 }
 .add-btn:hover{background:rgba(47,133,90,.1);}
+
+#kakaoLogoutBtn {
+  background-color: #d1e7c8;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
