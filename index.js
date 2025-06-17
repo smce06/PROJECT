@@ -1,9 +1,7 @@
-// ✅ D-Day 로직
 const carousel = document.querySelector(".carousel");
 const applyList = JSON.parse(localStorage.getItem("applyList") || "[]");
 let currentIndex = 0;
 
-// ✅ D-Day 계산 함수
 function calculateDday(dateString) {
   const today = new Date();
   const target = new Date(dateString);
@@ -11,9 +9,9 @@ function calculateDday(dateString) {
   return Math.ceil(diff / (1000 * 60 * 60 * 24));
 }
 
-// ✅ 카드 3개만 고정 생성
+// 카드 3개만 고정 생성
 function createFixedCards() {
-  carousel.innerHTML = "";
+  carousel.innerHTML = ""; // 비우고 다시 만듦
 
   for (let i = 0; i < 3; i++) {
     const card = document.createElement("div");
@@ -22,7 +20,7 @@ function createFixedCards() {
   }
 }
 
-// ✅ 카드 내용 바꾸기
+// 카드 내용만 바꿔침
 function updateCarousel() {
   const cards = document.querySelectorAll(".d-day-card");
   const total = applyList.length;
@@ -30,6 +28,7 @@ function updateCarousel() {
 
   const prevIdx = (currentIndex - 1 + total) % total;
   const nextIdx = (currentIndex + 1) % total;
+
   const indices = [prevIdx, currentIndex, nextIdx];
 
   cards.forEach((card, i) => {
@@ -37,56 +36,30 @@ function updateCarousel() {
     const dday = calculateDday(deadline);
     card.innerHTML = `${univ}<br>${type}까지<br><br>D${dday}`;
 
+    // 스타일: 가운데만 강조
     card.style.opacity = i === 1 ? "1" : "0.5";
     card.style.zIndex = i === 1 ? "3" : "2";
     card.classList.toggle("active", i === 1);
   });
 }
 
-// ✅ 초기화
+// 초기화
 createFixedCards();
 updateCarousel();
 
-// ✅ 캐러셀 버튼
-document.getElementById("leftArrow")?.addEventListener("click", () => {
+document.getElementById("leftArrow").addEventListener("click", () => {
   currentIndex = (currentIndex - 1 + applyList.length) % applyList.length;
   updateCarousel();
 });
 
-document.getElementById("rightArrow")?.addEventListener("click", () => {
+document.getElementById("rightArrow").addEventListener("click", () => {
   currentIndex = (currentIndex + 1) % applyList.length;
   updateCarousel();
 });
 
-// ✅ DOM 로드 후 버튼 등록
-document.addEventListener("DOMContentLoaded", () => {
-  const menuBtn = document.getElementById("menuBtn");
-  const nav = document.getElementById("nav");
-  const mainBtn = document.getElementById("mainButton");
-  const loginBtn = document.getElementById("kakaoLoginBtn");
-  const logoutBtn = document.getElementById("kakaoLogoutBtn");
-
-  menuBtn?.addEventListener("click", () => nav?.classList.toggle("show"));
-  mainBtn?.addEventListener("click", () => location.href = "index.html");
-  loginBtn?.addEventListener("click", () => window.kakaoLogin?.());
-  logoutBtn?.addEventListener("click", () => window.kakaoLogout?.());
-
-  // ✅ 로그인 상태에 따라 메뉴 진입 제한
-  document.querySelectorAll(".page-link").forEach(link => {
-    link.addEventListener("click", e => {
-      const token = getCookie("kakaoToken");
-      if (!token) {
-        e.preventDefault();
-        alert("로그인을 하면 이용 가능합니다!");
-      }
-    });
-  });
-});
-
-// ✅ 쿠키 헬퍼 함수
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  return parts.length === 2 ? parts.pop().split(";").shift() : null;
-}
+const menuBtn = document.getElementById("menuBtn");
+const nav     = document.getElementById("nav");
+const mainBtn = document.getElementById("mainButton");
+menuBtn.addEventListener("click", () => nav.classList.toggle("show"));
+mainBtn.addEventListener("click", () => location.href = "index.html");
 
