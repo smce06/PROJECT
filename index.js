@@ -57,3 +57,16 @@ document.getElementById("kakaoLoginBtn").addEventListener("click", function() {
         console.error("❌ `kakaoLogin` 함수가 정의되지 않았습니다! `auth.js`를 확인하세요.");
     }
 });
+
+document.querySelectorAll(".page-link").forEach(button => {
+    button.addEventListener("click", function(event) {
+        const token = localStorage.getItem("kakaoToken"); // 저장된 로그인 토큰 가져오기
+
+        if (!token) {
+            event.preventDefault(); // 기본 링크 이동 막기
+            alert("로그인을 하면 이용 가능합니다!"); // 팝업(알림) 띄우기
+        } else {
+            window.location.href = this.getAttribute("href"); // 정상적으로 페이지 이동
+        }
+    });
+});

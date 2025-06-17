@@ -8,9 +8,9 @@ function kakaoLogin() {
         success: function(authObj) {
             console.log("로그인 성공:", authObj);
             
-            // 로그인 성공 시 토큰 저장
-            localStorage.setItem("kakaoToken", authObj.access_token);
-            
+            // 로그인 성공 시 토큰을 쿠키에 저장 (1시간 유지)
+            document.cookie = `kakaoToken=${authObj.access_token}; path=/; max-age=3600`;
+
             getUserInfo(); // 사용자 정보 가져오기 호출
         },
         fail: function(error) {
@@ -21,7 +21,7 @@ function kakaoLogin() {
 
 // 사용자 정보 가져오기
 function getUserInfo() {
-    const token = localStorage.getItem("kakaoToken"); // 저장된 토큰 가져오기
+    const token = getCookie("kakaoToken"); // 쿠키에서 로그인 정보 가져오기
 
     if (!token) {
         console.error("토큰이 없습니다! 로그인 후 다시 시도하세요.");
@@ -41,4 +41,16 @@ function getUserInfo() {
         }
     });
 }
+
+// 쿠키 가져오는 함수 추가
+function getCookie(name) {
+    const cookies = document.cookie.split("; ");
+    for (let cookie of cookies) {
+        const [key, value] = cookie.split("=");
+        if (key === name) return value;
+    }
+    return null;
+}
+
+// 전역으로 등록
 window.kakaoLogin = kakaoLogin;
