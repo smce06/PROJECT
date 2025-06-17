@@ -61,27 +61,36 @@ header {
 }
 
 .carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  width: 600px;
   height: 400px;
+  gap: 60px;
 }
 
-/* 원을 중앙 정렬 후 좌우로 배치 */
 .d-day-card {
-  position: absolute;
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   background-color: rgb(188, 246, 206);
   color: #1c5533;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.4s ease;
+  box-shadow: none;
 }
+
+.d-day-card.active {
+  box-shadow: 15px 15px 15px rgba(105, 105, 105, 0.6);
+  transform: scale(1.05);
+}
+
+
 
 .arrow {
   position: absolute;       /* 위치 설정을 위해 필요 */
