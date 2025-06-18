@@ -234,15 +234,6 @@ li {
     padding: 0;
   }
 
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* 전체 화면 높이 */
-  }
-
-  main {
-    flex-grow: 1; /* 남는 공간을 main이 채움 */
-  }
   h2{ font-size: 1.4rem; }
 
   /* ─ 표 · 달력 등을 담는 wrapper가 있으면 가로 스크롤 허용 ─ */
@@ -304,7 +295,6 @@ body {
   flex-direction: column;
   min-height: 120vh;
 }
-
 main {
-  flex: 1;
+  min-height: calc(100vh - 180px);
 }

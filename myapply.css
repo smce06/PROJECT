@@ -267,5 +267,5 @@ body {
 }
 
 main {
-  flex: 1;
-}                                          /* 본문 자동 늘어나기 */
+  min-height: calc(100vh - 180px);
+}
