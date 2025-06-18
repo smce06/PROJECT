@@ -26,7 +26,7 @@ document.getElementById("regionSelect").addEventListener("change", function () {
 document.addEventListener("DOMContentLoaded", function () {
     const universityList = document.querySelectorAll("#universityList li");
     const paginationContainer = document.getElementById("pagination");
-    const itemsPerPage = 10;
+    const itemsPerPage = 8;
     let currentPage = 1;
 
     // 전체 페이지 수 계산
