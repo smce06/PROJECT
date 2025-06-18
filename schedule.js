@@ -1,7 +1,14 @@
-const btn = document.getElementById("menuBtn");
-const nav = document.getElementById("nav");
+/* ========== 사이드 메뉴 토글 ========== */
+const menuBtn = document.getElementById("menuBtn");
+const nav     = document.getElementById("nav");
+menuBtn.addEventListener("click", () => nav.classList.toggle("show"));
 
-/* ======= 로컬 스토리지에서 이벤트 로드 ======= */
+/* 로고 → 메인 */
+document.getElementById("mainButton").addEventListener("click", () => {
+  location.href = "index.html";
+});
+
+/* ========== 로컬스토리지에서 일정 불러오기 ========== */
 const defaultEvents = [
   { date: "2025-09-30", title: "가다대 1차 합격 발표" },
   { date: "2025-10-05", title: "나라대 지원 마감" },
@@ -9,12 +16,11 @@ const defaultEvents = [
 ];
 let events = JSON.parse(localStorage.getItem("events") || "null") || defaultEvents;
 
-/* ======= DOM 헬퍼 ======= */
+/* ========== 헬퍼 ========= */
 const $ = (s) => document.querySelector(s);
-
 let current = new Date();
 
-/* ======= 캘린더 렌더 ======= */
+/* ========== 달력 렌더 ========= */
 function drawCalendar(dateObj) {
   const y = dateObj.getFullYear();
   const m = dateObj.getMonth();
@@ -46,7 +52,7 @@ function drawCalendar(dateObj) {
     }
   }
 
-  /* = 우측 리스트 = */
+  /* = 우측 ‘주요일정’ 리스트 = */
   const ul = $("#eventList");
   ul.innerHTML = "";
   events
@@ -59,7 +65,7 @@ function drawCalendar(dateObj) {
     });
 }
 
-/* ======= 월 네비게이션 ======= */
+/* ========== 월 네비게이션 ========= */
 $("#prevMonth").onclick = () => {
   current.setMonth(current.getMonth() - 1);
   drawCalendar(current);
@@ -69,27 +75,10 @@ $("#nextMonth").onclick = () => {
   drawCalendar(current);
 };
 
-/* ======= 일정 추가 버튼 ======= */
+/* ========== “＋” 버튼 → 일정 추가 페이지 ========= */
 $("#addEventBtn").onclick = () => {
-  const date = prompt("날짜를 입력하세요 (YYYY-MM-DD)");
-  if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return alert("날짜 형식이 올바르지 않습니다!");
-
-  const title = prompt("일정 내용을 입력하세요");
-  if (!title) return;
-
-  events.push({ date, title });
-  localStorage.setItem("events", JSON.stringify(events));
-  drawCalendar(current);
+  location.href = "schedule_add.html";
 };
 
-/* ======= 초기 렌더 ======= */
+/* ========== 초기 렌더 ========= */
 drawCalendar(current);
-
-document.getElementById("mainButton").addEventListener("click", function() {
-    window.location.href = "index.html";
-});
-
-// 메뉴 버튼 클릭 시 내비게이션 열고 닫기
-btn.addEventListener("click", () => {
-  nav.classList.toggle("show");
-});

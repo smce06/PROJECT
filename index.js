@@ -128,14 +128,16 @@ function getUserInfo() {
     });
 }
 
-// ✅ 로그인 UI 업데이트
 function updateLoginUI(isLoggedIn) {
     const loginBtn = document.getElementById("kakaoLoginBtn");
     const logoutBtn = document.getElementById("kakaoLogoutBtn");
+    const profileIcon = document.querySelector(".profile-icon");
 
     if (loginBtn) loginBtn.style.display = !isLoggedIn ? "inline-block" : "none";
     if (logoutBtn) logoutBtn.style.display = isLoggedIn ? "inline-block" : "none";
+    if (profileIcon) profileIcon.style.display = isLoggedIn ? "inline-block" : "none";
 }
+
 
 // ✅ 쿠키 가져오는 함수
 function getCookie(name) {
@@ -153,7 +155,7 @@ window.addEventListener("load", () => {
 document.addEventListener("DOMContentLoaded", () => {
     const loginBtn = document.getElementById("kakaoLoginBtn");
     const logoutBtn = document.getElementById("kakaoLogoutBtn");
-
+    const profileIcon = document.querySelector(".profile-icon");
     // 좌우 화살표 클릭 이벤트 - 애니메이션 포함
     document.getElementById("leftArrow").addEventListener("click", () => {
       currentIndex = (currentIndex - 1 + applyList.length) % applyList.length;
@@ -173,7 +175,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (logoutBtn) {
         logoutBtn.addEventListener("click", kakaoLogout);
     }
+      
+    if (profileIcon) {
+      profileIcon.addEventListener("click", () => {
+        window.location.href = "profile.html";
+      });
+    }
 });
+
+document.querySelector(".profile-icon")?.addEventListener("click", () => {
+    window.location.href = "profile.html";
+});
+
 
 // ✅ 전역에서 호출 가능하도록 등록
 window.kakaoLogin = kakaoLogin;

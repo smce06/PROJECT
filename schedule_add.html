@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>일정 추가</title>
+  <link rel="stylesheet" href="schedule_add.css"/>
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+</head>
+<body>
+  <!-- ========== 공통 헤더 ========== -->
+  <header>
+    <button id="menuBtn" class="menu-icon">≡</button>
+    <div id="nav">
+      <ul>
+        <li><a href="myapply.html"  class="nav-link">내 원서</a></li>
+        <li><a href="schedule.html" class="nav-link on">일정 추가</a></li>
+        <li><a href="info.html"     class="nav-link">대학 정보</a></li>
+        <li><a href="guide.html"    class="nav-link">입시 가이드</a></li>
+        <li><a href="community.html"class="nav-link">후기 커뮤니티</a></li>
+      </ul>
+    </div>
+    <div class="logo" id="mainButton">UNI DAY</div>
+    <div class="top-right">
+      <div class="login-box">
+        <button id="kakaoLogoutBtn" style="display:none;">로그아웃</button>
+        <div class="profile-icon"  style="display:none;">🙂</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== 메인(폼) ========== -->
+  <main class="add-form">
+    <h2>일정 추가</h2>
+    <form id="eventForm">
+      <label>날짜
+        <input type="date" id="eventDate" required>
+      </label><br>
+      <label>내용
+        <input type="text" id="eventTitle" required>
+      </label><br>
+      <button type="submit">추가</button>
+    </form>
+  </main>
+
+  <!-- ========== 푸터 ========== -->
+  <footer>
+    <a href="#">광고주를 구합니다</a>
+    <a href="#">문의</a>
+    <a href="#">개인정보보호정책</a>
+  </footer>
+
+  <script src="schedule_add.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

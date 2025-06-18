@@ -1,38 +1,43 @@
-document.addEventListener("DOMContentLoaded", function () {
+/* -------- 1) 원서 추가 폼 처리 -------- */
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("addForm");
 
-  form.addEventListener("submit", function (e) {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const univ = document.getElementById("univ").value.trim();
-    const type = document.getElementById("type").value.trim();
-    const deadline = document.getElementById("deadline").value;
+    const univ  = document.getElementById("univ").value.trim();
+    const type  = document.getElementById("type").value.trim();
+    const competitionrateInput = document.getElementById("competitionrate").value;
+    const competitionrate = parseFloat(competitionrateInput);
 
-    if (!univ || !type || !deadline) {
-      alert("모든 항목을 입력해주세요.");
+    /* 입력값 검증 */
+    if (!univ || !type || isNaN(competitionrate)) {
+      alert("모든 항목을 올바르게 입력해주세요.");
       return;
     }
 
+    /* 기존 데이터 불러오기 & 신규 데이터 추가 */
     const savedData = JSON.parse(localStorage.getItem("applyList") || "[]");
+    savedData.push({ univ, type, competitionrate });
 
-    savedData.push({ univ, type, deadline });
-
+    /* 저장 */
     localStorage.setItem("applyList", JSON.stringify(savedData));
-
     alert("추가되었습니다!");
 
+    /* 목록 페이지로 이동 */
     location.href = "myapply.html";
   });
 });
 
-const btn = document.getElementById("menuBtn");
-const nav = document.getElementById("nav");
+/* -------- 2) 사이드 메뉴 토글 -------- */
+const menuBtn = document.getElementById("menuBtn");
+const nav     = document.getElementById("nav");
 
-// 메뉴 버튼 클릭 시 내비게이션 열고 닫기
-btn.addEventListener("click", () => {
+menuBtn.addEventListener("click", () => {
   nav.classList.toggle("show");
 });
 
-document.getElementById("mainButton").addEventListener("click", function() {
-    window.location.href = "index.html";
+/* -------- 3) 로고 클릭 → 메인 이동 -------- */
+document.getElementById("mainButton").addEventListener("click", () => {
+  location.href = "index.html";
 });

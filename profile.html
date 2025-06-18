@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>원서 추가</title>
-  <link rel="stylesheet" href="myapply_add.css" />
-  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+  <title>닉네임 입력</title>
+    <link rel="stylesheet" href="profile.css"/>
+    <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script> 
 </head>
 <body>
+  <!-- 헤더 -->
   <header>
     <button id="menuBtn" class="menu-icon">≡</button>
     <div id="nav">
@@ -29,23 +30,25 @@
     </div>
   </header>
 
-  <main class="add-form">
-    <h2>원서 추가</h2>
-    <form id="addForm"> <!-- id 변경 -->
-      <label>대학 이름: <input type="text" id="univ" required /></label><br> <!-- id 변경 -->
-      <label>전형: <input type="text" id="type" required /></label><br>
-      <label>경쟁률: <input type="number" id="competitionrate" step="0.1" min="0" required /></label><br>
-      <button type="submit">추가</button>
-    </form>
+  <!-- 메인 -->
+  <main>
+    <!-- profile.html -->
+        <form id="nicknameForm">
+        <input type="text" id="nicknameInput" placeholder="변경할 닉네임을 입력하세요" />
+        <button id="saveNicknameBtn">저장</button>
+        </form>
+        <script src="profile.js"></script>
+
   </main>
 
+  <!-- 푸터 -->
   <footer>
     <a href="#">광고주를 구합니다</a>
     <a href="#">문의</a>
     <a href="#">개인정보보호정책</a>
   </footer>
 
-  <script src="myapply_add.js"></script>
+  <script src="myapply.js"></script>
   <script src="auth.js"></script>
-</body>
+</body> 
 </html>

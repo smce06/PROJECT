@@ -88,6 +88,24 @@ footer a {
   color: #000;
 }
 
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.login-box {
+  background-color: #d1e7c8;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  line-height: 1.2    ;
+}
+
+.profile-icon {
+  font-size: 1.8rem;
+}
+
 h2{
   margin:10px 0 0 10px;
   font-size:1.8rem;
@@ -192,6 +210,16 @@ h2{
 }
 #backBtn:hover{
   background:#38a169;
+}
+
+#kakaoLoginBtn {
+  background-color: #d1e7c8;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 #kakaoLogoutBtn {

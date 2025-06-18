@@ -1,6 +1,7 @@
 /* ===== 헤더 / 내비게이션 ===== */
 const menuBtn = document.getElementById("menuBtn");
 const nav     = document.getElementById("nav");
+const token = getCookie("kakaoToken");
 menuBtn.addEventListener("click",()=>nav.classList.toggle("show"));
 document.getElementById("mainButton").onclick=()=>location.href="index.html";
 document.getElementById("backBtn").onclick   =()=>location.href="community.html";
@@ -53,19 +54,29 @@ function renderComments(){
   if(list.length===0) commentsList.textContent="댓글이 없습니다.";
 }
 
-commentSubmit.onclick = ()=>{
+commentSubmit.onclick = () => {
   const text = commentInput.value.trim();
-  if(!text) return alert("댓글 내용을 입력해주세요.");
+  if (!text) return alert("댓글 내용을 입력해주세요.");
+
+  // 👉 닉네임 가져오기
+  let author = "익명";
+  const nicknameMap = JSON.parse(localStorage.getItem("nicknameMap") || "{}");
+  if (token && nicknameMap[token]) {
+    author = nicknameMap[token];
+  }
+
   allComments[postId].push({
-    author:"익명",
-    date:new Date().toISOString().slice(0,10),
+    author,
+    date: new Date().toISOString().slice(0, 10),
     text
   });
-  localStorage.setItem(commentsKey,JSON.stringify(allComments));
-  commentInput.value="";
-  showAll=false;           // 새 댓글 달리면 다시 3개만 표시
+
+  localStorage.setItem(commentsKey, JSON.stringify(allComments));
+  commentInput.value = "";
+  showAll = false;
   renderComments();
 };
+
 
 moreBtn.onclick = ()=>{
   showAll=!showAll;
@@ -73,3 +84,9 @@ moreBtn.onclick = ()=>{
 };
 
 renderComments();
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  return parts.length === 2 ? parts.pop().split(";").shift() : null;
+}
