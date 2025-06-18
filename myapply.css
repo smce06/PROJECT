@@ -1,22 +1,35 @@
+/* Universal Box-Sizing and Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Base Body Styles for Full Page Layout */
+html, body {
+  height: 100%; /* Ensure html and body take full viewport height */
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: sans-serif;
   background-color: #ffffff;
+  display: flex; /* Enable Flexbox for main layout */
+  flex-direction: column; /* Stack header, main, and footer vertically */
+  min-height: 100vh; /* Ensure body is at least full viewport height */
 }
 
+/* Header Styles */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 2px solid black;
-  position: relative;
-  height: 120px;
+  position: relative; /* For absolute positioning of children if needed */
+  height: 120px; /* Fixed height for the header */
+  flex-shrink: 0; /* Prevent header from shrinking */
 }
 
 .menu-icon {
@@ -28,7 +41,7 @@ header {
 }
 
 .logo {
-  all: unset; 
+  all: unset; /* Reset all browser default styles */
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: bold;
@@ -53,10 +66,14 @@ header {
   font-size: 1.8rem;
 }
 
-
-/* main.css */
-main{
-  margin-bottom: 100px;
+/* Main Content Area Styles */
+main {
+  flex-grow: 1; /* Allow main to take up remaining vertical space */
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  min-height: 0; /* Essential for flex-grow to work correctly with overflow */
+  padding: 2rem; /* Consistent padding */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  margin-bottom: 100px; /* This margin seems specific and might push footer down, review if intended */
 }
 
 .apply-section {
@@ -72,7 +89,7 @@ main{
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 93%;
+  margin-left: 93%; /* This might be problematic on smaller screens */
 }
 
 .apply-table {
@@ -97,51 +114,52 @@ main{
   text-align: center;
 }
 
-
+/* Footer Styles */
 footer {
-  height: 60px; /* 고정 높이 */
+  height: 60px; /* Fixed height for the footer */
+  flex-shrink: 0; /* Prevent footer from shrinking */
   border-top: 2px solid black;
   font-size: 0.9rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0 1rem; /* 좌우 여백만 */
+  padding: 0 1rem; /* Horizontal padding only */
   box-sizing: border-box;
 }
-
 
 footer a {
   text-decoration: none;
   color: #000;
 }
 
+/* Navigation (Sidebar) Styles */
 #nav {
   width: 230px;
-  height: 100vh;
+  height: 100vh; /* This needs adjustment for a fixed header */
   background-color: #f6fff1;
   color: black;
   position: fixed;
-  top: 109px;
-  left: -230px;
+  top: 109px; /* Position below the header */
+  left: -230px; /* Hidden off-screen by default */
   transition: left 0.3s ease;
   padding-top: 3em;
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
+}
 
-  }
-#nav li{
+#nav li {
   margin-bottom: 2em;
-} 
+}
 
 #nav.show {
-  left: 0;
+  left: 0; /* Slide in */
 }
 
 #menuBtn {
   font-size: 24px;
   cursor: pointer;
-  margin: 1em;
+  margin: 1em; /* This margin might not be ideal if it's part of the header */
 }
 
 .nav-link {
@@ -174,97 +192,110 @@ li {
   cursor: pointer;
   border-radius: 4px;
 }
-/* ========== 반응형 레이아웃 ========== */
-/* ❶ 태블릿 이하 ─ 768px */
-@media (max-width: 768px) {
 
-  /* ─ 헤더 & 로고 ─ */
-  header{
+/* ========== Responsive Layout ========== */
+
+/* ❶ Tablet and Below ─ 768px */
+@media (max-width: 768px) {
+  /* Header & Logo */
+  header {
     flex-direction: column;
     align-items: flex-start;
     gap: .5rem;
+    height: auto; /* Allow header height to adjust when stacked */
   }
-  .logo{ font-size: 1.5rem; }
+  .logo {
+    font-size: 1.5rem;
+  }
 
-  /* ─ 사이드 네비 → 상단 슬라이드 메뉴 ─ */
-  #nav{
+  /* Side Navigation → Top Slide Menu */
+  #nav {
     width: 100%;
-    left: -100%;        /* 처음엔 화면 밖 */
-    top: 60px;          /* 헤더 아래에 붙임 */
+    left: -100%; /* Initially off-screen */
+    top: 60px; /* Position below header (assuming a reduced header height on mobile) */
     font-size: 18px;
     padding: 2em 1em;
   }
-  #nav.show{ left: 0; } /* 토글 시 왼쪽 → 0 */
-  .nav-link{ font-size: 18px; padding: 12px; }
-
-  /* ─ 본문 ─ */
-  main{
-    max-width: 100%;    /* 폭 제한 해제 */
-    padding: 1rem;
-    margin: 10px auto 60px; /* 푸터와 간격 축소 */
+  #nav.show {
+    left: 0; /* Slide in */
   }
-  h2{ font-size: 1.4rem; }
+  .nav-link {
+    font-size: 18px;
+    padding: 12px;
+  }
 
-  /* ─ 표 · 달력 등을 담는 wrapper가 있으면 가로 스크롤 허용 ─ */
+  /* Main Content */
+  main {
+    max-width: 100%; /* Remove width restriction */
+    padding: 1rem;
+    margin: 10px auto 60px; /* Reduce spacing with footer */
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  /* Table / Calendar Wrapper for Horizontal Scroll */
   .table-wrapper,
-  .calendar-box{ overflow-x: auto; }
+  .calendar-box {
+    overflow-x: auto;
+  }
 
-  /* ─ 댓글 입력창 & 버튼 ─ */
-  #commentInput{
+  /* Comment Input & Button */
+  #commentInput {
     height: 40px;
     font-size: .9rem;
   }
-  #commentSubmit{
+  #commentSubmit {
     width: 90px;
     height: 40px;
     font-size: .9rem;
   }
 
-  /* ─ 푸터 ─ */
-  footer{
+  /* Footer */
+  footer {
     flex-direction: column;
     gap: .5rem;
     font-size: .85rem;
+    height: auto; /* Allow footer height to adjust when stacked */
   }
 }
 
-/* ❷ 모바일(폰) ─ 480px */
-@media (max-width: 480px){
+/* ❷ Mobile (Phone) ─ 480px */
+@media (max-width: 480px) {
+  .menu-icon {
+    font-size: 1.4rem;
+  }
+  .logo {
+    font-size: 1.3rem;
+  }
 
-  .menu-icon{ font-size: 1.4rem; }
-  .logo     { font-size: 1.3rem; }
+  /* Nav Link Line Spacing Adjustment */
+  #nav li {
+    margin-bottom: 1.2em;
+  }
 
-  /* 네비 링크 줄 간격 조정 */
-  #nav li   { margin-bottom: 1.2em; }
+  /* Main Content Font/Padding Compression */
+  main {
+    padding: .8rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  #postWriterDate {
+    font-size: .9rem;
+  }
 
-  /* 본문 폰트·여백 더 압축 */
-  main      { padding: .8rem; }
-  h2        { font-size: 1.2rem; }
-  #postWriterDate{ font-size: .9rem; }
-
-  /* 표·댓글 폰트 축소 */
+  /* Table/Comment Font Reduction */
   .type-table,
   .apply-table,
-  #commentsList{ font-size: .8rem; }
+  #commentsList {
+    font-size: .8rem;
+  }
 
-  /* 버튼 전체폭 사용 시 */
+  /* Full Width Buttons */
   #backBtn,
-  #addBtn{
+  #addBtn {
     width: 100%;
     font-size: .95rem;
   }
-}
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  min-height: calc(100vh - 180px); 
 }
