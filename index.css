@@ -117,15 +117,13 @@ header {
 }
 
 footer {
-  height: 60px;
+  height: 60px; /* 고정 높이 */
   border-top: 2px solid black;
-  text-align: center;
   font-size: 0.9rem;
-
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0 1rem; /* 좌우 여백만 */
   box-sizing: border-box;
 }
 
@@ -295,6 +293,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+
 main {
-  min-height: calc(100vh - 180px);
+  flex: 1;
 }
