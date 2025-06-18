@@ -10,7 +10,7 @@ html, body {
   height: 100%; /* html과 body가 뷰포트 전체 높이를 차지하도록 함 */
   margin: 0;
   padding: 0;
-  overflow: hidden; /* ✅ body의 전체 스크롤을 막음 */
+  overflow: hidden; /* ✅ 가장 중요! body의 전체 스크롤을 막음 */
 }
 
 body {
@@ -18,7 +18,7 @@ body {
   background-color: #ffffff;
   display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
   flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
-  min-height: 100vh; /* ✅ body가 뷰포트 전체 높이를 차지하도록 (이전 120vh -> 100vh) */
+  min-height: 100vh; /* ✅ body가 뷰포트 전체 높이를 차지하도록 */
 }
 
 /* Header Styles */
@@ -72,10 +72,8 @@ main {
   flex-grow: 1; /* ✅ main이 남은 수직 공간을 모두 차지하도록 함 */
   overflow-y: auto; /* ✅ main 내부 콘텐츠가 넘치면 main 안에서만 수직 스크롤 활성화 */
   min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
-  padding: 2rem; /* 일관된 패딩 */
+  padding: 2rem; /* 일관된 패딩 (하단 여백은 stress-list의 마진으로 조절) */
   box-sizing: border-box; /* 패딩을 요소의 전체 너비/높이에 포함 */
-  /* margin-bottom은 flexbox 레이아웃에서 필요 없으며 스크롤을 유발할 수 있어 제거합니다. */
-  /* 이전 코드에 있던 main{ margin-bottom: 100px; } 등의 선언은 삭제되었습니다. */
 }
 
 .apply-section {
@@ -91,7 +89,7 @@ main {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: auto; /* ✅ 반응형에 강한 우측 정렬 */
+  margin-left: auto; /* 우측 정렬 */
   display: block; /* margin-left: auto;를 위해 블록 요소로 만듦 */
 }
 
@@ -117,7 +115,6 @@ main {
   text-align: center;
 }
 
-
 footer {
   height: 60px; /* 푸터 고정 높이 */
   flex-shrink: 0; /* 푸터가 줄어들지 않도록 방지 */
@@ -135,14 +132,13 @@ footer a {
   color: #000;
 }
 
-
 #nav {
   width: 230px;
   height: calc(100vh - 120px); /* 헤더 높이(120px)를 뺀 나머지 공간을 차지하도록 수정 */
   background-color: #f6fff1;
   color: black;
   position: fixed;
-  top: 120px; /* ✅ 헤더 아래에 위치 (헤더 height:120px 기준) - 109px -> 120px로 조정 */
+  top: 120px; /* 헤더 아래에 위치 (헤더 height:120px 기준) */
   left: -230px; /* 기본적으로 화면 밖으로 숨김 */
   transition: left 0.3s ease;
   padding-top: 3em;
@@ -198,11 +194,10 @@ li {
   border-radius: 4px;
 }
 
-
 .stress-main {
-  padding: 2rem 1rem;
+  padding: 2rem 1rem; /* ✅ 상하좌우 패딩 유지 */
   text-align: center;
-  /* margin-bottom: -5px; (스크롤 유발 가능성 있으므로 제거) */
+  /* margin-bottom: -5px; (이런 음수 마진은 예측 불가능한 스크롤을 유발할 수 있으므로 제거) */
 }
 
 .stress-main h1 {
@@ -214,13 +209,13 @@ li {
 .stress-main p {
   font-size: 1.05rem;
   line-height: 1.5;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem; /* 단락 하단 마진 유지 */
   color: #333;
 }
 
 .stress-list {
   max-width: 800px;
-  margin: 0 auto; /* 상하 마진 0, 좌우 중앙 정렬 */
+  margin: 0 auto 30px auto; /* ✅ 상 0, 좌우 auto (중앙), 하단 30px 마진으로 푸터와의 간격 조절 */
   text-align: left;
   font-size: 1.1rem;
   line-height: 1.6;
@@ -229,6 +224,16 @@ li {
   padding: 30px;
   background-color: #f6fff1;
   border-radius: 50px;
+  /* min-height를 강제로 늘리는 대신, content가 자연스럽게 채워지도록 합니다. */
+  /* 필요하다면 list-item (li)에 padding-bottom을 추가하여 세로 공간을 늘릴 수 있습니다. */
+}
+
+.stress-list li {
+  margin-bottom: 15px; /* 각 리스트 아이템 하단에 여백 추가로 세로 공간 확보 */
+}
+
+.stress-list li:last-child {
+  margin-bottom: 0; /* 마지막 리스트 아이템의 하단 여백은 제거 */
 }
 
 .stress-list li strong {
@@ -244,23 +249,23 @@ li {
     flex-direction: column;
     align-items: flex-start;
     gap: .5rem;
-    height: auto; /* 스택형으로 바뀔 때 헤더 높이 자동 조절 */
+    height: auto;
   }
   .logo {
     font-size: 1.5rem;
   }
 
-  /* ─ 사이드 네비 → 상단 슬라이드 메뉴 ─ */
+  /* ─ 사이드 내비 → 상단 슬라이드 메뉴 ─ */
   #nav {
     width: 100%;
-    left: -100%; /* 처음엔 화면 밖 */
-    top: 60px; /* 모바일 헤더 높이에 맞춰 조정 (헤더가 auto로 줄어들었을 때의 높이 고려) */
-    height: calc(100vh - 60px); /* 모바일 헤더 높이를 뺀 나머지 공간을 채우도록 조정 */
+    left: -100%;
+    top: 60px;
+    height: calc(100vh - 60px);
     font-size: 18px;
     padding: 2em 1em;
   }
   #nav.show {
-    left: 0; /* 토글 시 왼쪽 → 0 */
+    left: 0;
   }
   .nav-link {
     font-size: 18px;
@@ -269,13 +274,26 @@ li {
 
   /* ─ 본문 ─ */
   main {
-    max-width: 100%; /* 폭 제한 해제 */
-    padding: 1rem; /* 패딩 줄임 */
-    margin: 0 auto; /* ✅ 상하 마진 0, 좌우 중앙 정렬 */
+    max-width: 100%;
+    padding: 1rem; /* ✅ 모바일에서는 main 패딩을 더 줄여 스크롤 여지 줄임 */
+    margin: 0 auto;
   }
   h2 {
     font-size: 1.4rem;
   }
+
+  /* ─ Stress Page Specific Styles for Mobile ─ */
+  .stress-main {
+    padding: 1rem; /* ✅ 모바일에서 stress-main 패딩도 줄임 */
+  }
+  .stress-list {
+    padding: 20px; /* ✅ 모바일에서 stress-list 패딩 줄임 */
+    margin: 0 auto 20px auto; /* ✅ 모바일에서 하단 마진도 줄임 */
+  }
+  .stress-list li {
+    margin-bottom: 10px; /* ✅ 모바일에서 리스트 아이템 간격 줄임 */
+  }
+
 
   /* ─ 표 · 달력 등을 담는 wrapper가 있으면 가로 스크롤 허용 ─ */
   .table-wrapper,
@@ -299,7 +317,7 @@ li {
     flex-direction: column;
     gap: .5rem;
     font-size: .85rem;
-    height: auto; /* 스택형으로 바뀔 때 푸터 높이 자동 조절 */
+    height: auto;
   }
 }
 
@@ -313,20 +331,32 @@ li {
     font-size: 1.3rem;
   }
 
-  /* 네비 링크 줄 간격 조정 */
+  /* 내비 링크 줄 간격 조정 */
   #nav li {
     margin-bottom: 1.2em;
   }
 
   /* 본문 폰트·여백 더 압축 */
   main {
-    padding: .8rem;
+    padding: .5rem; /* ✅ 더 작은 모바일에서 main 패딩 더 줄임 */
   }
   h2 {
     font-size: 1.2rem;
   }
   #postWriterDate {
     font-size: .9rem;
+  }
+
+  /* ─ Stress Page Specific Styles for Smaller Mobile ─ */
+  .stress-main {
+    padding: 0.8rem; /* ✅ 더 작은 모바일에서 stress-main 패딩 더 줄임 */
+  }
+  .stress-list {
+    padding: 15px; /* ✅ 더 작은 모바일에서 stress-list 패딩 더 줄임 */
+    margin: 0 auto 15px auto; /* ✅ 더 작은 모바일에서 하단 마진 더 줄임 */
+  }
+  .stress-list li {
+    margin-bottom: 8px; /* ✅ 더 작은 모바일에서 리스트 아이템 간격 더 줄임 */
   }
 
   /* 표·댓글 폰트 축소 */

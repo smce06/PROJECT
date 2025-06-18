@@ -7,18 +7,18 @@
 
 /* Base Body Styles for Full Page Layout */
 html, body {
-  height: 100%; /* html과 body가 뷰포트 전체 높이를 차지하도록 함 */
+  height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* ✅ body의 전체 스크롤을 막음 */
+  overflow: hidden; /* 전체 스크롤 방지 */
 }
 
 body {
   font-family: sans-serif;
   background-color: #ffffff;
-  display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
-  flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
-  min-height: 100vh; /* 바디가 최소한 뷰포트 전체 높이를 차지하도록 함 */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Header Styles */
@@ -28,9 +28,9 @@ header {
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 2px solid black;
-  position: relative; /* 자식 요소의 절대 위치 지정을 위해 */
-  height: 120px; /* 헤더 고정 높이 */
-  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
+  position: relative;
+  height: 120px;
+  flex-shrink: 0;
 }
 
 .menu-icon {
@@ -42,7 +42,7 @@ header {
 }
 
 .logo {
-  all: unset; /* 브라우저 기본 스타일 모두 초기화 */
+  all: unset;
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: bold;
@@ -67,29 +67,26 @@ header {
   font-size: 1.8rem;
 }
 
-/* Main Content Area Styles (main.css에서 이 부분만 가져왔습니다) */
 main {
-  flex-grow: 1; /* ✅ main이 남은 수직 공간을 모두 차지하도록 함 */
-  overflow-y: auto; /* ✅ main 내부 콘텐츠가 넘치면 main 안에서만 수직 스크롤 활성화 */
-  min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
-  padding: 2rem; /* 일관된 패딩 */
-  box-sizing: border-box; /* 패딩을 요소의 전체 너비/높이에 포함 */
-  /* margin-bottom은 flexbox 레이아웃에서 필요 없으며 스크롤을 유발할 수 있어 제거합니다. */
-  /* margin-bottom: 100px; */
+  flex-grow: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 2rem 2rem 1rem 2rem;
+  box-sizing: border-box;
 }
 
-main h1 { /* main 안에 h1이 있다면 */
+main h1 {
   margin-left: 2rem;
   margin-top: 1rem;
 }
 
-main p { /* main 안에 p가 있다면 */
+main p {
   margin-left: 2rem;
   margin-top: 0.5rem;
 }
 
 .apply-section {
-  padding: 20px; /* 이 섹션이 main 안에 있다면 main의 padding과 중첩될 수 있습니다. */
+  padding: 20px;
 }
 
 #addBtn {
@@ -101,8 +98,8 @@ main p { /* main 안에 p가 있다면 */
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: auto; /* 우측 정렬 */
-  display: block; /* margin-left: auto;를 위해 블록 요소로 만듦 */
+  margin-left: auto;
+  display: block;
 }
 
 .apply-table {
@@ -127,16 +124,15 @@ main p { /* main 안에 p가 있다면 */
   text-align: center;
 }
 
-/* Footer Styles */
 footer {
-  height: 60px; /* 푸터 고정 높이 */
-  flex-shrink: 0; /* 푸터가 줄어들지 않도록 방지 */
+  height: 60px;
+  flex-shrink: 0;
   border-top: 2px solid black;
   font-size: 0.9rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0 1rem; /* 좌우 패딩만 */
+  padding: 0 1rem;
   box-sizing: border-box;
 }
 
@@ -145,21 +141,20 @@ footer a {
   color: #000;
 }
 
-/* Navigation (Sidebar) Styles */
 #nav {
   width: 230px;
-  height: calc(100vh - 120px); /* 헤더 높이(120px)를 뺀 나머지 공간을 차지하도록 수정 */
+  height: calc(100vh - 120px);
   background-color: #f6fff1;
   color: black;
   position: fixed;
-  top: 120px; /* 헤더 아래에 위치 (헤더 height:120px 기준) */
-  left: -230px; /* 기본적으로 화면 밖으로 숨김 */
+  top: 120px;
+  left: -230px;
   transition: left 0.3s ease;
   padding-top: 3em;
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
-  overflow-y: auto; /* ✅ 내비게이션 메뉴가 많아지면 내부 스크롤이 생기도록 */
+  overflow-y: auto;
 }
 
 #nav li {
@@ -167,13 +162,13 @@ footer a {
 }
 
 #nav.show {
-  left: 0; /* 슬라이드 인 */
+  left: 0;
 }
 
 #menuBtn {
   font-size: 24px;
   cursor: pointer;
-  margin: 1em; /* 이 마진은 헤더 내에서 사용될 경우 조정 필요 */
+  margin: 1em;
 }
 
 .nav-link {
@@ -198,7 +193,7 @@ li {
 }
 
 #kakaoLoginBtn,
-#kakaoLogoutBtn { /* 두 버튼에 공통 스타일 적용 */
+#kakaoLogoutBtn {
   background-color: #d1e7c8;
   border: none;
   padding: 8px 12px;
@@ -208,28 +203,28 @@ li {
   border-radius: 4px;
 }
 
-/* Guide Categories Section Styles */
 .guide-categories {
   display: flex;
   gap: 20px;
-  padding: 20px; /* 좌우 여백 추가 */
-  justify-content: center; /* 가운데 정렬 */
-  flex-wrap: wrap; /* 카드가 넘칠 때 다음 줄로 넘어가도록 함 */
-  margin-top: 30px; /* guide-categories 영역 위쪽 여백 */
+  padding: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-bottom: 0;
 }
 
 .guide-categories article {
-  flex: 1 1 25%; /* 너비를 25% 정도로 줄임 (flex-basis) */
+  flex: 1 1 25%;
   box-sizing: border-box;
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f6fff1;
-  min-height: 400px; /* 최소 높이 설정. 이 높이가 main 스크롤의 원인이 될 수 있습니다. */
+  min-height: 380px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 400px; /* 최대 너비 제한 */
+  max-width: 400px;
 }
 
 .guide-categories h2 {
@@ -254,21 +249,18 @@ li {
 }
 
 .guide-categories article p {
-  margin-left: 0; /* article 내부 p는 마진 0으로 초기화 */
+  margin-left: 0;
   padding-left: 0;
   line-height: 1.7;
 }
 
-
-/* ========== 반응형 레이아웃 ========== */
 @media (max-width: 768px) {
   /* ─ 헤더 & 로고 ─ */
   header {
     flex-direction: column;
     align-items: flex-start;
     gap: .5rem;
-    height: auto; /* 스택형으로 바뀔 때 헤더 높이 자동 조절 */
-    /* top: 0; */ /* mobile에서는 보통 fixed-top을 0으로 설정 */
+    height: auto;
   }
   .logo {
     font-size: 1.5rem;
@@ -277,14 +269,14 @@ li {
   /* ─ 사이드 내비 → 상단 슬라이드 메뉴 ─ */
   #nav {
     width: 100%;
-    left: -100%; /* 처음에는 화면 밖 */
-    top: 60px; /* 모바일 헤더 높이에 맞춰 조정 (헤더가 auto로 줄어들었을 때의 높이 고려) */
-    height: calc(100vh - 60px); /* 모바일 헤더 높이를 뺀 나머지 공간을 채우도록 조정 */
+    left: -100%;
+    top: 60px;
+    height: calc(100vh - 60px);
     font-size: 18px;
     padding: 2em 1em;
   }
   #nav.show {
-    left: 0; /* 토글 시 왼쪽 → 0 */
+    left: 0;
   }
   .nav-link {
     font-size: 18px;
@@ -293,29 +285,31 @@ li {
 
   /* ─ 본문 ─ */
   main {
-    max-width: 100%; /* 폭 제한 해제 */
-    padding: 1rem; /* 패딩 줄임 */
-    margin: 0 auto; /* ✅ 상하 마진 0, 좌우 중앙 정렬 */
+    max-width: 100%;
+    padding: 1rem 1rem 0.5rem 1rem;
+    margin: 0 auto;
   }
-  main h1, main p { /* main 안의 h1, p 반응형 마진 조정 */
+  main h1, main p {
     margin-left: 1rem;
   }
-  
+
   /* .guide-categories 카드 레이아웃 변경 */
   .guide-categories {
-    flex-direction: column; /* 카드를 세로로 정렬 */
-    align-items: center; /* 중앙 정렬 */
-    gap: 15px; /* 카드 간 간격 줄임 */
-    padding: 1rem; /* 패딩 줄임 */
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 1rem;
+    margin-top: 15px;
+    margin-bottom: 0;
   }
 
   .guide-categories article {
-    width: 100%; /* 카드를 100% 너비로 늘림 */
-    max-width: 400px; /* 여전히 최대 너비 유지 (너무 커지는 것 방지) */
-    min-height: auto; /* 최소 높이 제한 해제 (콘텐츠에 따라 유동적으로) */
+    width: 100%;
+    max-width: 400px;
+    min-height: auto; /* ✅ 태블릿 이하에서는 최소 높이 자동 조절 */
   }
 
-  h2 { /* 이 h2는 main의 h2와 article의 h2 모두에 영향을 줄 수 있으니 주의 */
+  h2 {
     font-size: 1.4rem;
   }
 
@@ -341,7 +335,7 @@ li {
     flex-direction: column;
     gap: .5rem;
     font-size: .85rem;
-    height: auto; /* 스택형으로 바뀔 때 푸터 높이 자동 조절 */
+    height: auto;
   }
 }
 
@@ -361,9 +355,9 @@ li {
 
   /* 본문 폰트·여백 더 압축 */
   main {
-    padding: .8rem;
+    padding: .8rem .8rem 0.4rem .8rem;
   }
-  main h1, main p { /* main 안의 h1, p 반응형 마진 조정 */
+  main h1, main p {
     margin-left: .8rem;
   }
   h2 {

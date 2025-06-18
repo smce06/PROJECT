@@ -11,7 +11,7 @@ addBtn.addEventListener("click", () => location.href = "community_add.html");
 /* ===================== 데이터 로드 ===================== */
 let posts = JSON.parse(localStorage.getItem("communityPosts") || "[]");
 
-const PER_PAGE   = 10; 
+const PER_PAGE   = 8; 
 let   current    = 1; 
 const tableBody  = document.getElementById("applyTableBody");
 const pagination = document.querySelector(".pagination");
