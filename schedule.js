@@ -8,13 +8,7 @@ document.getElementById("mainButton").addEventListener("click", () => {
   location.href = "index.html";
 });
 
-/* ========== 로컬스토리지에서 일정 불러오기 ========== */
-const defaultEvents = [
-  { date: "2025-09-30", title: "가다대 1차 합격 발표" },
-  { date: "2025-10-05", title: "나라대 지원 마감" },
-  { date: "2025-10-20", title: "다바대 면접" },
-];
-let events = JSON.parse(localStorage.getItem("events") || "null") || defaultEvents;
+let events = JSON.parse(localStorage.getItem("events") || "[]");
 
 /* ========== 헬퍼 ========= */
 const $ = (s) => document.querySelector(s);

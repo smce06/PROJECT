@@ -1,5 +1,5 @@
 const carousel = document.querySelector(".carousel");
-const applyList = JSON.parse(localStorage.getItem("applyList") || "[]");
+const events = JSON.parse(localStorage.getItem("events") || "[]");
 let currentIndex = 0;
 
 function calculateDday(dateString) {
@@ -22,47 +22,46 @@ function createFixedCards() {
 
 function updateCarousel() {
     const cards = document.querySelectorAll(".d-day-card");
-    const total = applyList.length;
-    const isLoggedIn = !!getCookie("kakaoToken"); // 로그인 상태 확인
+    const total = events.length;
+    const isLoggedIn = !!getCookie("kakaoToken"); // 로그인 여부 확인
 
     if (!isLoggedIn) {
-        // ✅ 로그인 안 했을 때 → 더미 대학 입시 문구 출력
-        cards.forEach((card, i) => {
-            card.innerHTML = "??대학교 입시까지<br>D-??";
-            card.style.transform = `translateX(${(i - 1) * 10}%)`;
-            card.style.opacity = i === 1 ? "1" : "0.5";
-            card.style.zIndex = i === 1 ? "3" : "2";
-            card.classList.toggle("active", i === 1);
-        });
-        return;
+      // 로그인 안 했을 때 → 기본 안내 문구 출력
+      cards.forEach((card, i) => {
+        card.innerHTML = "?? 일정까지<br>D - ?";
+        card.style.transform = `translateX(${(i - 1) * 10}%)`;
+        card.style.opacity = i === 1 ? "1" : "0.5";
+        card.style.zIndex = i === 1 ? "3" : "2";
+        card.classList.toggle("active", i === 1);
+      });
+      return;
     }
 
     if (total < 1) {
-        // ✅ 로그인했지만 데이터가 없을 때 → 기본 메시지 출력
-        cards.forEach((card, i) => {
-            card.innerHTML = "당신의 입시는 얼마 남았을까요?";
-            card.style.transform = `translateX(${(i - 1) * 10}%)`;
-            card.style.opacity = i === 1 ? "1" : "0.5";
-            card.style.zIndex = i === 1 ? "3" : "2";
-            card.classList.toggle("active", i === 1);
-        });
-        return;
+      // 로그인 했지만 이벤트가 없을 때
+      cards.forEach((card, i) => {
+        card.innerHTML = "등록된 일정이 없습니다.";
+        card.style.transform = `translateX(${(i - 1) * 10}%)`;
+        card.style.opacity = i === 1 ? "1" : "0.5";
+        card.style.zIndex = i === 1 ? "3" : "2";
+        card.classList.toggle("active", i === 1);
+      });
+      return;
     }
 
-    // ✅ 로그인 후 일반적인 캐러셀 업데이트
+    // 일반 캐러셀 업데이트
     const prevIdx = (currentIndex - 1 + total) % total;
     const nextIdx = (currentIndex + 1) % total;
     const indices = [prevIdx, currentIndex, nextIdx];
 
     cards.forEach((card, i) => {
-        const { univ, type, deadline } = applyList[indices[i]];
-        const dday = calculateDday(deadline);
-        card.innerHTML = `${univ}<br>${type}까지<br><br>D - ${dday}`;
-        card.style.transform = `translateX(${(i - 1) * 10}%)`;
-
-        card.style.opacity = i === 1 ? "1" : "0.5";
-        card.style.zIndex = i === 1 ? "3" : "2";
-        card.classList.toggle("active", i === 1);
+      const { title, date } = events[indices[i]];
+      const dday = calculateDday(date);
+      card.innerHTML = `${title}<br><br>D - ${dday}`;
+      card.style.transform = `translateX(${(i - 1) * 10}%)`;
+      card.style.opacity = i === 1 ? "1" : "0.5";
+      card.style.zIndex = i === 1 ? "3" : "2";
+      card.classList.toggle("active", i === 1);
     });
 }
 
@@ -158,13 +157,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileIcon = document.querySelector(".profile-icon");
     // 좌우 화살표 클릭 이벤트 - 애니메이션 포함
     document.getElementById("leftArrow").addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + applyList.length) % applyList.length;
+      currentIndex = (currentIndex - 1 + events.length) % events.length;
       carousel.style.transition = "transform 0.5s ease-in-out";
       updateCarousel();
     });
 
     document.getElementById("rightArrow").addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % applyList.length;
+      currentIndex = (currentIndex + 1) % events.length;
       carousel.style.transition = "transform 0.5s ease-in-out";
       updateCarousel();
     });
