@@ -66,12 +66,12 @@ header {
   align-items: center;
   position: relative;
   height: 400px;
-  gap: 60px;
+  gap: 20px;
 }
 
 .d-day-card {
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
   background-color: rgb(188, 246, 206);
   color: #1c5533;
@@ -81,16 +81,15 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.4s ease;
   box-shadow: none;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+
 }
 
 .d-day-card.active {
   box-shadow: 15px 15px 15px rgba(105, 105, 105, 0.6);
   transform: scale(1.05);
 }
-
-
 
 .arrow {
   position: absolute;       /* 위치 설정을 위해 필요 */

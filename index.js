@@ -9,9 +9,9 @@ function calculateDday(dateString) {
   return Math.ceil(diff / (1000 * 60 * 60 * 24));
 }
 
-// 카드 3개만 고정 생성
+// 카드 3개를 고정 생성
 function createFixedCards() {
-  carousel.innerHTML = ""; // 비우고 다시 만듦
+  carousel.innerHTML = "";
 
   for (let i = 0; i < 3; i++) {
     const card = document.createElement("div");
@@ -20,46 +20,162 @@ function createFixedCards() {
   }
 }
 
-// 카드 내용만 바꿔침
 function updateCarousel() {
-  const cards = document.querySelectorAll(".d-day-card");
-  const total = applyList.length;
-  if (total < 1) return;
+    const cards = document.querySelectorAll(".d-day-card");
+    const total = applyList.length;
+    const isLoggedIn = !!getCookie("kakaoToken"); // 로그인 상태 확인
 
-  const prevIdx = (currentIndex - 1 + total) % total;
-  const nextIdx = (currentIndex + 1) % total;
+    if (!isLoggedIn) {
+        // ✅ 로그인 안 했을 때 → 더미 대학 입시 문구 출력
+        cards.forEach((card, i) => {
+            card.innerHTML = "??대학교 입시까지<br>D-??";
+            card.style.transform = `translateX(${(i - 1) * 10}%)`;
+            card.style.opacity = i === 1 ? "1" : "0.5";
+            card.style.zIndex = i === 1 ? "3" : "2";
+            card.classList.toggle("active", i === 1);
+        });
+        return;
+    }
 
-  const indices = [prevIdx, currentIndex, nextIdx];
+    if (total < 1) {
+        // ✅ 로그인했지만 데이터가 없을 때 → 기본 메시지 출력
+        cards.forEach((card, i) => {
+            card.innerHTML = "당신의 입시는 얼마 남았을까요?";
+            card.style.transform = `translateX(${(i - 1) * 10}%)`;
+            card.style.opacity = i === 1 ? "1" : "0.5";
+            card.style.zIndex = i === 1 ? "3" : "2";
+            card.classList.toggle("active", i === 1);
+        });
+        return;
+    }
 
-  cards.forEach((card, i) => {
-    const { univ, type, deadline } = applyList[indices[i]];
-    const dday = calculateDday(deadline);
-    card.innerHTML = `${univ}<br>${type}까지<br><br>D${dday}`;
+    // ✅ 로그인 후 일반적인 캐러셀 업데이트
+    const prevIdx = (currentIndex - 1 + total) % total;
+    const nextIdx = (currentIndex + 1) % total;
+    const indices = [prevIdx, currentIndex, nextIdx];
 
-    // 스타일: 가운데만 강조
-    card.style.opacity = i === 1 ? "1" : "0.5";
-    card.style.zIndex = i === 1 ? "3" : "2";
-    card.classList.toggle("active", i === 1);
-  });
+    cards.forEach((card, i) => {
+        const { univ, type, deadline } = applyList[indices[i]];
+        const dday = calculateDday(deadline);
+        card.innerHTML = `${univ}<br>${type}까지<br><br>D - ${dday}`;
+        card.style.transform = `translateX(${(i - 1) * 10}%)`;
+
+        card.style.opacity = i === 1 ? "1" : "0.5";
+        card.style.zIndex = i === 1 ? "3" : "2";
+        card.classList.toggle("active", i === 1);
+    });
 }
 
-// 초기화
+// 초기화 및 캐러셀 설정
 createFixedCards();
 updateCarousel();
 
-document.getElementById("leftArrow").addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + applyList.length) % applyList.length;
-  updateCarousel();
+
+
+// 네비게이션 메뉴 열기/닫기
+document.getElementById("menuBtn").addEventListener("click", () => {
+  document.getElementById("nav").classList.toggle("show");
 });
 
-document.getElementById("rightArrow").addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % applyList.length;
-  updateCarousel();
+
+// ✅ 카카오 로그인 기능
+function kakaoLogin() {
+    Kakao.Auth.login({
+        success: function(authObj) {
+            console.log("로그인 성공:", authObj);
+
+            // ✅ 쿠키 저장 (Secure / SameSite 제거 - 개발용)
+            document.cookie = `kakaoToken=${authObj.access_token}; path=/; max-age=3600`;
+
+            getUserInfo(); // 사용자 정보 가져오기
+            updateLoginUI(true); // 로그인 UI 업데이트
+        },
+        fail: function(error) {
+            console.error("로그인 실패:", error);
+        }
+    });
+}
+
+// ✅ 로그아웃 기능
+function kakaoLogout() {
+    Kakao.Auth.logout(() => {
+        console.log("로그아웃 완료");
+        document.cookie = "kakaoToken=; path=/; max-age=0"; // 쿠키 삭제
+        updateLoginUI(false);
+        window.location.href = "index.html"; // 로그아웃 후 홈으로 이동
+    });
+}
+
+// ✅ 사용자 정보 요청
+function getUserInfo() {
+    const token = getCookie("kakaoToken");
+    if (!token) {
+        console.error("❌ 토큰 없음! 로그인 후 다시 시도.");
+        return;
+    }
+
+    Kakao.API.request({
+        url: '/v2/user/me',
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
+        success: function(res) {
+            console.log("✅ 사용자 정보:", res);
+        },
+        fail: function(error) {
+            console.error("❌ 사용자 정보 가져오기 실패:", error);
+        }
+    });
+}
+
+// ✅ 로그인 UI 업데이트
+function updateLoginUI(isLoggedIn) {
+    const loginBtn = document.getElementById("kakaoLoginBtn");
+    const logoutBtn = document.getElementById("kakaoLogoutBtn");
+
+    if (loginBtn) loginBtn.style.display = !isLoggedIn ? "inline-block" : "none";
+    if (logoutBtn) logoutBtn.style.display = isLoggedIn ? "inline-block" : "none";
+}
+
+// ✅ 쿠키 가져오는 함수
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    return parts.length === 2 ? parts.pop().split(";").shift() : null;
+}
+
+// ✅ 페이지 로드 시 로그인 상태 반영
+window.addEventListener("load", () => {
+    const token = getCookie("kakaoToken");
+    updateLoginUI(!!token);
 });
 
-const menuBtn = document.getElementById("menuBtn");
-const nav     = document.getElementById("nav");
-const mainBtn = document.getElementById("mainButton");
-menuBtn.addEventListener("click", () => nav.classList.toggle("show"));
-mainBtn.addEventListener("click", () => location.href = "index.html");
+document.addEventListener("DOMContentLoaded", () => {
+    const loginBtn = document.getElementById("kakaoLoginBtn");
+    const logoutBtn = document.getElementById("kakaoLogoutBtn");
+
+    // 좌우 화살표 클릭 이벤트 - 애니메이션 포함
+    document.getElementById("leftArrow").addEventListener("click", () => {
+      currentIndex = (currentIndex - 1 + applyList.length) % applyList.length;
+      carousel.style.transition = "transform 0.5s ease-in-out";
+      updateCarousel();
+    });
+
+    document.getElementById("rightArrow").addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % applyList.length;
+      carousel.style.transition = "transform 0.5s ease-in-out";
+      updateCarousel();
+    });
+    if (loginBtn) {
+        loginBtn.addEventListener("click", kakaoLogin);
+    }
+    
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", kakaoLogout);
+    }
+});
+
+// ✅ 전역에서 호출 가능하도록 등록
+window.kakaoLogin = kakaoLogin;
+window.kakaoLogout = kakaoLogout;
 
