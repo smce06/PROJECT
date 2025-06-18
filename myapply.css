@@ -16,6 +16,7 @@ header {
   padding: 1rem;
   border-bottom: 2px solid black;
   position: relative;
+  height: 120px;
 }
 
 .menu-icon {
@@ -265,5 +266,5 @@ body {
 }
 
 main {
-  flex: 1;
+  min-height: calc(100vh - 180px); 
 }
