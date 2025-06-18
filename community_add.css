@@ -5,9 +5,6 @@
   box-sizing: border-box;
 }
 
-/* ==================================================================== */
-/* 🔥🔥🔥 한 화면에 꼭 맞고 스크롤 없는 레이아웃의 핵심 🔥🔥🔥 */
-/* ==================================================================== */
 html {
   height: 100%; /* html이 뷰포트 높이 100%를 차지하도록 */
   overflow: hidden; /* html에 스크롤 생기는 것을 방지 */
@@ -40,18 +37,16 @@ header {
 }
 
 main {
-  flex-grow: 1; /* ✅ 남은 수직 공간을 main이 모두 차지하도록 */
-  overflow-y: auto; /* ✅ main 내부 콘텐츠가 넘칠 때만 main 안에서 스크롤 허용 */
-  min-height: 0; /* flex-grow와 overflow가 함께 작동하도록 필수 */
+  flex-grow: 1; 
+  overflow-y: auto; 
+  min-height: 0;
 
-  /* ✅ 가로 폭 설정 및 중앙 정렬 */
-  max-width: 720px; /* ✅ 주신 코드의 max-width 유지 */
-  width: 100%; /* max-width가 적용될 때, 폭이 720px 미만인 경우 100%를 채우도록 */
-  margin: 0 auto; /* ✅ 상하 마진 0, 좌우 auto로 중앙 정렬 */
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto; 
 
-  /* ✅ main의 padding 조정 (이전 40px 30px는 스크롤 원인이 될 수 있음. 미세 조정) */
-  padding: 20px 30px; /* ✅ 상하 패딩을 20px로 조정 (이전 40px은 너무 컸을 수 있음) */
-  box-sizing: border-box; /* 패딩이 요소의 크기에 포함되도록 */
+  padding: 20px 30px;
+  box-sizing: border-box;
 }
 
 footer {
