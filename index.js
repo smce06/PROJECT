@@ -29,7 +29,7 @@ function updateCarousel() {
       // 로그인 안 했을 때 → 기본 안내 문구 출력
       cards.forEach((card, i) => {
         card.innerHTML = "?? 일정까지<br>D - ?";
-        card.style.transform = `translateX(${(i - 1) * 10}%)`;
+        card.style.transform = `translateX(${(i - 1) * 5}%)`;
         card.style.opacity = i === 1 ? "1" : "0.5";
         card.style.zIndex = i === 1 ? "3" : "2";
         card.classList.toggle("active", i === 1);
@@ -41,7 +41,7 @@ function updateCarousel() {
       // 로그인 했지만 이벤트가 없을 때
       cards.forEach((card, i) => {
         card.innerHTML = "등록된 일정이 없습니다.";
-        card.style.transform = `translateX(${(i - 1) * 10}%)`;
+        card.style.transform = `translateX(${(i - 1) * 5}%)`;
         card.style.opacity = i === 1 ? "1" : "0.5";
         card.style.zIndex = i === 1 ? "3" : "2";
         card.classList.toggle("active", i === 1);
@@ -58,7 +58,7 @@ function updateCarousel() {
       const { title, date } = events[indices[i]];
       const dday = calculateDday(date);
       card.innerHTML = `${title}<br><br>D - ${dday}`;
-      card.style.transform = `translateX(${(i - 1) * 10}%)`;
+      card.style.transform = `translateX(${(i - 1) * 5}%)`;
       card.style.opacity = i === 1 ? "1" : "0.5";
       card.style.zIndex = i === 1 ? "3" : "2";
       card.classList.toggle("active", i === 1);
