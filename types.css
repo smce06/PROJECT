@@ -1,14 +1,27 @@
+/* 공통 박스 모델 및 초기화 */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* 전체 페이지 레이아웃을 위한 기본 Body 스타일 */
+html, body {
+  height: 100%; /* html과 body가 뷰포트 전체 높이를 차지하도록 함 */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ✅ 전체 페이지 스크롤을 막음 */
+}
+
 body {
   font-family: sans-serif;
   background-color: #ffffff;
+  display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
+  flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
+  min-height: 100vh; /* ✅ body가 뷰포트 전체 높이를 차지하도록 */
 }
 
+/* 헤더 스타일 */
 header {
   display: flex;
   align-items: center;
@@ -16,6 +29,8 @@ header {
   padding: 1rem;
   border-bottom: 2px solid black;
   position: relative;
+  height: 120px; /* 헤더 고정 높이 */
+  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
 }
 
 .menu-icon {
@@ -27,7 +42,7 @@ header {
 }
 
 .logo {
-  all: unset; 
+  all: unset; /* 브라우저 기본 스타일 모두 초기화 */
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: bold;
@@ -53,9 +68,14 @@ header {
 }
 
 
-/* main.css */
-main{
-  margin-bottom: 100px;
+
+main {
+  flex-grow: 1; /* ✅ main이 남은 수직 공간을 모두 차지하도록 함 */
+  overflow-y: auto; /* ✅ main 내부 콘텐츠가 넘치면 main 안에서만 수직 스크롤 활성화 */
+  min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
+  padding: 2rem; /* 일관된 패딩 */
+  box-sizing: border-box; /* 패딩을 요소의 전체 너비/높이에 포함 */
+  /* 이전 코드에 있던 main{ margin-bottom: 100px; } 등의 선언은 모두 제거되었습니다. */
 }
 
 .apply-section {
@@ -71,7 +91,8 @@ main{
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 93%;
+  margin-left: auto; /* ✅ 반응형에 강한 우측 정렬 */
+  display: block; /* margin-left: auto;를 위해 블록 요소로 만듦 */
 }
 
 .apply-table {
@@ -97,18 +118,16 @@ main{
 }
 
 footer {
-  height: 60px;
+  height: 60px; /* 푸터 고정 높이 */
+  flex-shrink: 0; /* 푸터가 줄어들지 않도록 방지 */
   border-top: 2px solid black;
-  text-align: center;
   font-size: 0.9rem;
-
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0 1rem; /* 좌우 패딩만 */
   box-sizing: border-box;
 }
-
 
 footer a {
   text-decoration: none;
@@ -117,25 +136,26 @@ footer a {
 
 #nav {
   width: 230px;
-  height: 100vh;
+  height: calc(100vh - 120px); /* 헤더 높이(120px)를 뺀 나머지 공간을 차지하도록 수정 */
   background-color: #f6fff1;
   color: black;
   position: fixed;
-  top: 109px;
-  left: -230px;
+  top: 120px; /* ✅ 헤더 아래에 위치 (헤더 height:120px 기준) - 109px -> 120px로 조정 */
+  left: -230px; /* 기본적으로 화면 밖으로 숨김 */
   transition: left 0.3s ease;
   padding-top: 3em;
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
+  overflow-y: auto; /* 내비게이션 메뉴가 많아지면 내부 스크롤이 생기도록 */
+}
 
-  }
-#nav li{
+#nav li {
   margin-bottom: 2em;
-} 
+}
 
 #nav.show {
-  left: 0;
+  left: 0; /* 슬라이드 인 */
 }
 
 #menuBtn {
@@ -164,7 +184,9 @@ ul {
 li {
   margin-bottom: 8px;
 }
-#kakaoLoginBtn {
+
+#kakaoLoginBtn,
+#kakaoLogoutBtn { /* 두 버튼에 공통 스타일 적용 */
   background-color: #d1e7c8;
   border: none;
   padding: 8px 12px;
@@ -174,15 +196,6 @@ li {
   border-radius: 4px;
 }
 
-#kakaoLogoutBtn {
-  background-color: #d1e7c8;
-  border: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-}
 
 /* ================= 전형 종류 표 ================= */
 .type-table {
@@ -192,26 +205,11 @@ li {
   font-size: 0.95rem;
 }
 
-.type-table th,
-.type-table td {
-  border: 1px solid #cbd5e0;
-  padding: 12px;
-  text-align: center;
-}
-
-.type-table th {
-  background: #d1e7c8;
-  color: #2F855A;
-}
-
-.type-table tbody tr:nth-child(odd) {
-  background: #f9fdfb;
-}
-
-/* 전형 종류 메인 스타일 */
+/* "전형 종류" 메인 스타일 (중복된 스타일을 합쳐서 정리했습니다) */
 .types-main {
   padding: 2rem 1rem;
   text-align: center;
+  /* margin-bottom: 100px; (이전 main의 margin-bottom과 유사하게 스크롤 유발 가능성이 있어 제거) */
 }
 
 .types-main h1 {
@@ -229,15 +227,8 @@ li {
 
 .table-wrapper {
   max-width: 1000px;
-  margin: 0.5rem auto;
-  overflow-x: auto;
-}
-
-.type-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  margin: 0.5rem auto; /* 상하 마진 0.5rem, 좌우 중앙 정렬 */
+  overflow-x: auto; /* 테이블이 넘칠 때 가로 스크롤 허용 */
 }
 
 .type-table th,
@@ -257,11 +248,8 @@ li {
 .type-table tbody tr:nth-child(odd) {
   background-color: #f6fff1;
 }
-main {
-  margin-bottom: 40px;
-}
 
-/* ========== 반응형 레이아웃 ========== */
+
 /* ❶ 태블릿 이하 ─ 768px */
 @media (max-width: 768px) {
 
@@ -270,14 +258,16 @@ main {
     flex-direction: column;
     align-items: flex-start;
     gap: .5rem;
+    height: auto; /* 스택형으로 바뀔 때 헤더 높이 자동 조절 */
   }
   .logo{ font-size: 1.5rem; }
 
   /* ─ 사이드 네비 → 상단 슬라이드 메뉴 ─ */
   #nav{
     width: 100%;
-    left: -100%;        /* 처음엔 화면 밖 */
-    top: 60px;          /* 헤더 아래에 붙임 */
+    left: -100%; /* 처음엔 화면 밖 */
+    top: 60px; /* 모바일 헤더 높이에 맞춰 조정 (헤더가 auto로 줄어들었을 때의 높이 고려) */
+    height: calc(100vh - 60px); /* 모바일 헤더 높이를 뺀 나머지 공간을 채우도록 조정 */
     font-size: 18px;
     padding: 2em 1em;
   }
@@ -286,9 +276,9 @@ main {
 
   /* ─ 본문 ─ */
   main{
-    max-width: 100%;    /* 폭 제한 해제 */
+    max-width: 100%; /* 폭 제한 해제 */
     padding: 1rem;
-    margin: 10px auto 60px; /* 푸터와 간격 축소 */
+    margin: 0 auto; /* ✅ 상하 마진 0, 좌우 중앙 정렬 (이전 10px auto 60px -> 0 auto) */
   }
   h2{ font-size: 1.4rem; }
 
@@ -312,6 +302,7 @@ main {
     flex-direction: column;
     gap: .5rem;
     font-size: .85rem;
+    height: auto; /* 스택형으로 바뀔 때 푸터 높이 자동 조절 */
   }
 }
 
@@ -319,14 +310,14 @@ main {
 @media (max-width: 480px){
 
   .menu-icon{ font-size: 1.4rem; }
-  .logo     { font-size: 1.3rem; }
+  .logo{ font-size: 1.3rem; }
 
-  /* 네비 링크 줄 간격 조정 */
-  #nav li   { margin-bottom: 1.2em; }
+  /* 내비 링크 줄 간격 조정 */
+  #nav li{ margin-bottom: 1.2em; }
 
   /* 본문 폰트·여백 더 압축 */
-  main      { padding: .8rem; }
-  h2        { font-size: 1.2rem; }
+  main{ padding: .8rem; }
+  h2{ font-size: 1.2rem; }
   #postWriterDate{ font-size: .9rem; }
 
   /* 표·댓글 폰트 축소 */
@@ -341,18 +332,3 @@ main {
     font-size: .95rem;
   }
 }
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
-}
-
