@@ -322,7 +322,6 @@ li {
   }
   .logo{ font-size: 1.5rem; }
 
-  /* ─ 사이드 네비 → 상단 슬라이드 메뉴 ─ */
   #nav{
     width: 100%;
     left: -100%;        /* 처음엔 화면 밖 */
@@ -398,9 +397,9 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 120vh;
+  min-height: 100vh;
 }
 
 main {
-  flex: 1;
+  flex: 1; 
 }
