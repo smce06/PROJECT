@@ -216,94 +216,177 @@ li {
 /* ========== 반응형 레이아웃 ========== */
 /* ❶ 태블릿 이하 ─ 768px */
 @media (max-width: 768px) {
-
-  /* ─ 헤더 & 로고 ─ */
-  header{
-    flex-direction: column;
-    align-items: flex-start;
-    gap: .5rem;
+  /* 헤더: 항상 가로 정렬 유지 */
+  header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 0.8rem 1rem;
+    height: auto;
   }
-  .logo{ font-size: 1.5rem; }
 
-  /* ─ 사이드 네비 → 상단 슬라이드 메뉴 ─ */
-  #nav{
+  .logo {
+    font-size: 1.3rem;
+    white-space: nowrap;
+  }
+
+  .top-right {
+    gap: 0.5rem;
+  }
+
+  .login-box {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .profile-icon {
+    font-size: 1.5rem;
+  }
+
+  /* 네비 메뉴 */
+  #nav {
     width: 100%;
-    left: -100%;        /* 처음엔 화면 밖 */
-    top: 60px;          /* 헤더 아래에 붙임 */
+    left: -100%;
+    top: auto;
+    bottom: 0;
+    height: calc(100vh - 60px);
     font-size: 18px;
     padding: 2em 1em;
   }
-  #nav.show{ left: 0; } /* 토글 시 왼쪽 → 0 */
-  .nav-link{ font-size: 18px; padding: 12px; }
 
-  /* ─ 본문 ─ */
-  main{
-    max-width: 100%;    /* 폭 제한 해제 */
+  #nav.show {
+    left: 0;
+  }
+
+  .nav-link {
+    font-size: 18px;
+    padding: 12px;
+  }
+
+  /* 본문 */
+  main {
+    max-width: 100%;
     padding: 1rem;
-    margin: 10px auto 60px; /* 푸터와 간격 축소 */
+    margin: 0 auto;
   }
-  h2{ font-size: 1.4rem; }
 
-  /* ─ 표 · 달력 등을 담는 wrapper가 있으면 가로 스크롤 허용 ─ */
+  h2 {
+    font-size: 1.4rem;
+  }
+
   .table-wrapper,
-  .calendar-box{ overflow-x: auto; }
-
-  /* ─ 댓글 입력창 & 버튼 ─ */
-  #commentInput{
-    height: 40px;
-    font-size: .9rem;
+  .calendar-box {
+    overflow-x: auto;
   }
-  #commentSubmit{
+
+  #commentInput {
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  #commentSubmit {
     width: 90px;
     height: 40px;
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 
-  /* ─ 푸터 ─ */
-  footer{
+  /* 푸터: 항상 가로 정렬 유지 */
+  footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    height: auto;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  /* D-day */
+  .d-day-container {
+    height: 100%;
+  }
+
+  .carousel {
     flex-direction: column;
-    gap: .5rem;
-    font-size: .85rem;
+    height: auto;
+    gap: 15px;
+  }
+
+  .d-day-card {
+    width: 280px;
+    height: 280px;
+    font-size: 1.5rem;
+  }
+
+  .arrow {
+    display: none;
   }
 }
 
-/* ❷ 모바일(폰) ─ 480px */
-@media (max-width: 480px){
+/* ❷ 모바일 폰 ─ 480px */
+@media (max-width: 480px) {
+  .menu-icon {
+    font-size: 1.4rem;
+  }
 
-  .menu-icon{ font-size: 1.4rem; }
-  .logo     { font-size: 1.3rem; }
+  .logo {
+    font-size: 1.1rem;
+  }
 
-  /* 네비 링크 줄 간격 조정 */
-  #nav li   { margin-bottom: 1.2em; }
+  .top-right {
+    gap: 0.3rem;
+  }
 
-  /* 본문 폰트·여백 더 압축 */
-  main      { padding: .8rem; }
-  h2        { font-size: 1.2rem; }
-  #postWriterDate{ font-size: .9rem; }
+  .login-box {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
 
-  /* 표·댓글 폰트 축소 */
+  .profile-icon {
+    font-size: 1.3rem;
+  }
+
+  #nav li {
+    margin-bottom: 1.2em;
+  }
+
+  main {
+    padding: 0.8rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  #postWriterDate {
+    font-size: 0.9rem;
+  }
+
   .type-table,
   .apply-table,
-  #commentsList{ font-size: .8rem; }
+  #commentsList {
+    font-size: 0.8rem;
+  }
 
-  /* 버튼 전체폭 사용 시 */
   #backBtn,
-  #addBtn{
+  #addBtn {
     width: 100%;
-    font-size: .95rem;
+    font-size: 0.95rem;
+  }
+
+  footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .d-day-card {
+    width: 220px;
+    height: 220px;
+    font-size: 1.3rem;
   }
 }
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
-}                                           /* 본문 자동 늘어나기 */

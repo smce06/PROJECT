@@ -274,72 +274,138 @@ footer a {
   background: #eee;
 }
 
-/* ==================================================================== */
-/* 반응형 레이아웃 */
-/* ==================================================================== */
+/* ========== 반응형 레이아웃 ========== */
+/* ❶ 태블릿 이하 ─ 768px */
 @media (max-width: 768px) {
+  /* 헤더: 항상 가로 정렬 유지 */
   header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 0.8rem 1rem;
     height: auto;
   }
+
   .logo {
+    font-size: 1.3rem;
+    white-space: nowrap;
+  }
+
+  .top-right {
+    gap: 0.5rem;
+  }
+
+  .login-box {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .profile-icon {
     font-size: 1.5rem;
   }
 
+  /* 네비 메뉴 */
   #nav {
     width: 100%;
     left: -100%;
-    top: 60px; /* 모바일 헤더 높이에 맞춰 조정 (대략 60px로 가정) */
-    height: calc(100vh - 60px); /* 모바일 헤더 높이를 뺀 나머지 공간 채움 */
+    top: auto;
+    bottom: 0;
+    height: calc(100vh - 60px);
     font-size: 18px;
     padding: 2em 1em;
   }
+
   #nav.show {
     left: 0;
   }
+
   .nav-link {
     font-size: 18px;
     padding: 12px;
   }
 
+  /* 본문 */
   main {
-    max-width: none;
-    width: 100%;
-    padding: 1rem; /* ✅ 모바일 main 패딩 조정 */
-    margin: 0;
+    max-width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
   }
+
   h2 {
     font-size: 1.4rem;
   }
-  #postWriterDate {
-    font-size: 0.9rem;
+
+  .table-wrapper,
+  .calendar-box {
+    overflow-x: auto;
   }
 
   #commentInput {
     height: 40px;
     font-size: 0.9rem;
   }
+
   #commentSubmit {
     width: 90px;
     height: 40px;
     font-size: 0.9rem;
   }
 
+  /* 푸터: 항상 가로 정렬 유지 */
   footer {
-    flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.85rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     height: auto;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  /* D-day */
+  .d-day-container {
+    height: 100%;
+  }
+
+  .carousel {
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+  }
+
+  .d-day-card {
+    width: 280px;
+    height: 280px;
+    font-size: 1.5rem;
+  }
+
+  .arrow {
+    display: none;
   }
 }
 
+/* ❷ 모바일 폰 ─ 480px */
 @media (max-width: 480px) {
   .menu-icon {
     font-size: 1.4rem;
   }
+
   .logo {
+    font-size: 1.1rem;
+  }
+
+  .top-right {
+    gap: 0.3rem;
+  }
+
+  .login-box {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .profile-icon {
     font-size: 1.3rem;
   }
 
@@ -348,21 +414,40 @@ footer a {
   }
 
   main {
-    padding: 0.8rem; /* ✅ 더 작은 모바일에서 main 패딩 더 줄임 */
+    padding: 0.8rem;
   }
+
   h2 {
     font-size: 1.2rem;
   }
+
   #postWriterDate {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 
+  .type-table,
+  .apply-table,
   #commentsList {
     font-size: 0.8rem;
   }
 
-  #backBtn {
+  #backBtn,
+  #addBtn {
     width: 100%;
     font-size: 0.95rem;
+  }
+
+  footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .d-day-card {
+    width: 220px;
+    height: 220px;
+    font-size: 1.3rem;
   }
 }

@@ -268,90 +268,180 @@ button[type="submit"]:hover {
   transform: translateY(-2px);
 }
 
-
 /* ========== 반응형 레이아웃 ========== */
-
-/* ❶ Tablet and Below ─ 768px */
+/* ❶ 태블릿 이하 ─ 768px */
 @media (max-width: 768px) {
-
-  /* ─ Header & Logo ─ */
+  /* 헤더: 항상 가로 정렬 유지 */
   header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: .5rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 0.8rem 1rem;
     height: auto;
   }
-  .logo { font-size: 1.5rem; }
 
-  /* ─ Side Navigation → Top Slide Menu ─ */
+  .logo {
+    font-size: 1.3rem;
+    white-space: nowrap;
+  }
+
+  .top-right {
+    gap: 0.5rem;
+  }
+
+  .login-box {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .profile-icon {
+    font-size: 1.5rem;
+  }
+
+  /* 네비 메뉴 */
   #nav {
     width: 100%;
     left: -100%;
-    top: auto; /* ✅ 반응형 높이 계산을 유연하게 함 */
-    /* top: 60px; */ /* 모바일 헤더 높이에 따라 조정될 필요가 있다면 유지 */
-    height: calc(100vh - 60px); /* 모바일 헤더 높이를 뺀 나머지 공간 */
+    top: auto;
+    bottom: 0;
+    height: calc(100vh - 60px);
     font-size: 18px;
     padding: 2em 1em;
   }
-  #nav.show { left: 0; }
-  .nav-link { font-size: 18px; padding: 12px; }
 
-  /* ─ Main Content ─ */
-  main {
-    max-width: 100%; /* ✅ 태블릿 이하에서 꽉 차게 */
-    padding: 1rem; /* 패딩도 줄임 */
-    margin: 0 auto; /* ✅ 상하 마진 제거 */
+  #nav.show {
+    left: 0;
   }
-  h2 { font-size: 1.4rem; }
 
-  /* ─ Table / Calendar Wrapper for Horizontal Scroll ─ */
+  .nav-link {
+    font-size: 18px;
+    padding: 12px;
+  }
+
+  /* 본문 */
+  main {
+    max-width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
   .table-wrapper,
-  .calendar-box { overflow-x: auto; }
+  .calendar-box {
+    overflow-x: auto;
+  }
 
-  /* ─ Comment Input & Button ─ */
   #commentInput {
     height: 40px;
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
+
   #commentSubmit {
     width: 90px;
     height: 40px;
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
 
-  /* ─ Footer ─ */
+  /* 푸터: 항상 가로 정렬 유지 */
   footer {
-    flex-direction: column;
-    gap: .5rem;
-    font-size: .85rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     height: auto;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  /* D-day */
+  .d-day-container {
+    height: 100%;
+  }
+
+  .carousel {
+    flex-direction: column;
+    height: auto;
+    gap: 15px;
+  }
+
+  .d-day-card {
+    width: 280px;
+    height: 280px;
+    font-size: 1.5rem;
+  }
+
+  .arrow {
+    display: none;
   }
 }
 
-/* ❷ Mobile (Phone) ─ 480px */
-@media (max-width: 480px){
+/* ❷ 모바일 폰 ─ 480px */
+@media (max-width: 480px) {
+  .menu-icon {
+    font-size: 1.4rem;
+  }
 
-  .menu-icon{ font-size: 1.4rem; }
-  .logo{ font-size: 1.3rem; }
+  .logo {
+    font-size: 1.1rem;
+  }
 
-  /* Nav Link Line Spacing Adjustment */
-  #nav li{ margin-bottom: 1.2em; }
+  .top-right {
+    gap: 0.3rem;
+  }
 
-  /* Main Content Font/Padding Compression */
-  main{ padding: .8rem; }
-  h2{ font-size: 1.2rem; }
-  #postWriterDate{ font-size: .9rem; }
+  .login-box {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
 
-  /* Table/Comment Font Reduction */
+  .profile-icon {
+    font-size: 1.3rem;
+  }
+
+  #nav li {
+    margin-bottom: 1.2em;
+  }
+
+  main {
+    padding: 0.8rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  #postWriterDate {
+    font-size: 0.9rem;
+  }
+
   .type-table,
   .apply-table,
-  #commentsList{ font-size: .8rem; }
+  #commentsList {
+    font-size: 0.8rem;
+  }
 
-  /* Full Width Buttons */
   #backBtn,
-  #addBtn,
-  #addApplyBtn{ /* ✅ #addApplyBtn도 여기에 추가하여 전체 폭 사용 */
+  #addBtn {
     width: 100%;
-    font-size: .95rem;
+    font-size: 0.95rem;
+  }
+
+  footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .d-day-card {
+    width: 220px;
+    height: 220px;
+    font-size: 1.3rem;
   }
 }
