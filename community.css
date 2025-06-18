@@ -1,14 +1,31 @@
+/* Universal Box-Sizing and Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ==================================================================== */
+/* ✅ 핵심: Full Page Layout 및 전체 스크롤 방지 (중복 제거, 한 곳에 집중) */
+/* ==================================================================== */
+html, body {
+  height: 100%; /* 뷰포트 전체 높이를 차지 */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 🔥 가장 중요! body의 전체 스크롤을 막음 */
+}
+
 body {
   font-family: sans-serif;
   background-color: #ffffff;
+  display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
+  flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
+  min-height: 100vh; /* body가 뷰포트 전체 높이를 차지하도록 */
 }
 
+/* ==================================================================== */
+/* Header Styles */
+/* ==================================================================== */
 header {
   display: flex;
   align-items: center;
@@ -16,6 +33,8 @@ header {
   padding: 1rem;
   border-bottom: 2px solid black;
   position: relative;
+  height: 120px; /* 헤더 고정 높이 */
+  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
 }
 
 .menu-icon {
@@ -27,7 +46,7 @@ header {
 }
 
 .logo {
-  all: unset; 
+  all: unset;
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: bold;
@@ -52,32 +71,41 @@ header {
   font-size: 1.8rem;
 }
 
-
-/* main.css */
-main{
-  margin-bottom: 100px;
+/* ==================================================================== */
+/* Main Content Area Styles (미세 스크롤 제거를 위한 패딩 조정) */
+/* ==================================================================== */
+main {
+  flex-grow: 1;
+  overflow-y: auto;
+  min-height: 0;
+  /* 패딩을 미세하게 줄여서 여유 공간을 더 확보합니다. */
+  padding: 1.5rem 2rem; /* ✅ 상하 패딩 2rem -> 1.5rem으로 줄임 */
+  box-sizing: border-box;
 }
 
 .apply-section {
-  padding: 20px;
+  padding: 0; /* 이전에 제거했으므로 유지 */
 }
 
 #addBtn {
   width: 100px;
   padding: 8px 16px;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* ✅ 버튼 하단 마진 20px -> 10px로 줄임 */
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 93%;
+  margin-left: auto;
+  display: block;
 }
 
 .apply-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  /* Apply-table 자체의 하단 마진은 pagination이 있다면 그 마진으로 조절합니다. */
+  /* 만약 pagination이 없고 apply-table이 main의 마지막 콘텐츠라면 margin-bottom을 추가할 수 있습니다. */
 }
 
 .apply-table th, .apply-table td {
@@ -96,13 +124,50 @@ main{
   text-align: center;
 }
 
+.apply-table th:nth-child(1),
+.apply-table td:nth-child(1) {
+  width: 50%;
+}
 
+.apply-table th:nth-child(2),
+.apply-table td:nth-child(2) {
+  width: 15%;
+}
+
+.apply-table th:nth-child(3),
+.apply-table td:nth-child(3) {
+  width: 35%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 20px 0 10px 0; /* ✅ 상하 마진 조정 (상 30px->20px, 하 0->10px) */
+}
+.page-btn {
+  padding: 8px 14px;
+  border: 1.5px solid #4CAF50;
+  background: #fff;
+  color: #4CAF50;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.page-btn:hover {
+  background: #4CAF50;
+  color: #fff;
+}
+
+
+/* ==================================================================== */
+/* Footer Styles */
+/* ==================================================================== */
 footer {
   height: 60px;
+  flex-shrink: 0;
   border-top: 2px solid black;
-  text-align: center;
   font-size: 0.9rem;
-
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -110,30 +175,33 @@ footer {
   box-sizing: border-box;
 }
 
-
 footer a {
   text-decoration: none;
   color: #000;
 }
 
+/* ==================================================================== */
+/* Navigation (Sidebar) Styles */
+/* ==================================================================== */
 #nav {
   width: 230px;
-  height: 100vh;
+  height: calc(100vh - 120px);
   background-color: #f6fff1;
   color: black;
   position: fixed;
-  top: 109px;
+  top: 120px;
   left: -230px;
   transition: left 0.3s ease;
   padding-top: 3em;
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
+  overflow-y: auto;
+}
 
-  }
-#nav li{
+#nav li {
   margin-bottom: 2em;
-} 
+}
 
 #nav.show {
   left: 0;
@@ -142,7 +210,6 @@ footer a {
 #menuBtn {
   font-size: 24px;
   cursor: pointer;
-  margin: 1em;
 }
 
 .nav-link {
@@ -166,42 +233,6 @@ li {
   margin-bottom: 8px;
 }
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin: 30px 0;
-}
-.page-btn {
-  padding: 8px 14px;
-  border: 1.5px solid #4CAF50;
-  background: #fff;
-  color: #4CAF50;
-  cursor: pointer;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-.page-btn:hover {
-  background: #4CAF50;
-  color: #fff;
-}
-
-.apply-table th:nth-child(1),
-.apply-table td:nth-child(1) {
-  width: 50%;
-}
-
-.apply-table th:nth-child(2),
-.apply-table td:nth-child(2) {
-  width: 15%;
-}
-
-.apply-table th:nth-child(3),
-.apply-table td:nth-child(3) {
-  width: 35%;
-}
-
-
 #kakaoLogoutBtn {
   background-color: #d1e7c8;
   border: none;
@@ -211,21 +242,28 @@ li {
   cursor: pointer;
   border-radius: 4px;
 }
-/* ========== 반응형 레이아웃 ========== */
+
+/* ==================================================================== */
+/* 반응형 레이아웃 (미세 스크롤 제거를 위한 패딩 조정) */
+/* ==================================================================== */
 @media (max-width: 768px) {
+  /* ─ 헤더 & 로고 ─ */
   header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+    height: auto;
   }
   .logo {
     font-size: 1.5rem;
   }
 
+  /* ─ 사이드 내비 → 상단 슬라이드 메뉴 ─ */
   #nav {
     width: 100%;
     left: -100%;
     top: 60px;
+    height: calc(100vh - 60px);
     font-size: 18px;
     padding: 2em 1em;
   }
@@ -237,15 +275,23 @@ li {
     padding: 12px;
   }
 
+  /* ─ 본문 ─ */
   main {
     max-width: 100%;
-    padding: 1rem;
-    margin: 10px auto 60px;
+    padding: 0.8rem; /* ✅ 모바일 main 패딩 1rem -> 0.8rem으로 더 줄임 */
+    margin: 0;
   }
   h2 {
     font-size: 1.4rem;
   }
 
+  /* ─ 표 · 달력 등을 담는 wrapper가 있으면 가로 스크롤 허용 ─ */
+  .table-wrapper,
+  .calendar-box {
+    overflow-x: auto;
+  }
+
+  /* ─ 댓글 입력창 & 버튼 ─ */
   #commentInput {
     height: 40px;
     font-size: 0.9rem;
@@ -256,10 +302,12 @@ li {
     font-size: 0.9rem;
   }
 
+  /* ─ 푸터 ─ */
   footer {
     flex-direction: column;
     gap: 0.5rem;
     font-size: 0.85rem;
+    height: auto;
   }
 }
 
@@ -271,12 +319,14 @@ li {
     font-size: 1.3rem;
   }
 
+  /* 네비 링크 줄 간격 조정 */
   #nav li {
     margin-bottom: 1.2em;
   }
 
+  /* 본문 폰트·여백 더 압축 */
   main {
-    padding: 0.8rem;
+    padding: 0.5rem; /* ✅ 더 작은 모바일에서 main 패딩 0.8rem -> 0.5rem으로 더 줄임 */
   }
   h2 {
     font-size: 1.2rem;
@@ -285,27 +335,16 @@ li {
     font-size: 0.9rem;
   }
 
+  /* 표·댓글 폰트 축소 */
+  .apply-table,
   #commentsList {
     font-size: 0.8rem;
   }
 
-  #backBtn {
+  /* 버튼 전체폭 사용 시 */
+  #backBtn,
+  #addBtn {
     width: 100%;
     font-size: 0.95rem;
   }
 }
-
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
-}                                      /* 본문 자동 늘어나기 */

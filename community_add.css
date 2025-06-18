@@ -1,16 +1,36 @@
-
+/* Universal Box-Sizing and Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ==================================================================== */
+/* 🔥🔥🔥 한 화면에 꼭 맞고 스크롤 없는 레이아웃의 핵심 🔥🔥🔥 */
+/* ==================================================================== */
+html {
+  height: 100%; /* html이 뷰포트 높이 100%를 차지하도록 */
+  overflow: hidden; /* html에 스크롤 생기는 것을 방지 */
+}
+
 body {
+  height: 100vh; /* ✅ body가 뷰포트 전체 높이를 정확히 차지하도록 명시 */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ✅ 가장 중요! body의 전체 스크롤을 완벽히 방지 */
+
   font-family: sans-serif;
   background-color: #ffffff;
+  color: #000;
+  display: flex; /* 메인, 헤더, 푸터를 위한 Flexbox 컨테이너 */
+  flex-direction: column; /* 자식 요소들을 세로로 정렬 */
+  /* min-height: 100vh; 는 height: 100vh; 와 함께 필요하지 않습니다. */
 }
 
 header {
+  height: 109px; /* ✅ 헤더 높이 고정 (nav top 기준에 맞춤) */
+  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
+  /* 기타 스타일 유지 */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,6 +39,59 @@ header {
   position: relative;
 }
 
+main {
+  flex-grow: 1; /* ✅ 남은 수직 공간을 main이 모두 차지하도록 */
+  overflow-y: auto; /* ✅ main 내부 콘텐츠가 넘칠 때만 main 안에서 스크롤 허용 */
+  min-height: 0; /* flex-grow와 overflow가 함께 작동하도록 필수 */
+
+  /* ✅ 가로 폭 설정 및 중앙 정렬 */
+  max-width: 720px; /* ✅ 주신 코드의 max-width 유지 */
+  width: 100%; /* max-width가 적용될 때, 폭이 720px 미만인 경우 100%를 채우도록 */
+  margin: 0 auto; /* ✅ 상하 마진 0, 좌우 auto로 중앙 정렬 */
+
+  /* ✅ main의 padding 조정 (이전 40px 30px는 스크롤 원인이 될 수 있음. 미세 조정) */
+  padding: 20px 30px; /* ✅ 상하 패딩을 20px로 조정 (이전 40px은 너무 컸을 수 있음) */
+  box-sizing: border-box; /* 패딩이 요소의 크기에 포함되도록 */
+}
+
+footer {
+  height: 60px; /* 푸터 고정 높이 */
+  flex-shrink: 0; /* 푸터가 줄어들지 않도록 방지 */
+  /* 기타 스타일 유지 */
+  border-top: 2px solid black;
+  text-align: center;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+/* ==================================================================== */
+/* Navigation (Sidebar) Styles */
+/* ==================================================================== */
+#nav {
+  width: 230px;
+  /* ✅ nav 높이 계산: 뷰포트 높이 - 헤더 높이 */
+  height: calc(100vh - 109px); /* ✅ 헤더 높이 109px 고려 */
+  background-color: #f6fff1;
+  color: black;
+  position: fixed;
+  top: 109px; /* ✅ 헤더 높이 109px에 맞춰 조정 */
+  left: -230px;
+  transition: left 0.3s ease;
+  padding-top: 3em;
+  padding-left: 2em;
+  z-index: 1000;
+  font-size: 24px;
+  overflow-y: auto; /* 내비게이션 메뉴가 많아지면 내부 스크롤 허용 */
+}
+
+
+/* ==================================================================== */
+/* 나머지 스타일 (위에서 레이아웃에 영향을 주는 속성은 조정되었음) */
+/* ==================================================================== */
 .menu-icon {
   font-size: 1.5rem;
   background: none;
@@ -28,7 +101,7 @@ header {
 }
 
 .logo {
-  all: unset; 
+  all: unset;
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: bold;
@@ -46,7 +119,7 @@ header {
   padding: 0.5rem;
   font-size: 0.9rem;
   border-radius: 4px;
-  line-height: 1.2    ;
+  line-height: 1.2;
 }
 
 .profile-icon {
@@ -54,47 +127,20 @@ header {
 }
 
 h2{
-  margin-top: 10px;
+  font-size: 1.5rem; /* ✅ 이 h2는 main 내부의 h2이므로, margin-top: 0으로 조정 */
+  margin-top: 0; /* ✅ main의 상단 padding으로 충분하므로 h2의 margin-top 제거 */
   margin-left: 10px;
+  margin-bottom: 40px; /* 기존 margin-bottom 유지 */
 }
-
-footer {
-  height: 60px;
-  border-top: 2px solid black;
-  text-align: center;
-  font-size: 0.9rem;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 1rem;
-  box-sizing: border-box;
-}
-
 
 footer a {
   text-decoration: none;
   color: #000;
 }
 
-#nav {
-  width: 230px;
-  height: 100vh;
-  background-color: #f6fff1;
-  color: black;
-  position: fixed;
-  top: 109px;
-  left: -230px;
-  transition: left 0.3s ease;
-  padding-top: 3em;
-  padding-left: 2em;
-  z-index: 1000;
-  font-size: 24px;
-
-  }
 #nav li{
   margin-bottom: 2em;
-} 
+}
 
 #nav.show {
   left: 0;
@@ -103,7 +149,7 @@ footer a {
 #menuBtn {
   font-size: 24px;
   cursor: pointer;
-  margin: 1em;
+  margin: 1em; /* 헤더 내부에 있다면 헤더 패딩이 있으므로 이 마진 조정 필요할 수 있음 */
 }
 
 .nav-link {
@@ -125,19 +171,6 @@ ul {
 
 li {
   margin-bottom: 8px;
-}
-
-/* 메인 컨테이너 크기 조정 및 가운데 정렬 */
-main {
-  max-width: 720px;
-  margin: 0px auto 0px auto;
-  padding: 40px 30px;
-}
-
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 40px;
-  margin-top: 0;
 }
 
 form {
@@ -182,7 +215,7 @@ button[type="submit"],
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 10px;
+  margin-top: 10px; /* ✅ form 내 버튼의 margin-top 유지 */
 }
 
 button[type="submit"]:hover,
@@ -192,7 +225,7 @@ button[type="submit"]:hover,
 }
 
 textarea#content{
-  width:100%; 
+  width:100%;
   height:240px;
   padding:15px 20px;
   font-size:1.15rem;
@@ -200,7 +233,7 @@ textarea#content{
   border-radius:10px;
   background:#f9fdfb;
   border:1px solid #cbd5e0;
-  resize:vertical; 
+  resize:vertical;
   transition:border .2s, box-shadow .2s;
 }
 
@@ -234,21 +267,21 @@ textarea#content:focus{
 /* ========== 반응형 레이아웃 ========== */
 @media (max-width: 768px) {
 
-  /* 헤더 & 로고 */
   header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+    height: auto; /* 모바일에서 헤더 높이 자동 조절 */
   }
   .logo {
     font-size: 1.5rem;
   }
 
-  /* 사이드 네비 → 상단 슬라이드 메뉴 */
   #nav {
     width: 100%;
     left: -100%;
-    top: 60px;
+    top: 60px; /* ✅ 모바일 헤더 높이 60px 가정 */
+    height: calc(100vh - 60px); /* ✅ 모바일 헤더 높이를 뺀 나머지 공간 채움 */
     font-size: 18px;
     padding: 2em 1em;
   }
@@ -260,11 +293,10 @@ textarea#content:focus{
     padding: 12px;
   }
 
-  /* 본문 */
   main {
-    max-width: 100%;
+    max-width: 100%; /* ✅ 모바일에서는 100% 폭 사용 */
     padding: 1rem;
-    margin: 10px auto 60px;
+    margin: 0 auto; /* 중앙 정렬 유지 */
   }
   h2 {
     font-size: 1.4rem;
@@ -289,6 +321,7 @@ textarea#content:focus{
     flex-direction: column;
     gap: 0.5rem;
     font-size: 0.85rem;
+    height: auto;
   }
 }
 
@@ -311,13 +344,13 @@ textarea#content:focus{
   h2 {
     font-size: 1.2rem;
   }
-  #postWriterDate {
+  #postWriterDate { /* 이 선택자는 이전 코드에 있었는데, 현재 코드에는 없습니다. */
     font-size: 0.9rem;
   }
 
   .type-table,
   .apply-table,
-  #commentsList {
+  #commentsList { /* 이 선택자들도 현재 코드에는 없습니다. */
     font-size: 0.8rem;
   }
 
@@ -327,19 +360,3 @@ textarea#content:focus{
     font-size: 0.95rem;
   }
 }
-
-
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
-}                                       /* 본문 자동 늘어나기 */

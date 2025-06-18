@@ -1,95 +1,59 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-  font-family:sans-serif;
-  background:#fff;
-  color:#000;
-}
-
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:1rem;
-  border-bottom:2px solid #000;
-}
-
-.menu-icon{
-  font-size:1.5rem;
-  background:none;
-  border:none;
-  cursor:pointer;
-  color:#2f855a;
-}
-
-.logo{
-  all:unset;
-  font-size:1.8rem;
-  font-weight:700;
-  color:#2f855a;
-  cursor:pointer;
-}
-
-#nav{
-  position:fixed;
-  top:109px;
-  left:-230px;
-  width:230px;
-  height:100vh;
-  background:#f6fff1;
-  padding:3em 0 0 2em;
-  transition:left .3s;
-  font-size:24px;
-  z-index:1000;
-}
-
-#nav.show{
-  left:0;
-} 
-
-#nav ul{
-  list-style:none;
-} 
-#nav li{
-  margin-bottom:2em;
-}
-
-.nav-link{
-  display:block;
-  padding:10px;
-  font-size:24px;
-  text-decoration:none;
-  color:#000;
-}
-.nav-link:hover{
-  background:#eee;
-}
-main{
-  max-width:720px;
-  margin:20px auto;
-  padding:20px 30px;
-}
-footer {
-  height: 60px;
-  border-top: 2px solid black;
-  text-align: center;
-  font-size: 0.9rem;
-
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 1rem;
+/* Universal Box-Sizing and Reset */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* ==================================================================== */
+/* 🔥🔥🔥 최종: Full Page Layout 및 전체 스크롤 방지 🔥🔥🔥 */
+/* ==================================================================== */
+html {
+  height: 100%; /* html이 뷰포트 전체 높이를 차지하도록 */
+  overflow: hidden; /* html 스크롤 방지 */
+}
 
-footer a {
-  text-decoration: none;
+body {
+  height: 100vh; /* ✅ body가 뷰포트 전체 높이를 정확히 차지하도록 100vh 명시 */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ✅ 가장 중요! body의 전체 스크롤을 막음 */
+
+  font-family: sans-serif;
+  background-color: #ffffff;
   color: #000;
+  display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
+  flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
+  /* min-height: 100vh; 는 body에 height: 100vh; 가 있으면 굳이 필요 없습니다. */
+}
+
+/* ==================================================================== */
+/* Header Styles */
+/* ==================================================================== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 2px solid #000;
+  height: 120px; /* 헤더 고정 높이 */
+  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2f855a;
+}
+
+.logo {
+  all: unset;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2f855a;
+  cursor: pointer;
 }
 
 .top-right {
@@ -103,129 +67,143 @@ footer a {
   padding: 0.5rem;
   font-size: 0.9rem;
   border-radius: 4px;
-  line-height: 1.2    ;
+  line-height: 1.2;
 }
 
 .profile-icon {
   font-size: 1.8rem;
 }
 
-h2{
-  margin:10px 0 0 10px;
-  font-size:1.8rem;
+/* ==================================================================== */
+/* Main Content Area Styles (스크롤 문제 집중 해결) */
+/* ==================================================================== */
+main {
+  flex-grow: 1; /* ✅ main이 남은 수직 공간을 모두 차지하도록 함 */
+  overflow-y: auto; /* ✅ main 내부 콘텐츠가 넘치면 main 안에서만 수직 스크롤 활성화 */
+  min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
+
+  max-width: none; /* 이전 720px 제한 해제 (원하는 대로 넓어지게) */
+  width: 100%; /* 부모(body)의 100% 폭을 차지하도록 */
+
+  /* ✅ 패딩 미세 조정: 브라우저 렌더링 오차를 줄이기 위해 상하 패딩을 약간 더 보수적으로 설정 */
+  padding: 1.5rem 2rem; /* 상하 패딩을 20px -> 1.5rem으로 줄임 (약 24px) */
+  margin: 0; /* main의 외부 마진은 제거 */
+  box-sizing: border-box;
 }
 
-#postWriterDate{
-  margin:0 0 20px 10px;
-  color:#666;
-  font-size:1rem;
+h2 {
+  margin: 10px 0 0 10px;
+  font-size: 1.8rem;
+}
+
+#postWriterDate {
+  margin: 0 0 20px 10px;
+  color: #666;
+  font-size: 1rem;
 }
 
 /* ===== 본문 ===== */
-.content-box{
-  background:#f9fdfb;
-  border:1px solid #cbd5e0;
-  border-radius:10px;
-  padding:20px;
-  min-height:200px;
-  margin-bottom:30px;
-  white-space:pre-wrap;
-  line-height:1.6;
-  font-size:1.1rem;
-  color:#333;
+.content-box {
+  background: #f9fdfb;
+  border: 1px solid #cbd5e0;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 200px;
+  margin-bottom: 30px; /* ✅ 이 마진이 main의 스크롤을 유발하는지 확인 필요 */
+  white-space: pre-wrap;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #333;
+  width: 100%;
 }
 
 /* ===== 댓글 영역 ===== */
-.comments-section{
-  margin:2rem 0;
-  display:flex;
-  flex-direction:column;
-  gap:1.5rem;
+.comments-section {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
 }
-#commentsList{
-  background:#f9f9f9;
-  border-radius:8px;
-  padding:1rem;
-  min-height:80px;
-  max-height:300px;
-  overflow-y:auto;
+#commentsList {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 80px;
+  max-height: 300px; /* 댓글이 많아지면 내부 스크롤 발생 */
+  overflow-y: auto;
+  width: 100%;
+  margin-bottom: 20px; /* ✅ 댓글 목록 하단 마진 추가 (필요 시) */
 }
-.comment{
-  margin-bottom:12px;
+.comment {
+  margin-bottom: 12px;
 }
-.comment-meta{
-  font-weight:700;
-  margin-bottom:4px;
+.comment-meta {
+  font-weight: 700;
+  margin-bottom: 4px;
 }
-.comment-text{
-  line-height:1.4;
-}
-
-#moreCommentsBtn{
-  align-self:flex-start;
-  background:none;
-  border:none;
-  color:#2f855a;
-  cursor:pointer;
-  font-weight:700;
-  margin-top:-8px;
+.comment-text {
+  line-height: 1.4;
 }
 
-.comment-input-container{
-  display:flex;
-  gap:12px;
-  width:100%;
+#moreCommentsBtn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: #2f855a;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: -8px;
 }
-#commentInput{
-  flex:1;
-  height:50px;
-  font-size:1rem;
-  padding:.6rem;
-  border:1px solid #ccc;
-  border-radius:6px;
-  resize:none;
+
+.comment-input-container {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 20px; /* ✅ 댓글 입력 컨테이너 하단 마진 추가 (필요 시) */
 }
-#commentSubmit{
-  width:100px;
-  height:50px;
-  background:#2f855a;
-  color:#fff;
-  border:none;
-  border-radius:6px;
-  font-size:1rem;
-  font-weight:700;
-  cursor:pointer;
+#commentInput {
+  flex: 1;
+  height: 50px;
+  font-size: 1rem;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: none;
 }
-#commentSubmit:hover{
-  background:#276c47;
+#commentSubmit {
+  width: 100px;
+  height: 50px;
+  background: #2f855a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+#commentSubmit:hover {
+  background: #276c47;
 }
 
 /* ===== 돌아가기 버튼 ===== */
-#backBtn{
-  margin:10px auto 0;
-  background:#48bb78;
-  color:#fff;
-  border:none;
-  border-radius:10px;
-  padding:12px 25px;
-  font-size:1.1rem;
-  font-weight:700;
-  cursor:pointer;
-}
-#backBtn:hover{
-  background:#38a169;
-}
-
-#kakaoLoginBtn {
-  background-color: #d1e7c8;
+#backBtn {
+  margin: 10px auto 30px; /* ✅ 버튼 하단 마진 조정 (main 하단과의 여백) */
+  display: block;
+  background: #48bb78;
+  color: #fff;
   border: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: bold;
+  border-radius: 10px;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
-  border-radius: 4px;
+}
+#backBtn:hover {
+  background: #38a169;
 }
 
+#kakaoLoginBtn,
 #kakaoLogoutBtn {
   background-color: #d1e7c8;
   border: none;
@@ -236,24 +214,85 @@ h2{
   border-radius: 4px;
 }
 
-/* ========== 반응형 레이아웃 ========== */
-@media (max-width: 768px) {
+/* ==================================================================== */
+/* Footer Styles */
+/* ==================================================================== */
+footer {
+  height: 60px;
+  border-top: 2px solid black;
+  text-align: center;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  flex-shrink: 0; /* 푸터가 줄어들지 않도록 방지 */
+}
 
-  /* 헤더 & 로고 */
+footer a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* ==================================================================== */
+/* Navigation (Sidebar) Styles */
+/* ==================================================================== */
+#nav {
+  position: fixed;
+  top: 120px; /* 헤더 높이 120px에 맞춰 조정 */
+  left: -230px;
+  width: 230px;
+  height: calc(100vh - 120px); /* 헤더 높이를 제외한 나머지 공간 */
+  background: #f6fff1;
+  padding: 3em 0 0 2em;
+  transition: left 0.3s;
+  font-size: 24px;
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+#nav.show {
+  left: 0;
+}
+
+#nav ul {
+  list-style: none;
+}
+#nav li {
+  margin-bottom: 2em;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px;
+  font-size: 24px;
+  text-decoration: none;
+  color: #000;
+}
+.nav-link:hover {
+  background: #eee;
+}
+
+/* ==================================================================== */
+/* 반응형 레이아웃 */
+/* ==================================================================== */
+@media (max-width: 768px) {
   header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+    height: auto;
   }
   .logo {
     font-size: 1.5rem;
   }
 
-  /* 네비게이션 메뉴 */
   #nav {
     width: 100%;
     left: -100%;
-    top: 60px;
+    top: 60px; /* 모바일 헤더 높이에 맞춰 조정 (대략 60px로 가정) */
+    height: calc(100vh - 60px); /* 모바일 헤더 높이를 뺀 나머지 공간 채움 */
     font-size: 18px;
     padding: 2em 1em;
   }
@@ -265,17 +304,19 @@ h2{
     padding: 12px;
   }
 
-  /* 본문 영역 */
   main {
-    max-width: 100%;
-    padding: 1rem;
-    margin: 10px auto 60px;
+    max-width: none;
+    width: 100%;
+    padding: 1rem; /* ✅ 모바일 main 패딩 조정 */
+    margin: 0;
   }
   h2 {
     font-size: 1.4rem;
   }
+  #postWriterDate {
+    font-size: 0.9rem;
+  }
 
-  /* 댓글 영역 조정 */
   #commentInput {
     height: 40px;
     font-size: 0.9rem;
@@ -286,16 +327,15 @@ h2{
     font-size: 0.9rem;
   }
 
-  /* 푸터 */
   footer {
     flex-direction: column;
     gap: 0.5rem;
     font-size: 0.85rem;
+    height: auto;
   }
 }
 
 @media (max-width: 480px) {
-
   .menu-icon {
     font-size: 1.4rem;
   }
@@ -308,13 +348,13 @@ h2{
   }
 
   main {
-    padding: 0.8rem;
+    padding: 0.8rem; /* ✅ 더 작은 모바일에서 main 패딩 더 줄임 */
   }
   h2 {
     font-size: 1.2rem;
   }
   #postWriterDate {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   #commentsList {
@@ -326,18 +366,3 @@ h2{
     font-size: 0.95rem;
   }
 }
-
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
-}                                        /* 본문 자동 늘어나기 */
