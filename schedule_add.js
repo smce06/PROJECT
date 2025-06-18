@@ -32,3 +32,7 @@ menuBtn.addEventListener("click", () => nav.classList.toggle("show"));
 document.getElementById("mainButton").addEventListener("click", () => {
   location.href = "index.html";
 });
+
+document.querySelector(".profile-icon")?.addEventListener("click", () => {
+    window.location.href = "profile.html";
+});

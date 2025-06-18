@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     /* 기존 글 목록 불러오기 */
     const posts = JSON.parse(localStorage.getItem("communityPosts") || "[]");
 
-    /* 새 글 저장 (목록에서 쓰는 필드명: title / author / date) */
     posts.push({ title, content, author, date: today });
     localStorage.setItem("communityPosts", JSON.stringify(posts));
 
@@ -35,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* ========== 사이드 메뉴 & 로고 ========== */
 const menuBtn = document.getElementById("menuBtn");
 const nav     = document.getElementById("nav");
 menuBtn.addEventListener("click", () => nav.classList.toggle("show"));
@@ -49,3 +47,7 @@ function getCookie(name) {
   const parts = value.split(`; ${name}=`);
   return parts.length === 2 ? parts.pop().split(";").shift() : null;
 }
+
+document.querySelector(".profile-icon")?.addEventListener("click", () => {
+    window.location.href = "profile.html";
+});

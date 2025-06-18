@@ -186,3 +186,86 @@ footer a {
   cursor: pointer;
   border-radius: 4px;
 }
+/* ========== 반응형 레이아웃 ========== */
+/* ❶ 태블릿 이하 ─ 768px */
+@media (max-width: 768px) {
+
+  /* ─ 헤더 & 로고 ─ */
+  header{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+  }
+  .logo{ font-size: 1.5rem; }
+
+  /* ─ 사이드 네비 → 상단 슬라이드 메뉴 ─ */
+  #nav{
+    width: 100%;
+    left: -100%;        /* 처음엔 화면 밖 */
+    top: 60px;          /* 헤더 아래에 붙임 */
+    font-size: 18px;
+    padding: 2em 1em;
+  }
+  #nav.show{ left: 0; } /* 토글 시 왼쪽 → 0 */
+  .nav-link{ font-size: 18px; padding: 12px; }
+
+  /* ─ 본문 ─ */
+  main{
+    max-width: 100%;    /* 폭 제한 해제 */
+    padding: 1rem;
+    margin: 10px auto 60px; /* 푸터와 간격 축소 */
+  }
+  h2{ font-size: 1.4rem; }
+
+  /* ─ 표 · 달력 등을 담는 wrapper가 있으면 가로 스크롤 허용 ─ */
+  .table-wrapper,
+  .calendar-box{ overflow-x: auto; }
+
+  /* ─ 댓글 입력창 & 버튼 ─ */
+  #commentInput{
+    height: 40px;
+    font-size: .9rem;
+  }
+  #commentSubmit{
+    width: 90px;
+    height: 40px;
+    font-size: .9rem;
+  }
+
+  /* ─ 푸터 ─ */
+  footer{
+    flex-direction: column;
+    gap: .5rem;
+    font-size: .85rem;
+  }
+}
+
+/* ❷ 모바일(폰) ─ 480px */
+@media (max-width: 480px){
+
+  .menu-icon{ font-size: 1.4rem; }
+  .logo     { font-size: 1.3rem; }
+
+  /* 네비 링크 줄 간격 조정 */
+  #nav li   { margin-bottom: 1.2em; }
+
+  /* 본문 폰트·여백 더 압축 */
+  main      { padding: .8rem; }
+  h2        { font-size: 1.2rem; }
+  #postWriterDate{ font-size: .9rem; }
+
+  /* 표·댓글 폰트 축소 */
+  .type-table,
+  .apply-table,
+  #commentsList{ font-size: .8rem; }
+
+  /* 버튼 전체폭 사용 시 */
+  #backBtn,
+  #addBtn{
+    width: 100%;
+    font-size: .95rem;
+  }
+}
+html, body{height:100%;}
+body{display:flex;flex-direction:column;min-height:100vh;}  /* 핵심 */
+main{flex:1;}                                               /* 본문 자동 늘어나기 */

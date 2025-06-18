@@ -67,3 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.getElementById("mainButton").addEventListener("click", function() {
     window.location.href = "index.html";
 });
+
+document.querySelector(".profile-icon")?.addEventListener("click", () => {
+    window.location.href = "profile.html";
+});

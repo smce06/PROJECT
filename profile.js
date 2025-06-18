@@ -2,11 +2,6 @@ document.getElementById("saveNicknameBtn").addEventListener("click", () => {
     const nickname = document.getElementById("nicknameInput").value.trim();
     const token = getCookie("kakaoToken");
 
-    if (!token) {
-        alert("로그인 후 닉네임을 설정할 수 있습니다.");
-        return;
-    }
-
     if (!nickname) {
         alert("닉네임을 입력하세요.");
         return;
@@ -36,3 +31,14 @@ document.getElementById("mainButton").addEventListener("click", function() {
     window.location.href = "index.html";
 });
 
+document.querySelector(".profile-icon")?.addEventListener("click", () => {
+    window.location.href = "profile.html";
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const token = getCookie("kakaoToken");
+  const nicknameMap = JSON.parse(localStorage.getItem("nicknameMap") || "{}");
+  const nickname = token && nicknameMap[token] ? nicknameMap[token] : "익명";
+  const display = document.getElementById("currentNickname");
+  if (display) display.textContent = nickname;
+});

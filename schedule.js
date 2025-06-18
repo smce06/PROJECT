@@ -76,3 +76,7 @@ $("#addEventBtn").onclick = () => {
 
 /* ========== 초기 렌더 ========= */
 drawCalendar(current);
+
+document.querySelector(".profile-icon")?.addEventListener("click", () => {
+    window.location.href = "profile.html";
+});

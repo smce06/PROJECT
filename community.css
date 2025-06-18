@@ -206,3 +206,77 @@ li {
   cursor: pointer;
   border-radius: 4px;
 }
+/* ========== 반응형 레이아웃 ========== */
+@media (max-width: 768px) {
+
+  /* ─ 헤더 & 로고 ─ */
+  header{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+  }
+  .logo{ font-size: 1.5rem; }
+
+  /* ─ 사이드 네비 → 상단 슬라이드 메뉴 ─ */
+  #nav{
+    width: 100%;
+    left: -100%;
+    top: 60px;
+    font-size: 18px;
+    padding: 2em 1em;
+  }
+  #nav.show{ left: 0; } 
+  .nav-link{ font-size: 18px; padding: 12px; }
+
+  /* ─ 본문 ─ */
+  main{
+    max-width: 100%; 
+    padding: 1rem;
+    margin: 10px auto 60px;
+  }
+  h2{ font-size: 1.4rem; }
+
+  .table-wrapper,
+  .calendar-box{ overflow-x: auto; }
+
+  #commentInput{
+    height: 40px;
+    font-size: .9rem;
+  }
+  #commentSubmit{
+    width: 90px;
+    height: 40px;
+    font-size: .9rem;
+  }
+
+  footer{
+    flex-direction: column;
+    gap: .5rem;
+    font-size: .85rem;
+  }
+}
+
+@media (max-width: 480px){
+
+  .menu-icon{ font-size: 1.4rem; }
+  .logo     { font-size: 1.3rem; }
+
+  #nav li   { margin-bottom: 1.2em; }
+
+  main      { padding: .8rem; }
+  h2        { font-size: 1.2rem; }
+  #postWriterDate{ font-size: .9rem; }
+
+  .type-table,
+  .apply-table,
+  #commentsList{ font-size: .8rem; }
+
+  #backBtn,
+  #addBtn{
+    width: 100%;
+    font-size: .95rem;
+  }
+}
+html, body{height:100%;}
+body{display:flex;flex-direction:column;min-height:100vh;}  /* 핵심 */
+main{flex:1;}                                               /* 본문 자동 늘어나기 */

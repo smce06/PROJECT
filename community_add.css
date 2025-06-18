@@ -124,19 +124,17 @@ li {
 
 /* 메인 컨테이너 크기 조정 및 가운데 정렬 */
 main {
-  max-width: 720px; /* 기존 600px보다 더 큼 */
+  max-width: 720px;
   margin: 0px auto 0px auto;
   padding: 40px 30px;
 }
 
-/* 제목 */
 h2 {
   font-size: 1.5rem;
   margin-bottom: 40px;
   margin-top: 0;
 }
 
-/* 폼 정렬 개선 */
 form {
   display: flex;
   flex-direction: column;
@@ -144,7 +142,6 @@ form {
   align-items: center;
 }
 
-/* 라벨 및 인풋 */
 label {
   width: 100%;
   font-size: 1.1rem;
@@ -189,17 +186,16 @@ button[type="submit"]:hover,
   transform: translateY(-2px);
 }
 
-/* ================== 글 내용(textarea) 크기·폰트 조정 ================== */
 textarea#content{
-  width:100%;         /* 제목 입력칸과 같은 너비 */
-  height:240px;       /* 원하는 높이, 필요하면 px 값 조정 */
+  width:100%; 
+  height:240px;
   padding:15px 20px;
-  font-size:1.15rem;  /* 제목 입력보다 살짝 큰 글씨 */
+  font-size:1.15rem;
   line-height:1.5;
   border-radius:10px;
   background:#f9fdfb;
   border:1px solid #cbd5e0;
-  resize:vertical;    /* 사용자가 세로로만 늘리기 가능 */
+  resize:vertical; 
   transition:border .2s, box-shadow .2s;
 }
 
@@ -229,3 +225,78 @@ textarea#content:focus{
   border-radius: 4px;
 }
 
+
+/* ========== 반응형 레이아웃 ========== */
+@media (max-width: 768px) {
+
+  /* ─ 헤더 & 로고 ─ */
+  header{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+  }
+  .logo{ font-size: 1.5rem; }
+
+  /* ─ 사이드 네비 → 상단 슬라이드 메뉴 ─ */
+  #nav{
+    width: 100%;
+    left: -100%;
+    top: 60px;
+    font-size: 18px;
+    padding: 2em 1em;
+  }
+  #nav.show{ left: 0; } 
+  .nav-link{ font-size: 18px; padding: 12px; }
+
+  /* ─ 본문 ─ */
+  main{
+    max-width: 100%; 
+    padding: 1rem;
+    margin: 10px auto 60px;
+  }
+  h2{ font-size: 1.4rem; }
+
+  .table-wrapper,
+  .calendar-box{ overflow-x: auto; }
+
+  #commentInput{
+    height: 40px;
+    font-size: .9rem;
+  }
+  #commentSubmit{
+    width: 90px;
+    height: 40px;
+    font-size: .9rem;
+  }
+
+  footer{
+    flex-direction: column;
+    gap: .5rem;
+    font-size: .85rem;
+  }
+}
+
+@media (max-width: 480px){
+
+  .menu-icon{ font-size: 1.4rem; }
+  .logo     { font-size: 1.3rem; }
+
+  #nav li   { margin-bottom: 1.2em; }
+
+  main      { padding: .8rem; }
+  h2        { font-size: 1.2rem; }
+  #postWriterDate{ font-size: .9rem; }
+
+  .type-table,
+  .apply-table,
+  #commentsList{ font-size: .8rem; }
+
+  #backBtn,
+  #addBtn{
+    width: 100%;
+    font-size: .95rem;
+  }
+}
+html, body{height:100%;}
+body{display:flex;flex-direction:column;min-height:100vh;}  /* 핵심 */
+main{flex:1;}                                               /* 본문 자동 늘어나기 */

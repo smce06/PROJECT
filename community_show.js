@@ -1,4 +1,3 @@
-/* ===== 헤더 / 내비게이션 ===== */
 const menuBtn = document.getElementById("menuBtn");
 const nav     = document.getElementById("nav");
 const token = getCookie("kakaoToken");
@@ -58,7 +57,6 @@ commentSubmit.onclick = () => {
   const text = commentInput.value.trim();
   if (!text) return alert("댓글 내용을 입력해주세요.");
 
-  // 👉 닉네임 가져오기
   let author = "익명";
   const nicknameMap = JSON.parse(localStorage.getItem("nicknameMap") || "{}");
   if (token && nicknameMap[token]) {
@@ -90,3 +88,6 @@ function getCookie(name) {
   const parts = value.split(`; ${name}=`);
   return parts.length === 2 ? parts.pop().split(";").shift() : null;
 }
+document.querySelector(".profile-icon")?.addEventListener("click", () => {
+    window.location.href = "profile.html";
+});

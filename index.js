@@ -191,3 +191,4 @@ document.querySelector(".profile-icon")?.addEventListener("click", () => {
 window.kakaoLogin = kakaoLogin;
 window.kakaoLogout = kakaoLogout;
 
+
