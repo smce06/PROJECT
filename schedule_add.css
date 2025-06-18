@@ -1,3 +1,5 @@
+/* myapply_add.css */
+
 /* Universal Box-Sizing and Reset */
 * {
   margin: 0;
@@ -10,6 +12,7 @@ html, body {
   height: 100%; /* html과 body가 뷰포트 전체 높이를 차지하도록 함 */
   margin: 0;
   padding: 0;
+  overflow: hidden; /* ✅ body의 전체 스크롤을 막음 */
 }
 
 body {
@@ -68,8 +71,8 @@ header {
 
 /* Main Content Area Styles */
 main {
-  flex: 1; /* main이 남은 수직 공간을 모두 차지하도록 함 */
-  overflow-y: auto; /* 콘텐츠가 넘치면 수직 스크롤 활성화 */
+  flex-grow: 1; /* main이 남은 수직 공간을 모두 차지하도록 함 */
+  overflow-y: auto; /* ✅ 콘텐츠가 넘치면 main 안에서만 수직 스크롤 활성화 */
   min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
   padding: 2rem; /* 일관된 패딩 */
   box-sizing: border-box; /* 패딩을 요소의 전체 너비/높이에 포함 */
@@ -77,7 +80,7 @@ main {
 }
 
 .apply-section {
-  padding: 20px;
+  padding: 20px; /* 이 섹션이 main 안에 있다면 main의 padding과 중첩됨 */
 }
 
 #addBtn {
@@ -89,7 +92,6 @@ main {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  /* margin-left: 93%; */ /* 반응형 시 문제가 될 수 있어 중앙 정렬 또는 flexbox를 고려하세요 */
   margin-left: auto; /* 우측 정렬 예시 */
   display: block; /* margin-left: auto;를 위해 블록 요소로 만듦 */
 }
@@ -148,6 +150,7 @@ footer a {
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
+  overflow-y: auto; /* ✅ 내비게이션 메뉴가 많아지면 내부 스크롤이 생기도록 */
 }
 
 #nav li {
@@ -198,10 +201,9 @@ li {
 
 /* 폼 전용 (일정 추가 부분) */
 .add-form {
-  max-width: 720px;
-  /* margin: 20px auto 100px; */ 
-  margin: 20px auto; 
-  padding: 40px 30px; 
+  max-width: 960px; /* ✅ 폼 너비를 넓힙니다. (원하는 값으로 변경 가능) */
+  margin: 20px auto; /* 상하 마진 유지, 좌우 중앙 정렬 */
+  padding: 40px 30px; /* 폼 내부 패딩 */
   /* height: calc(100% - [적절한 값]); */ /* 폼 내용이 main을 넘치지 않는다는 전제 하에 고려해볼 수 있음 */
   /* display: flex; flex-direction: column; */ /* 폼 내부 요소 정렬에 따라 고려 */
 }
@@ -279,7 +281,7 @@ li {
   main {
     max-width: 100%; /* 폭 제한 해제 */
     padding: 1rem;
-    margin: 10px auto; /* 푸터와 간격 축소 및 하단 마진 제거 */
+    margin: 0 auto; /* ✅ 상하 마진 0, 좌우 중앙 정렬 */
   }
   h2 {
     font-size: 1.4rem;
