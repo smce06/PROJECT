@@ -10,6 +10,7 @@ html, body {
   height: 100%; /* Ensure html and body take full viewport height */
   margin: 0;
   padding: 0;
+  overflow: hidden; /* ✅ body의 전체 스크롤을 기본적으로 막음 */
 }
 
 body {
@@ -69,11 +70,11 @@ header {
 /* Main Content Area Styles */
 main {
   flex-grow: 1; /* Allow main to take up remaining vertical space */
-  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  overflow-y: auto; /* ✅ main 내부 콘텐츠가 넘치면 main 안에서만 스크롤 활성화 */
   min-height: 0; /* Essential for flex-grow to work correctly with overflow */
   padding: 2rem; /* Consistent padding */
   box-sizing: border-box; /* Include padding in the element's total width and height */
-  margin-bottom: 100px; /* This margin seems specific and might push footer down, review if intended */
+  /* margin-bottom: 100px; */ /* ✅ 이 마진은 body 스크롤을 유발하므로 제거합니다. */
 }
 
 .apply-section {
@@ -83,13 +84,15 @@ main {
 #addApplyBtn {
   width: 100px;
   padding: 8px 16px;
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* 이 마진은 .apply-table 위에 영향을 줍니다. */
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 93%; /* This might be problematic on smaller screens */
+  /* margin-left: 93%; */ /* ✅ 작은 화면에서 문제가 될 수 있으니 중앙/우측 정렬을 고려합니다. */
+  margin-left: auto; /* 우측 정렬 예시 */
+  display: block; /* margin-left: auto;를 위해 블록 요소로 만듭니다. */
 }
 
 .apply-table {
@@ -135,17 +138,19 @@ footer a {
 /* Navigation (Sidebar) Styles */
 #nav {
   width: 230px;
-  height: 100vh; /* This needs adjustment for a fixed header */
+  /* height: 100vh; */ /* ✅ 고정 헤더 아래에 맞게 높이 조정 */
+  height: calc(100vh - 120px); /* 헤더 높이(120px)를 뺀 나머지 공간 */
   background-color: #f6fff1;
   color: black;
   position: fixed;
-  top: 109px; /* Position below the header */
+  top: 120px; /* ✅ 헤더 높이에 맞춰 top 위치 수정 */
   left: -230px; /* Hidden off-screen by default */
   transition: left 0.3s ease;
   padding-top: 3em;
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
+  overflow-y: auto; /* ✅ 내비게이션 메뉴가 많아지면 내부 스크롤이 생기도록 */
 }
 
 #nav li {
@@ -212,7 +217,9 @@ li {
   #nav {
     width: 100%;
     left: -100%; /* Initially off-screen */
-    top: 60px; /* Position below header (assuming a reduced header height on mobile) */
+    top: auto; /* ✅ top을 auto로 변경하여 반응형 높이 계산을 유연하게 함 */
+    /* bottom: 0; */ /* 모바일에서 하단에 고정하고 싶다면 (선택 사항) */
+    height: calc(100vh - 60px); /* 모바일 헤더 높이(예: 60px)를 뺀 나머지 공간 */
     font-size: 18px;
     padding: 2em 1em;
   }
@@ -228,7 +235,8 @@ li {
   main {
     max-width: 100%; /* Remove width restriction */
     padding: 1rem;
-    margin: 10px auto 60px; /* Reduce spacing with footer */
+    /* margin: 10px auto 60px; */ /* ✅ 마진 제거. flex-grow로 높이 자동 조절 */
+    margin: 0 auto; /* 상하 마진 제거 */
   }
   h2 {
     font-size: 1.4rem;
@@ -294,7 +302,7 @@ li {
 
   /* Full Width Buttons */
   #backBtn,
-  #addBtn {
+  #addBtn { /* #addApplyBtn도 여기에 포함되도록 #addBtn으로 통일했습니다. */
     width: 100%;
     font-size: .95rem;
   }

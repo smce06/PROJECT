@@ -1,17 +1,29 @@
 /* myapply_add.css */
 
-/* 공통 폰트 & 배경색 유지 */
+/* Universal Box-Sizing and Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Base Body Styles for Full Page Layout */
+html, body {
+  height: 100%; /* html과 body가 뷰포트 전체 높이를 차지하도록 함 */
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ✅ body의 전체 스크롤을 기본적으로 막음 */
+}
+
 body {
   font-family: sans-serif;
   background-color: #ffffff;
+  display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
+  flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
+  min-height: 100vh; /* 바디가 최소한 뷰포트 전체 높이를 차지하도록 함 */
 }
 
+/* Header Styles */
 header {
   display: flex;
   align-items: center;
@@ -19,6 +31,8 @@ header {
   padding: 1rem;
   border-bottom: 2px solid black;
   position: relative;
+  height: 120px; /* 헤더 고정 높이 */
+  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
 }
 
 .menu-icon {
@@ -30,7 +44,7 @@ header {
 }
 
 .logo {
-  all: unset; 
+  all: unset;
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: bold;
@@ -48,20 +62,79 @@ header {
   padding: 0.5rem;
   font-size: 0.9rem;
   border-radius: 4px;
-  line-height: 1.2    ;
+  line-height: 1.2;
 }
 
 .profile-icon {
   font-size: 1.8rem;
 }
 
-h2{
-  margin-top: 10px;
-  margin-left: 10px;
+/* Main Content Area Styles */
+main {
+  flex-grow: 1; /* ✅ main이 남은 수직 공간을 모두 차지하도록 함 */
+  overflow-y: auto; /* ✅ 콘텐츠가 넘치면 main 안에서만 수직 스크롤 활성화 */
+  min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
+  padding: 40px 30px; /* 기존 main 패딩 유지 */
+  box-sizing: border-box; /* 패딩을 요소의 전체 너비/높이에 포함 */
+  max-width: 960px; /* ✅ 폼이 더 넓게 보이도록 max-width를 960px로 조정 (원하는 값으로 변경 가능) */
+  margin: 0 auto; /* ✅ 상하 마진 0, 좌우 중앙 정렬 */
 }
 
+.apply-section {
+  /* 이 클래스가 어떤 HTML 요소에 적용되는지 확인 필요 */
+  /* 만약 main 안에 있다면, main의 padding과 중복될 수 있습니다. */
+  padding: 20px;
+}
+
+/* #addApplyBtn은 폼 내부의 제출 버튼과 유사하게 보입니다. */
+/* form 태그 내부에 포함되어 있다면 폼 스타일링을 따르도록 하고,
+   독립적인 버튼이라면 아래와 같이 스타일을 유지할 수 있습니다. */
+#addApplyBtn {
+  padding: 15px 30px; /* submit 버튼과 동일하게 변경 */
+  font-size: 1.1rem;
+  font-weight: 700;
+  background-color: #48bb78; /* submit 버튼과 동일하게 변경 */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px; /* 폼 필드와 버튼 사이 간격 */
+  /* width: 100%; */ /* ✅ 폼의 너비에 맞추려면 100%로 설정하거나,
+                           원하는 고정 너비 (예: 200px)를 설정합니다. */
+}
+
+#addApplyBtn:hover {
+  background-color: #38a169;
+  transform: translateY(-2px);
+}
+
+.apply-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.apply-table th, .apply-table td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: center;
+}
+
+.apply-table th {
+  background-color: #d1e7c8;
+}
+
+.empty-cell {
+  color: #888;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Footer Styles */
 footer {
   height: 60px; /* 고정 높이 */
+  flex-shrink: 0; /* 푸터가 줄어들지 않도록 방지 */
   border-top: 2px solid black;
   font-size: 0.9rem;
   display: flex;
@@ -71,33 +144,34 @@ footer {
   box-sizing: border-box;
 }
 
-
 footer a {
   text-decoration: none;
   color: #000;
 }
 
+/* Navigation (Sidebar) Styles */
 #nav {
   width: 230px;
-  height: 100vh;
+  height: calc(100vh - 120px); /* ✅ 헤더 높이(120px)를 뺀 나머지 공간 */
   background-color: #f6fff1;
   color: black;
   position: fixed;
-  top: 109px;
-  left: -230px;
+  top: 120px; /* ✅ 헤더 아래에 위치 (헤더 height:120px 기준) */
+  left: -230px; /* 기본적으로 화면 밖으로 숨김 */
   transition: left 0.3s ease;
   padding-top: 3em;
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
+  overflow-y: auto; /* ✅ 내비게이션 메뉴가 많아지면 내부 스크롤이 생기도록 */
+}
 
-  }
-#nav li{
+#nav li {
   margin-bottom: 2em;
-} 
+}
 
 #nav.show {
-  left: 0;
+  left: 0; /* 슬라이드 인 */
 }
 
 #menuBtn {
@@ -127,29 +201,31 @@ li {
   margin-bottom: 8px;
 }
 
-/* 메인 컨테이너 크기 조정 및 가운데 정렬 */
-main {
-  max-width: 720px; /* 기존 600px보다 더 큼 */
-  margin: 0px auto 0px auto;
-  padding: 40px 30px;
+#kakaoLogoutBtn {
+  background-color: #d1e7c8;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
-/* 제목 */
-h2 {
+/* 폼 관련 스타일 (main 안의 form 요소) */
+h2 { /* 이 h2는 main 안의 h2를 대상으로 하며, 기존 전역 h2와 분리하는 것이 좋습니다. */
   font-size: 1.5rem;
   margin-bottom: 40px;
-  margin-top: 0;
+  margin-top: 0; /* main의 padding 때문에 상단 마진은 0으로 유지 */
 }
 
-/* 폼 정렬 개선 */
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  align-items: center;
+  gap: 10px; /* 필드 간 간격 */
+  /* align-items: center; */ /* 폼 필드들이 중앙 정렬되어 너비가 좁아질 수 있으니 주석 처리합니다. */
+  width: 100%; /* ✅ 폼이 main의 전체 너비를 사용하도록 설정 */
 }
 
-/* 라벨 및 인풋 */
 label {
   width: 100%;
   font-size: 1.1rem;
@@ -173,9 +249,7 @@ input[type="date"]:focus {
   outline: none;
 }
 
-/* 추가하기 버튼 */
-button[type="submit"],
-#addApplyBtn {
+button[type="submit"] {
   padding: 15px 30px;
   font-size: 1.1rem;
   font-weight: 700;
@@ -186,117 +260,98 @@ button[type="submit"],
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
   margin-top: 10px;
+  /* width: auto; */ /* 필요에 따라 너비 조절 */
 }
 
-button[type="submit"]:hover,
-#addApplyBtn:hover {
+button[type="submit"]:hover {
   background-color: #38a169;
   transform: translateY(-2px);
 }
 
 
-
-#kakaoLogoutBtn {
-  background-color: #d1e7c8;
-  border: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
 /* ========== 반응형 레이아웃 ========== */
-/* ❶ 태블릿 이하 ─ 768px */
+
+/* ❶ Tablet and Below ─ 768px */
 @media (max-width: 768px) {
 
-  /* ─ 헤더 & 로고 ─ */
-  header{
+  /* ─ Header & Logo ─ */
+  header {
     flex-direction: column;
     align-items: flex-start;
     gap: .5rem;
+    height: auto;
   }
-  .logo{ font-size: 1.5rem; }
+  .logo { font-size: 1.5rem; }
 
-  /* ─ 사이드 네비 → 상단 슬라이드 메뉴 ─ */
-  #nav{
+  /* ─ Side Navigation → Top Slide Menu ─ */
+  #nav {
     width: 100%;
-    left: -100%;        /* 처음엔 화면 밖 */
-    top: 60px;          /* 헤더 아래에 붙임 */
+    left: -100%;
+    top: auto; /* ✅ 반응형 높이 계산을 유연하게 함 */
+    /* top: 60px; */ /* 모바일 헤더 높이에 따라 조정될 필요가 있다면 유지 */
+    height: calc(100vh - 60px); /* 모바일 헤더 높이를 뺀 나머지 공간 */
     font-size: 18px;
     padding: 2em 1em;
   }
-  #nav.show{ left: 0; } /* 토글 시 왼쪽 → 0 */
-  .nav-link{ font-size: 18px; padding: 12px; }
+  #nav.show { left: 0; }
+  .nav-link { font-size: 18px; padding: 12px; }
 
-  /* ─ 본문 ─ */
-  main{
-    max-width: 100%;    /* 폭 제한 해제 */
-    padding: 1rem;
-    margin: 10px auto 60px; /* 푸터와 간격 축소 */
+  /* ─ Main Content ─ */
+  main {
+    max-width: 100%; /* ✅ 태블릿 이하에서 꽉 차게 */
+    padding: 1rem; /* 패딩도 줄임 */
+    margin: 0 auto; /* ✅ 상하 마진 제거 */
   }
-  h2{ font-size: 1.4rem; }
+  h2 { font-size: 1.4rem; }
 
-  /* ─ 표 · 달력 등을 담는 wrapper가 있으면 가로 스크롤 허용 ─ */
+  /* ─ Table / Calendar Wrapper for Horizontal Scroll ─ */
   .table-wrapper,
-  .calendar-box{ overflow-x: auto; }
+  .calendar-box { overflow-x: auto; }
 
-  /* ─ 댓글 입력창 & 버튼 ─ */
-  #commentInput{
+  /* ─ Comment Input & Button ─ */
+  #commentInput {
     height: 40px;
     font-size: .9rem;
   }
-  #commentSubmit{
+  #commentSubmit {
     width: 90px;
     height: 40px;
     font-size: .9rem;
   }
 
-  /* ─ 푸터 ─ */
-  footer{
+  /* ─ Footer ─ */
+  footer {
     flex-direction: column;
     gap: .5rem;
     font-size: .85rem;
+    height: auto;
   }
 }
 
-/* ❷ 모바일(폰) ─ 480px */
+/* ❷ Mobile (Phone) ─ 480px */
 @media (max-width: 480px){
 
   .menu-icon{ font-size: 1.4rem; }
-  .logo     { font-size: 1.3rem; }
+  .logo{ font-size: 1.3rem; }
 
-  /* 네비 링크 줄 간격 조정 */
-  #nav li   { margin-bottom: 1.2em; }
+  /* Nav Link Line Spacing Adjustment */
+  #nav li{ margin-bottom: 1.2em; }
 
-  /* 본문 폰트·여백 더 압축 */
-  main      { padding: .8rem; }
-  h2        { font-size: 1.2rem; }
+  /* Main Content Font/Padding Compression */
+  main{ padding: .8rem; }
+  h2{ font-size: 1.2rem; }
   #postWriterDate{ font-size: .9rem; }
 
-  /* 표·댓글 폰트 축소 */
+  /* Table/Comment Font Reduction */
   .type-table,
   .apply-table,
   #commentsList{ font-size: .8rem; }
 
-  /* 버튼 전체폭 사용 시 */
+  /* Full Width Buttons */
   #backBtn,
-  #addBtn{
+  #addBtn,
+  #addApplyBtn{ /* ✅ #addApplyBtn도 여기에 추가하여 전체 폭 사용 */
     width: 100%;
     font-size: .95rem;
   }
-}
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
 }
