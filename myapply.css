@@ -1,36 +1,33 @@
-/* Universal Box-Sizing and Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Base Body Styles for Full Page Layout */
 html, body {
-  height: 100%; /* Ensure html and body take full viewport height */
+  height: 100%; 
   margin: 0;
   padding: 0;
-  overflow: hidden; /* ✅ body의 전체 스크롤을 기본적으로 막음 */
+  overflow: hidden; 
 }
 
 body {
   font-family: sans-serif;
   background-color: #ffffff;
-  display: flex; /* Enable Flexbox for main layout */
-  flex-direction: column; /* Stack header, main, and footer vertically */
-  min-height: 100vh; /* Ensure body is at least full viewport height */
+  display: flex;
+  flex-direction: column; 
+  min-height: 100vh; 
 }
 
-/* Header Styles */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 2px solid black;
-  position: relative; /* For absolute positioning of children if needed */
-  height: 120px; /* Fixed height for the header */
-  flex-shrink: 0; /* Prevent header from shrinking */
+  position: relative;
+  height: 120px; 
+  flex-shrink: 0;
 }
 
 .menu-icon {
@@ -42,7 +39,7 @@ header {
 }
 
 .logo {
-  all: unset; /* Reset all browser default styles */
+  all: unset; 
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: bold;
@@ -67,14 +64,12 @@ header {
   font-size: 1.8rem;
 }
 
-/* Main Content Area Styles */
 main {
-  flex-grow: 1; /* Allow main to take up remaining vertical space */
-  overflow-y: auto; /* ✅ main 내부 콘텐츠가 넘치면 main 안에서만 스크롤 활성화 */
-  min-height: 0; /* Essential for flex-grow to work correctly with overflow */
-  padding: 2rem; /* Consistent padding */
-  box-sizing: border-box; /* Include padding in the element's total width and height */
-  /* margin-bottom: 100px; */ /* ✅ 이 마진은 body 스크롤을 유발하므로 제거합니다. */
+  flex-grow: 1; 
+  overflow-y: auto; 
+  min-height: 0; 
+  padding: 2rem; 
+  box-sizing: border-box; 
 }
 
 .apply-section {
@@ -84,15 +79,14 @@ main {
 #addApplyBtn {
   width: 100px;
   padding: 8px 16px;
-  margin-bottom: 20px; /* 이 마진은 .apply-table 위에 영향을 줍니다. */
+  margin-bottom: 20px; 
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  /* margin-left: 93%; */ /* ✅ 작은 화면에서 문제가 될 수 있으니 중앙/우측 정렬을 고려합니다. */
-  margin-left: auto; /* 우측 정렬 예시 */
-  display: block; /* margin-left: auto;를 위해 블록 요소로 만듭니다. */
+  margin-left: auto;
+  display: block;
 }
 
 .apply-table {
@@ -117,16 +111,16 @@ main {
   text-align: center;
 }
 
-/* Footer Styles */
+
 footer {
-  height: 60px; /* Fixed height for the footer */
-  flex-shrink: 0; /* Prevent footer from shrinking */
+  height: 60px; 
+  flex-shrink: 0;
   border-top: 2px solid black;
   font-size: 0.9rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 0 1rem; /* Horizontal padding only */
+  padding: 0 1rem; 
   box-sizing: border-box;
 }
 
@@ -135,22 +129,20 @@ footer a {
   color: #000;
 }
 
-/* Navigation (Sidebar) Styles */
 #nav {
   width: 230px;
-  /* height: 100vh; */ /* ✅ 고정 헤더 아래에 맞게 높이 조정 */
-  height: calc(100vh - 120px); /* 헤더 높이(120px)를 뺀 나머지 공간 */
+  height: calc(100vh - 120px);
   background-color: #f6fff1;
   color: black;
   position: fixed;
-  top: 120px; /* ✅ 헤더 높이에 맞춰 top 위치 수정 */
-  left: -230px; /* Hidden off-screen by default */
+  top: 120px; 
+  left: -230px; 
   transition: left 0.3s ease;
   padding-top: 3em;
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
-  overflow-y: auto; /* ✅ 내비게이션 메뉴가 많아지면 내부 스크롤이 생기도록 */
+  overflow-y: auto; 
 }
 
 #nav li {
@@ -158,13 +150,13 @@ footer a {
 }
 
 #nav.show {
-  left: 0; /* Slide in */
+  left: 0; 
 }
 
 #menuBtn {
   font-size: 24px;
   cursor: pointer;
-  margin: 1em; /* This margin might not be ideal if it's part of the header */
+  margin: 1em; 
 }
 
 .nav-link {
@@ -198,10 +190,8 @@ li {
   border-radius: 4px;
 }
 
-/* ========== 반응형 레이아웃 ========== */
-/* ❶ 태블릿 이하 ─ 768px */
+/* 반응형 레이아웃*/
 @media (max-width: 768px) {
-  /* 헤더: 항상 가로 정렬 유지 */
   header {
     flex-direction: row;
     align-items: center;
@@ -229,7 +219,6 @@ li {
     font-size: 1.5rem;
   }
 
-  /* 네비 메뉴 */
   #nav {
     width: 100%;
     left: -100%;
@@ -249,7 +238,6 @@ li {
     padding: 12px;
   }
 
-  /* 본문 */
   main {
     max-width: 100%;
     padding: 1rem;
@@ -276,7 +264,6 @@ li {
     font-size: 0.9rem;
   }
 
-  /* 푸터: 항상 가로 정렬 유지 */
   footer {
     flex-direction: row;
     flex-wrap: wrap;
@@ -288,7 +275,6 @@ li {
     text-align: center;
   }
 
-  /* D-day */
   .d-day-container {
     height: 100%;
   }
@@ -310,7 +296,6 @@ li {
   }
 }
 
-/* ❷ 모바일 폰 ─ 480px */
 @media (max-width: 480px) {
   .menu-icon {
     font-size: 1.4rem;

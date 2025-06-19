@@ -5,7 +5,7 @@
 }
 
 a {
-    font-weight: normal; /* 링크의 굵기 해제 */
+    font-weight: normal; 
 }
 
 body {
@@ -97,8 +97,8 @@ footer a {
 
 #nav li {
   margin-bottom: 2em;
-  list-style: none; /* 리스트 점 제거 */
-  padding-left: 0; /* 기본 들여쓰기 제거 */
+  list-style: none; 
+  padding-left: 0; 
 }
 
 #nav.show {
@@ -123,7 +123,6 @@ footer a {
   background-color: #eee;
 }
 
-/* ✅ Flex 레이아웃으로 본문 정렬 */
 main {
   display: flex;
   justify-content: space-between;
@@ -131,13 +130,10 @@ main {
   gap: 2rem;
   padding: 2rem;
 }
-
-/* ✅ 텍스트 정보 영역 */
 .info-section {
   width: 60%;
 }
 
-/* ✅ 지도 영역 */
 #map {
   width: 40%;
   height: 500px;
@@ -152,10 +148,9 @@ main {
   cursor: pointer;
   border-radius: 4px;
 }
-/* ========== 반응형 레이아웃 ========== */
-/* ❶ 태블릿 이하 ─ 768px */
+/*반응형 레이아웃*/
 @media (max-width: 768px) {
-  /* 헤더: 항상 가로 정렬 유지 */
+
   header {
     flex-direction: row;
     align-items: center;
@@ -183,7 +178,6 @@ main {
     font-size: 1.5rem;
   }
 
-  /* 네비 메뉴 */
   #nav {
     width: 100%;
     left: -100%;
@@ -203,7 +197,6 @@ main {
     padding: 12px;
   }
 
-  /* 본문 */
   main {
     max-width: 100%;
     padding: 1rem;
@@ -230,7 +223,6 @@ main {
     font-size: 0.9rem;
   }
 
-  /* 푸터: 항상 가로 정렬 유지 */
   footer {
     flex-direction: row;
     flex-wrap: wrap;
@@ -242,29 +234,14 @@ main {
     text-align: center;
   }
 
-  /* D-day */
-  .d-day-container {
-    height: 100%;
-  }
 
-  .carousel {
-    flex-direction: column;
-    height: auto;
-    gap: 15px;
-  }
-
-  .d-day-card {
-    width: 280px;
-    height: 280px;
-    font-size: 1.5rem;
-  }
 
   .arrow {
     display: none;
   }
 }
 
-/* ❷ 모바일 폰 ─ 480px */
+
 @media (max-width: 480px) {
   .menu-icon {
     font-size: 1.4rem;
@@ -323,9 +300,4 @@ main {
     font-size: 0.8rem;
   }
 
-  .d-day-card {
-    width: 220px;
-    height: 220px;
-    font-size: 1.3rem;
-  }
 }

@@ -1,4 +1,3 @@
-// URL에서 대학 이름 가져오기
 const urlParams = new URLSearchParams(window.location.search);
 const universityName = urlParams.get("name");
 
@@ -132,7 +131,6 @@ const universityInfo = {
     },
 };
 
-// HTML 요소 업데이트 함수
 function updateUniversityInfo() {
     if (universityName && universityInfo[universityName]) {
         const uniData = universityInfo[universityName];
@@ -146,7 +144,6 @@ function updateUniversityInfo() {
     }
 }
 
-// 내비게이션 토글 함수
 function toggleNavigation() {
     document.getElementById("nav").classList.toggle("show");
 }
@@ -161,7 +158,6 @@ function filterUniversities() {
     });
 }
 
-// 이벤트 리스너 추가 (중복 제거)
 document.addEventListener("DOMContentLoaded", () => {
     updateUniversityInfo();
     document.getElementById("menuBtn").addEventListener("click", toggleNavigation);
@@ -175,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function initMap() {
-  let location = { lat: 37.5665, lng: 126.9780 }; // 기본값: 서울
+  let location = { lat: 37.5665, lng: 126.9780 };
   if (universityName && universityInfo[universityName] && universityInfo[universityName].location) {
     location = universityInfo[universityName].location;
   }

@@ -1,15 +1,12 @@
-/* Universal Box-Sizing for consistent layout */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* html과 body가 뷰포트의 전체 높이를 차지하도록 설정 */
 html, body {
     height: 100%;
-    /* 스크롤바를 완전히 제거 */
-    overflow: hidden; /* 기본적으로 overflow를 숨김 */
+    overflow: hidden; 
 }
 
 body {
@@ -19,7 +16,6 @@ body {
     flex-direction: column;
 }
 
-/* --- Header Styling --- */
 header {
     display: flex;
     align-items: center;
@@ -27,9 +23,9 @@ header {
     padding: 1rem;
     border-bottom: 2px solid black;
     position: relative;
-    min-height: 60px; /* 고정적인 헤더 높이 */
-    flex-shrink: 0; /* 헤더는 줄어들지 않음 */
-    box-sizing: content-box; /* 헤더의 패딩이 높이에 포함되지 않도록 (필요시) */
+    min-height: 60px; 
+    flex-shrink: 0; 
+    box-sizing: content-box;
 }
 
 .menu-icon {
@@ -76,25 +72,19 @@ header {
     padding: 0.5rem;
 }
 
-
-/* --- Main Content Styling --- */
 main {
-    flex-grow: 1; /* 메인 콘텐츠가 남은 공간을 모두 차지 */
+    flex-grow: 1;
     width: 100%;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
-    padding: 40px 30px; /* 데스크톱 기본 패딩 */
+    padding: 40px 30px; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* min-height를 제거하여 flex-grow가 온전히 높이를 조절하도록 함 */
-    /* 필요하다면 main 내부의 특정 섹션에 min-height를 설정 */
-    
-    /* main 자체에 스크롤이 필요할 경우 (콘텐츠가 많을 때) */
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+    -webkit-overflow-scrolling: touch; 
 }
 
 .apply-section {
@@ -141,9 +131,8 @@ main {
     text-align: center;
 }
 
-/* --- Footer Styling --- */
 footer {
-    height: 60px; /* 고정적인 푸터 높이 */
+    height: 60px;
     border-top: 2px solid black;
     text-align: center;
     font-size: 0.9rem;
@@ -152,7 +141,7 @@ footer {
     align-items: center;
     padding: 0 1rem;
     box-sizing: border-box;
-    flex-shrink: 0; /* 푸터는 줄어들지 않음 */
+    flex-shrink: 0; 
 }
 
 footer a {
@@ -162,28 +151,24 @@ footer a {
     padding: 0.5rem;
 }
 
-/* --- Navigation Styling --- */
 #nav {
     width: 230px;
-    /* 높이를 100vh 대신 calc()로 정확히 계산 */
-    height: calc(100% - var(--header-height)); /* 헤더 높이를 뺀 나머지 */
+    height: calc(100% - var(--header-height));
     background-color: #f6fff1;
     color: black;
     position: fixed;
-    /* top을 header 높이만큼 내립니다. */
-    top: 60px; /* header의 min-height에 맞춰 조정 */
+    top: 60px; 
     left: -230px;
     transition: left 0.3s ease;
-    padding-top: 3em; /* 이 패딩은 nav 내부 콘텐츠를 아래로 밀어줌 */
+    padding-top: 3em; 
     padding-left: 2em;
     z-index: 1000;
     font-size: 24px;
-    overflow-y: auto; /* 내비게이션 메뉴 내용이 많을 때만 스크롤 허용 */
+    overflow-y: auto; 
 }
-/* CSS 변수를 사용하여 헤더 높이를 관리 (선택 사항이지만 유용) */
 :root {
-    --header-height: 60px; /* 헤더의 실제 높이를 여기에 정의 */
-    --footer-height: 60px; /* 푸터의 실제 높이를 여기에 정의 */
+    --header-height: 60px; 
+    --footer-height: 60px; 
 }
 header { height: var(--header-height); }
 footer { height: var(--footer-height); }
@@ -241,7 +226,6 @@ li {
     white-space: nowrap;
 }
 
-/* --- Form Styling (profile.html 등 닉네임 변경 폼) --- */
 form {
     display: flex;
     flex-direction: column;
@@ -253,8 +237,6 @@ form {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     text-align: center;
-    /* 폼 자체에 스크롤이 생길 수 있으므로 높이 제한을 해제하거나 신중하게 설정 */
-    /* min-height: 0; flex 컨테이너 내부에서 스크롤이 필요한 경우 */
 }
 
 form > p {
@@ -290,7 +272,7 @@ input[type="text"]:focus {
     outline: none;
 }
 
-/* 저장 버튼 */
+
 #saveNicknameBtn {
     height: 60px;
     padding: 15px 20px;
@@ -311,89 +293,19 @@ input[type="text"]:focus {
     transform: translateY(-2px);
 }
 
-/* --- Carousel Specific Styles (index.html에 있다고 가정) --- */
-.d-day-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    /* 캐러셀 컨테이너도 flex-grow: 1과 함께 잘 동작하도록 높이를 명시적으로 주지 않거나 min-height만 사용 */
-    min-height: 300px;
-    width: 100%; /* 너비를 100%로 설정 */
-}
-
-.carousel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    height: 300px;
-    margin: 20px auto;
-    overflow: hidden;
-}
-
-.d-day-card {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background-color: #d1e7c8;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #2F855A;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, z-index 0.5s ease;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 5;
-    font-size: 1.5rem;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#leftArrow {
-    left: 10px;
-}
-
-#rightArrow {
-    right: 10px;
-}
 
 
-/* ========== 반응형 레이아웃 ========== */
+/*반응형 레이아웃 */
 
-/* ❶ 태블릿 및 소형 기기 ─ 최대 768px */
 @media (max-width: 768px) {
-    /* 헤더 높이 변수 재정의 */
     :root {
-        --header-height: 50px; /* 태블릿 헤더 높이 */
+        --header-height: 50px; 
     }
 
     header {
         padding: 0.8rem 1rem;
-        min-height: var(--header-height); /* 변수 사용 */
-        height: var(--header-height); /* 높이 고정 */
+        min-height: var(--header-height);
+        height: var(--header-height); 
     }
 
     .logo {
@@ -416,10 +328,10 @@ input[type="text"]:focus {
     #nav {
         width: 100%;
         left: -100%;
-        top: var(--header-height); /* 변수 사용 */
-        height: calc(100vh - var(--header-height)); /* 정확한 높이 계산 */
-        padding: 1em; /* 모바일에서 좌우 패딩 줄임 */
-        padding-top: 1.5em; /* 상단 패딩 조정 */
+        top: var(--header-height);
+        height: calc(100vh - var(--header-height)); 
+        padding: 1em;
+        padding-top: 1.5em; 
         font-size: 20px;
     }
 
@@ -430,8 +342,7 @@ input[type="text"]:focus {
 
     main {
         max-width: 100%;
-        padding: 1rem; /* 모바일에서 적절한 패딩 */
-        /* min-height 제거. flex-grow: 1과 overflow-y: auto로 처리 */
+        padding: 1rem;
     }
 
     h2 {
@@ -461,49 +372,20 @@ input[type="text"]:focus {
         font-size: 0.85rem;
     }
 
-    .d-day-container {
-        padding: 15px;
-    }
-
-    .carousel {
-        flex-direction: column;
-        height: auto;
-        gap: 20px;
-        max-width: 350px;
-    }
-
-    .d-day-card {
-        position: relative;
-        transform: none !important;
-        opacity: 1 !important;
-        z-index: auto !important;
-        width: 280px;
-        height: 280px;
-        font-size: 1.5rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .arrow {
-        display: none;
-    }
-
-    /* 닉네임 변경 폼 조정 */
     form {
         padding: 15px;
         max-width: 350px;
     }
 }
 
-/* ❷ 모바일 폰 ─ 최대 480px */
 @media (max-width: 480px) {
-    /* 헤더 높이 변수 재정의 */
     :root {
-        --header-height: 45px; /* 모바일 헤더 높이 */
+        --header-height: 45px;
     }
     
     header {
-        min-height: var(--header-height); /* 변수 사용 */
-        height: var(--header-height); /* 높이 고정 */
+        min-height: var(--header-height); 
+        height: var(--header-height); 
     }
 
     .menu-icon {
@@ -530,8 +412,8 @@ input[type="text"]:focus {
     }
 
     #nav {
-        padding: 0.8em; /* 모바일에서 좌우 패딩 더 줄임 */
-        padding-top: 1em; /* 상단 패딩 조정 */
+        padding: 0.8em;
+        padding-top: 1em; 
         font-size: 18px;
     }
 
@@ -545,17 +427,13 @@ input[type="text"]:focus {
     }
 
     main {
-        padding: 0.8rem; /* 가장 작은 화면에서 더 좁은 패딩 */
-        /* min-height 제거. flex-grow: 1과 overflow-y: auto로 처리 */
+        padding: 0.8rem;
     }
 
     h2 {
         font-size: 1.2rem;
     }
 
-    #postWriterDate {
-        font-size: 0.9rem;
-    }
 
     .type-table,
     .apply-table,
@@ -576,13 +454,6 @@ input[type="text"]:focus {
         padding: 0.6rem;
     }
 
-    .d-day-card {
-        width: 220px;
-        height: 220px;
-        font-size: 1.3rem;
-    }
-
-    /* 닉네임 변경 폼 조정 */
     form {
         padding: 10px;
         max-width: 300px;
