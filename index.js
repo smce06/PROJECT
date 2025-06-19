@@ -9,7 +9,6 @@ function calculateDday(dateString) {
   return Math.ceil(diff / (1000 * 60 * 60 * 24));
 }
 
-// 카드 3개를 고정 생성
 function createFixedCards() {
   carousel.innerHTML = "";
 
@@ -26,7 +25,7 @@ function updateCarousel() {
     const isLoggedIn = !!getCookie("kakaoToken"); // 로그인 여부 확인
 
     if (!isLoggedIn) {
-      // 로그인 안 했을 때 → 기본 안내 문구 출력
+      // 로그인 안 했을 때
       cards.forEach((card, i) => {
         card.innerHTML = "?? 일정까지<br>D - ?";
         card.style.transform = `translateX(${(i - 1) * 5}%)`;
@@ -77,17 +76,16 @@ document.getElementById("menuBtn").addEventListener("click", () => {
 });
 
 
-// ✅ 카카오 로그인 기능
+//카카오 로그인 기능
 function kakaoLogin() {
     Kakao.Auth.login({
         success: function(authObj) {
             console.log("로그인 성공:", authObj);
 
-            // ✅ 쿠키 저장 (Secure / SameSite 제거 - 개발용)
             document.cookie = `kakaoToken=${authObj.access_token}; path=/; max-age=3600`;
 
-            getUserInfo(); // 사용자 정보 가져오기
-            updateLoginUI(true); // 로그인 UI 업데이트
+            getUserInfo();
+            updateLoginUI(true);
         },
         fail: function(error) {
             console.error("로그인 실패:", error);
@@ -95,7 +93,7 @@ function kakaoLogin() {
     });
 }
 
-// ✅ 로그아웃 기능
+// 로그아웃 기능
 function kakaoLogout() {
     Kakao.Auth.logout(() => {
         console.log("로그아웃 완료");
@@ -105,11 +103,11 @@ function kakaoLogout() {
     });
 }
 
-// ✅ 사용자 정보 요청
+// 사용자 정보 요청
 function getUserInfo() {
     const token = getCookie("kakaoToken");
     if (!token) {
-        console.error("❌ 토큰 없음! 로그인 후 다시 시도.");
+        console.error("토큰 없음! 로그인 후 다시 시도.");
         return;
     }
 
@@ -119,10 +117,10 @@ function getUserInfo() {
             Authorization: `Bearer ${token}`
         },
         success: function(res) {
-            console.log("✅ 사용자 정보:", res);
+            console.log("사용자 정보:", res);
         },
         fail: function(error) {
-            console.error("❌ 사용자 정보 가져오기 실패:", error);
+            console.error("사용자 정보 가져오기 실패:", error);
         }
     });
 }
@@ -138,14 +136,14 @@ function updateLoginUI(isLoggedIn) {
 }
 
 
-// ✅ 쿠키 가져오는 함수
+// 쿠키 가져오는 함수
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     return parts.length === 2 ? parts.pop().split(";").shift() : null;
 }
 
-// ✅ 페이지 로드 시 로그인 상태 반영
+// 페이지 로드 시 로그인 상태 반영
 window.addEventListener("load", () => {
     const token = getCookie("kakaoToken");
     updateLoginUI(!!token);
@@ -155,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginBtn = document.getElementById("kakaoLoginBtn");
     const logoutBtn = document.getElementById("kakaoLogoutBtn");
     const profileIcon = document.querySelector(".profile-icon");
-    // 좌우 화살표 클릭 이벤트 - 애니메이션 포함
     document.getElementById("leftArrow").addEventListener("click", () => {
       currentIndex = (currentIndex - 1 + events.length) % events.length;
       carousel.style.transition = "transform 0.5s ease-in-out";
@@ -197,7 +194,6 @@ document.querySelector(".profile-icon")?.addEventListener("click", () => {
 });
 
 
-// ✅ 전역에서 호출 가능하도록 등록
 window.kakaoLogin = kakaoLogin;
 window.kakaoLogout = kakaoLogout;
 

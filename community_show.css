@@ -1,43 +1,35 @@
-/* Universal Box-Sizing and Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ==================================================================== */
-/* 🔥🔥🔥 최종: Full Page Layout 및 전체 스크롤 방지 🔥🔥🔥 */
-/* ==================================================================== */
 html {
-  height: 100%; /* html이 뷰포트 전체 높이를 차지하도록 */
-  overflow: hidden; /* html 스크롤 방지 */
+  height: 100%; 
+  overflow: hidden; 
 }
 
 body {
-  height: 100vh; /* ✅ body가 뷰포트 전체 높이를 정확히 차지하도록 100vh 명시 */
+  height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* ✅ 가장 중요! body의 전체 스크롤을 막음 */
+  overflow: hidden;
 
   font-family: sans-serif;
   background-color: #ffffff;
   color: #000;
-  display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
-  flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
-  /* min-height: 100vh; 는 body에 height: 100vh; 가 있으면 굳이 필요 없습니다. */
+  display: flex; 
+  flex-direction: column; 
 }
 
-/* ==================================================================== */
-/* Header Styles */
-/* ==================================================================== */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
   border-bottom: 2px solid #000;
-  height: 120px; /* 헤더 고정 높이 */
-  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
+  height: 120px; 
+  flex-shrink: 0; 
 }
 
 .menu-icon {
@@ -74,20 +66,16 @@ header {
   font-size: 1.8rem;
 }
 
-/* ==================================================================== */
-/* Main Content Area Styles (스크롤 문제 집중 해결) */
-/* ==================================================================== */
 main {
-  flex-grow: 1; /* ✅ main이 남은 수직 공간을 모두 차지하도록 함 */
-  overflow-y: auto; /* ✅ main 내부 콘텐츠가 넘치면 main 안에서만 수직 스크롤 활성화 */
-  min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
+  flex-grow: 1;
+  overflow-y: auto; 
+  min-height: 0;
 
-  max-width: none; /* 이전 720px 제한 해제 (원하는 대로 넓어지게) */
-  width: 100%; /* 부모(body)의 100% 폭을 차지하도록 */
+  max-width: none; 
+  width: 100%; 
 
-  /* ✅ 패딩 미세 조정: 브라우저 렌더링 오차를 줄이기 위해 상하 패딩을 약간 더 보수적으로 설정 */
-  padding: 1.5rem 2rem; /* 상하 패딩을 20px -> 1.5rem으로 줄임 (약 24px) */
-  margin: 0; /* main의 외부 마진은 제거 */
+  padding: 1.5rem 2rem; 
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -102,14 +90,13 @@ h2 {
   font-size: 1rem;
 }
 
-/* ===== 본문 ===== */
 .content-box {
   background: #f9fdfb;
   border: 1px solid #cbd5e0;
   border-radius: 10px;
   padding: 20px;
   min-height: 200px;
-  margin-bottom: 30px; /* ✅ 이 마진이 main의 스크롤을 유발하는지 확인 필요 */
+  margin-bottom: 30px; 
   white-space: pre-wrap;
   line-height: 1.6;
   font-size: 1.1rem;
@@ -117,7 +104,6 @@ h2 {
   width: 100%;
 }
 
-/* ===== 댓글 영역 ===== */
 .comments-section {
   margin: 2rem 0;
   display: flex;
@@ -130,10 +116,10 @@ h2 {
   border-radius: 8px;
   padding: 1rem;
   min-height: 80px;
-  max-height: 300px; /* 댓글이 많아지면 내부 스크롤 발생 */
+  max-height: 300px; 
   overflow-y: auto;
   width: 100%;
-  margin-bottom: 20px; /* ✅ 댓글 목록 하단 마진 추가 (필요 시) */
+  margin-bottom: 20px; 
 }
 .comment {
   margin-bottom: 12px;
@@ -160,7 +146,7 @@ h2 {
   display: flex;
   gap: 12px;
   width: 100%;
-  margin-bottom: 20px; /* ✅ 댓글 입력 컨테이너 하단 마진 추가 (필요 시) */
+  margin-bottom: 20px; 
 }
 #commentInput {
   flex: 1;
@@ -188,7 +174,7 @@ h2 {
 
 /* ===== 돌아가기 버튼 ===== */
 #backBtn {
-  margin: 10px auto 30px; /* ✅ 버튼 하단 마진 조정 (main 하단과의 여백) */
+  margin: 10px auto 30px; 
   display: block;
   background: #48bb78;
   color: #fff;
@@ -214,9 +200,6 @@ h2 {
   border-radius: 4px;
 }
 
-/* ==================================================================== */
-/* Footer Styles */
-/* ==================================================================== */
 footer {
   height: 60px;
   border-top: 2px solid black;
@@ -227,7 +210,7 @@ footer {
   align-items: center;
   padding: 0 1rem;
   box-sizing: border-box;
-  flex-shrink: 0; /* 푸터가 줄어들지 않도록 방지 */
+  flex-shrink: 0; 
 }
 
 footer a {
@@ -235,15 +218,12 @@ footer a {
   color: #000;
 }
 
-/* ==================================================================== */
-/* Navigation (Sidebar) Styles */
-/* ==================================================================== */
 #nav {
   position: fixed;
-  top: 120px; /* 헤더 높이 120px에 맞춰 조정 */
+  top: 120px; 
   left: -230px;
   width: 230px;
-  height: calc(100vh - 120px); /* 헤더 높이를 제외한 나머지 공간 */
+  height: calc(100vh - 120px); 
   background: #f6fff1;
   padding: 3em 0 0 2em;
   transition: left 0.3s;
@@ -274,10 +254,7 @@ footer a {
   background: #eee;
 }
 
-/* ========== 반응형 레이아웃 ========== */
-/* ❶ 태블릿 이하 ─ 768px */
 @media (max-width: 768px) {
-  /* 헤더: 항상 가로 정렬 유지 */
   header {
     flex-direction: row;
     align-items: center;
@@ -305,7 +282,6 @@ footer a {
     font-size: 1.5rem;
   }
 
-  /* 네비 메뉴 */
   #nav {
     width: 100%;
     left: -100%;
@@ -325,7 +301,6 @@ footer a {
     padding: 12px;
   }
 
-  /* 본문 */
   main {
     max-width: 100%;
     padding: 1rem;
@@ -352,7 +327,6 @@ footer a {
     font-size: 0.9rem;
   }
 
-  /* 푸터: 항상 가로 정렬 유지 */
   footer {
     flex-direction: row;
     flex-wrap: wrap;
@@ -364,7 +338,6 @@ footer a {
     text-align: center;
   }
 
-  /* D-day */
   .d-day-container {
     height: 100%;
   }
@@ -386,7 +359,6 @@ footer a {
   }
 }
 
-/* ❷ 모바일 폰 ─ 480px */
 @media (max-width: 480px) {
   .menu-icon {
     font-size: 1.4rem;

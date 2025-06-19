@@ -5,7 +5,7 @@ menuBtn.addEventListener("click",()=>nav.classList.toggle("show"));
 document.getElementById("mainButton").onclick=()=>location.href="index.html";
 document.getElementById("backBtn").onclick   =()=>location.href="community.html";
 
-/* ===== 글 데이터 로드 ===== */
+/*글 데이터 로드*/
 const params = new URLSearchParams(location.search);
 const postId = Number(params.get("postId"));
 const posts  = JSON.parse(localStorage.getItem("communityPosts")||"[]");
@@ -19,7 +19,7 @@ document.getElementById("postTitle").textContent       = title;
 document.getElementById("postWriterDate").textContent  = `${author} / ${date}`;
 document.getElementById("postContent").textContent     = content;
 
-/* ===== 댓글 로직 ===== */
+/*댓글 로직 */
 const MAX_VISIBLE = 2;
 let showAll = false;
 

@@ -1,31 +1,24 @@
-/* Universal Box-Sizing and Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ==================================================================== */
-/* ✅ 핵심: Full Page Layout 및 전체 스크롤 방지 (중복 제거, 한 곳에 집중) */
-/* ==================================================================== */
 html, body {
-  height: 100%; /* 뷰포트 전체 높이를 차지 */
+  height: 100%; 
   margin: 0;
   padding: 0;
-  overflow: hidden; /* 🔥 가장 중요! body의 전체 스크롤을 막음 */
+  overflow: hidden; 
 }
 
 body {
   font-family: sans-serif;
   background-color: #ffffff;
-  display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
-  flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
-  min-height: 100vh; /* body가 뷰포트 전체 높이를 차지하도록 */
+  display: flex; 
+  flex-direction: column; 
+  min-height: 100vh; 
 }
 
-/* ==================================================================== */
-/* Header Styles */
-/* ==================================================================== */
 header {
   display: flex;
   align-items: center;
@@ -33,8 +26,8 @@ header {
   padding: 1rem;
   border-bottom: 2px solid black;
   position: relative;
-  height: 120px; /* 헤더 고정 높이 */
-  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
+  height: 120px; 
+  flex-shrink: 0; 
 }
 
 .menu-icon {
@@ -71,26 +64,22 @@ header {
   font-size: 1.8rem;
 }
 
-/* ==================================================================== */
-/* Main Content Area Styles (미세 스크롤 제거를 위한 패딩 조정) */
-/* ==================================================================== */
 main {
   flex-grow: 1;
   overflow-y: auto;
   min-height: 0;
-  /* 패딩을 미세하게 줄여서 여유 공간을 더 확보합니다. */
-  padding: 1.5rem 2rem; /* ✅ 상하 패딩 2rem -> 1.5rem으로 줄임 */
+  padding: 1.5rem 2rem; 
   box-sizing: border-box;
 }
 
 .apply-section {
-  padding: 0; /* 이전에 제거했으므로 유지 */
+  padding: 0;
 }
 
 #addBtn {
   width: 100px;
   padding: 8px 16px;
-  margin-bottom: 10px; /* ✅ 버튼 하단 마진 20px -> 10px로 줄임 */
+  margin-bottom: 10px; 
   background-color: #4CAF50;
   color: white;
   border: none;
@@ -104,8 +93,6 @@ main {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
-  /* Apply-table 자체의 하단 마진은 pagination이 있다면 그 마진으로 조절합니다. */
-  /* 만약 pagination이 없고 apply-table이 main의 마지막 콘텐츠라면 margin-bottom을 추가할 수 있습니다. */
 }
 
 .apply-table th, .apply-table td {
@@ -143,7 +130,7 @@ main {
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin: 20px 0 10px 0; /* ✅ 상하 마진 조정 (상 30px->20px, 하 0->10px) */
+  margin: 20px 0 10px 0; 
 }
 .page-btn {
   padding: 8px 14px;
@@ -159,10 +146,6 @@ main {
   color: #fff;
 }
 
-
-/* ==================================================================== */
-/* Footer Styles */
-/* ==================================================================== */
 footer {
   height: 60px;
   flex-shrink: 0;
@@ -180,9 +163,6 @@ footer a {
   color: #000;
 }
 
-/* ==================================================================== */
-/* Navigation (Sidebar) Styles */
-/* ==================================================================== */
 #nav {
   width: 230px;
   height: calc(100vh - 120px);
@@ -243,10 +223,9 @@ li {
   border-radius: 4px;
 }
 
-/* ========== 반응형 레이아웃 ========== */
-/* ❶ 태블릿 이하 ─ 768px */
+/*반응형 레이아웃*/
+
 @media (max-width: 768px) {
-  /* 헤더: 항상 가로 정렬 유지 */
   header {
     flex-direction: row;
     align-items: center;
@@ -274,7 +253,6 @@ li {
     font-size: 1.5rem;
   }
 
-  /* 네비 메뉴 */
   #nav {
     width: 100%;
     left: -100%;
@@ -294,7 +272,6 @@ li {
     padding: 12px;
   }
 
-  /* 본문 */
   main {
     max-width: 100%;
     padding: 1rem;
@@ -321,7 +298,6 @@ li {
     font-size: 0.9rem;
   }
 
-  /* 푸터: 항상 가로 정렬 유지 */
   footer {
     flex-direction: row;
     flex-wrap: wrap;
@@ -333,7 +309,6 @@ li {
     text-align: center;
   }
 
-  /* D-day */
   .d-day-container {
     height: 100%;
   }
@@ -355,7 +330,6 @@ li {
   }
 }
 
-/* ❷ 모바일 폰 ─ 480px */
 @media (max-width: 480px) {
   .menu-icon {
     font-size: 1.4rem;

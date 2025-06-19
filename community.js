@@ -7,8 +7,6 @@ mainBtn.addEventListener("click", () => location.href = "index.html");
 /* 추가하기 → 글 작성 페이지로 이동 */
 const addBtn = document.getElementById("addBtn");
 addBtn.addEventListener("click", () => location.href = "community_add.html");
-
-/* ===================== 데이터 로드 ===================== */
 let posts = JSON.parse(localStorage.getItem("communityPosts") || "[]");
 
 const PER_PAGE   = 7; 
@@ -55,7 +53,6 @@ function renderTable(page) {
   }
 }
 
-/* ===================== 페이지네이션 렌더 ===================== */
 function renderPagination() {
   pagination.innerHTML = "";
   const totalPages = Math.ceil(posts.length / PER_PAGE) || 1;
@@ -74,7 +71,6 @@ function renderPagination() {
   }
 }
 
-/* ===================== 최초 실행 ===================== */
 document.addEventListener("DOMContentLoaded", () => {
   renderTable(current);
   renderPagination();

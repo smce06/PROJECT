@@ -1,37 +1,34 @@
-/* Universal Box-Sizing and Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Base Body Styles for Full Page Layout */
 html, body {
-  height: 100%; /* html과 body가 뷰포트 전체 높이를 차지하도록 함 */
+  height: 100%; 
   margin: 0;
   padding: 0;
-  overflow: hidden; /* ✅ body의 전체 스크롤을 기본적으로 막음 */
+  overflow: hidden;
 }
 
 body {
   font-family: sans-serif;
   background-color: #ffffff;
-  display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
-  flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
-  min-height: 100vh; /* 바디가 최소한 뷰포트 전체 높이를 차지하도록 함 */
+  display: flex; 
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Header Styles */
 header {
-  height: 120px; /* 헤더 고정 높이 */
-  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
+  height: 120px; 
+  flex-shrink: 0; 
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   border-bottom: 2px solid black;
-  position: relative; /* 자식 요소의 절대 위치 지정을 위해 */
-  box-sizing: border-box; /* 패딩을 요소의 전체 너비/높이에 포함 */
+  position: relative; 
+  box-sizing: border-box; 
 }
 
 .menu-icon {
@@ -67,24 +64,20 @@ header {
   font-size: 1.8rem;
 }
 
-/* Main Content Area Styles */
 main {
-  flex-grow: 1; /* main이 남은 수직 공간을 모두 차지하도록 함 */
-  /* overflow-y: auto; */ /* ✅ main 내부 스크롤을 막으려면 이 줄을 제거하거나 hidden으로 변경 */
-  overflow-y: hidden; /* 스크롤을 완전히 막음 (콘텐츠가 넘치면 잘림) */
-  min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
-  padding: 2rem; /* 일관된 패딩 */
-  box-sizing: border-box; /* 패딩을 요소의 전체 너비/높이에 포함 */
+  flex-grow: 1; 
+  overflow-y: hidden;
+  min-height: 0; 
+  padding: 2rem; 
+  box-sizing: border-box; 
 }
 
-/* D-day Carousel Styles */
 .d-day-container {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* ✅ main의 높이에 꽉 차도록 설정 */
-  /* min-height: 570px; */ /* ✅ 이 최소 높이가 스크롤의 원인이므로 제거 */
+  height: 100%;
 }
 
 .carousel {
@@ -92,7 +85,7 @@ main {
   justify-content: center;
   align-items: center;
   position: relative;
-  height: auto; /* ✅ 고정 높이 대신 콘텐츠에 따라 자동 조절 */
+  height: auto; 
   gap: 20px;
 }
 
@@ -137,7 +130,7 @@ main {
   right: 100px;
 }
 
-/* Footer Styles */
+
 footer {
   height: 60px;
   flex-shrink: 0;
@@ -155,7 +148,6 @@ footer a {
   color: #000;
 }
 
-/* Navigation (Sidebar) Styles */
 #nav {
   width: 230px;
   height: calc(100vh - 120px);
@@ -169,7 +161,7 @@ footer a {
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
-  overflow-y: auto; /* 내비게이션 메뉴가 많아지면 내부 스크롤이 생기도록 */
+  overflow-y: auto; 
 }
 
 #nav li {
@@ -218,14 +210,10 @@ li {
   border-radius: 4px;
 }
 
-/* 폼 전용 (일정 추가 부분) */
 .add-form {
-  max-width: 960px; /* 이 값은 필요에 따라 조정하세요 */
+  max-width: 960px; 
   margin: 20px auto;
   padding: 40px 30px;
-  /* `main`에서 `overflow-y: hidden;`을 적용하면, 이 폼이 main 높이를 초과할 때 잘립니다.
-     이 폼은 현재 D-day 페이지가 아닌 다른 페이지에 나타나는 것으로 가정하고 있습니다.
-     만약 이 폼이 D-day 페이지에도 있다면, 폼 자체의 높이 조절이 필요할 수 있습니다. */
 }
 
 .add-form h2 {
@@ -267,8 +255,7 @@ li {
 }
 
 
-/* ========== 반응형 레이아웃 ========== */
-/* ❶ 태블릿 이하 ─ 768px */
+/*반응형 레이아웃*/
 @media (max-width: 768px) {
   /* 헤더: 항상 가로 정렬 유지 */
   header {
@@ -298,7 +285,6 @@ li {
     font-size: 1.5rem;
   }
 
-  /* 네비 메뉴 */
   #nav {
     width: 100%;
     left: -100%;
@@ -318,7 +304,6 @@ li {
     padding: 12px;
   }
 
-  /* 본문 */
   main {
     max-width: 100%;
     padding: 1rem;
@@ -345,7 +330,6 @@ li {
     font-size: 0.9rem;
   }
 
-  /* 푸터: 항상 가로 정렬 유지 */
   footer {
     flex-direction: row;
     flex-wrap: wrap;
@@ -357,7 +341,6 @@ li {
     text-align: center;
   }
 
-  /* D-day */
   .d-day-container {
     height: 100%;
   }
@@ -379,7 +362,6 @@ li {
   }
 }
 
-/* ❷ 모바일 폰 ─ 480px */
 @media (max-width: 480px) {
   .menu-icon {
     font-size: 1.4rem;
