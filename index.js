@@ -130,6 +130,10 @@ function updateLoginUI(isLoggedIn) {
     const logoutBtn = document.getElementById("kakaoLogoutBtn");
     const profileIcon = document.querySelector(".profile-icon");
 
+    const path = window.location.pathname;
+    const isIndex = path.endsWith("/") || path.endsWith("/index.html");
+
+
     if (loginBtn) loginBtn.style.display = !isLoggedIn ? "inline-block" : "none";
     if (logoutBtn) logoutBtn.style.display = isLoggedIn ? "inline-block" : "none";
     if (profileIcon) profileIcon.style.display = isLoggedIn ? "inline-block" : "none";
