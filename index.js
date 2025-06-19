@@ -180,7 +180,15 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "profile.html";
       });
     }
-
+    document.querySelectorAll('.page-link').forEach(link => {
+    link.addEventListener('click', function(event) {
+      const isLoggedIn = !!getCookie("kakaoToken");
+      if (!isLoggedIn) {
+        event.preventDefault(); // 페이지 이동 막기
+        alert("로그인 후 이용이 가능합니다!");
+      }
+    });
+});
     
 });
 
