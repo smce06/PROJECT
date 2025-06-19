@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const univ  = document.getElementById("univ").value.trim();
-    const type  = document.getElementById("type").value.trim();
-    const competitionrateInput = document.getElementById("competitionrate").value;
+    const univ = document.getElementById("univ").value.trim();
+    const type = document.getElementById("type").value.trim();
+    const competitionrateInput = document.getElementById("competitionrate").value.trim();
     const competitionrate = parseFloat(competitionrateInput);
 
     if (!univ || !type || isNaN(competitionrate)) {
@@ -15,20 +15,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const savedData = JSON.parse(localStorage.getItem("applyList") || "[]");
-    savedData.push({ univ, type, competitionrate });
+    savedData.push({ univ, type, competitionrate }); // 👈 key 이름도 그대로 사용
 
     localStorage.setItem("applyList", JSON.stringify(savedData));
     alert("추가되었습니다!");
-
     location.href = "myapply.html";
   });
 });
 
-const menuBtn = document.getElementById("menuBtn");
-const nav     = document.getElementById("nav");
-
-menuBtn.addEventListener("click", () => {
-  nav.classList.toggle("show");
+document.getElementById("menuBtn").addEventListener("click", () => {
+  document.getElementById("nav").classList.toggle("show");
 });
 
 document.getElementById("mainButton").addEventListener("click", () => {
@@ -36,5 +32,5 @@ document.getElementById("mainButton").addEventListener("click", () => {
 });
 
 document.querySelector(".profile-icon")?.addEventListener("click", () => {
-    window.location.href = "profile.html";
+  location.href = "profile.html";
 });

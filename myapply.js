@@ -1,27 +1,38 @@
-document.getElementById("addApplyBtn").addEventListener("click", function () {
+document.getElementById("addApplyBtn").addEventListener("click", () => {
   location.href = "myapply_add.html";
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const tableBody = document.getElementById("applyTableBody");
   const applyList = JSON.parse(localStorage.getItem("applyList") || "[]");
 
   const totalRows = 6;
-  tableBody.innerHTML = ""; // 초기 표 비우기
+  tableBody.innerHTML = "";
 
-  // 데이터 행 추가
-  applyList.forEach(({ univ, type, deadline }) => {
-    const row = `<tr><td>${univ}</td><td>${type}</td><td>${deadline}</td></tr>`;
+  applyList.forEach(({ univ, type, competitionrate }) => {
+    const row = `<tr><td>${univ}</td><td>${type}</td><td>${competitionrate}</td></tr>`;
     tableBody.insertAdjacentHTML("beforeend", row);
   });
 
-  // 빈칸 행 채우기
   const emptyRows = totalRows - applyList.length;
   for (let i = 0; i < emptyRows; i++) {
     const emptyRow = `<tr><td>-</td><td>-</td><td>-</td></tr>`;
     tableBody.insertAdjacentHTML("beforeend", emptyRow);
   }
 });
+
+document.getElementById("menuBtn").addEventListener("click", () => {
+  document.getElementById("nav").classList.toggle("show");
+});
+
+document.getElementById("mainButton").addEventListener("click", () => {
+  location.href = "index.html";
+});
+
+document.querySelector(".profile-icon")?.addEventListener("click", () => {
+  location.href = "profile.html";
+});
+
 
 const btn = document.getElementById("menuBtn");
 const nav = document.getElementById("nav");
