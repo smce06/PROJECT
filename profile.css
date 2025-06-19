@@ -5,16 +5,18 @@
     box-sizing: border-box;
 }
 
+/* html과 body가 뷰포트의 전체 높이를 차지하도록 설정 */
 html, body {
-    height: 100%; /* html과 body의 높이를 100%로 설정하여 Sticky Footer 기반 마련 */
+    height: 100%;
+    /* 스크롤바를 완전히 제거 */
+    overflow: hidden; /* 기본적으로 overflow를 숨김 */
 }
 
 body {
     font-family: sans-serif;
     background-color: #ffffff;
-    overflow-x: hidden;
-    display: flex; /* Sticky Footer를 위해 body를 flex 컨테이너로 만듦 */
-    flex-direction: column; /* 자식 요소들을 세로로 정렬 */
+    display: flex;
+    flex-direction: column;
 }
 
 /* --- Header Styling --- */
@@ -25,8 +27,9 @@ header {
     padding: 1rem;
     border-bottom: 2px solid black;
     position: relative;
-    min-height: 60px;
+    min-height: 60px; /* 고정적인 헤더 높이 */
     flex-shrink: 0; /* 헤더는 줄어들지 않음 */
+    box-sizing: content-box; /* 헤더의 패딩이 높이에 포함되지 않도록 (필요시) */
 }
 
 .menu-icon {
@@ -76,30 +79,28 @@ header {
 
 /* --- Main Content Styling --- */
 main {
-    /* 기존 margin-bottom 삭제: Sticky Footer가 처리 */
-    /* margin-bottom: 100px; */
-    
-    /* 화면에 꽉 차도록 하면서 적절한 패딩과 마진 */
-    flex-grow: 1; /* 메인 콘텐츠가 남은 공간을 모두 차지하도록 함 (Sticky Footer 핵심) */
-    width: 100%; /* 너비를 100%로 설정 */
-    max-width: 900px; /* 데스크톱에서 콘텐츠가 너무 넓어지지 않도록 최대 너비 설정 */
-    margin-left: auto; /* 중앙 정렬 */
-    margin-right: auto; /* 중앙 정렬 */
+    flex-grow: 1; /* 메인 콘텐츠가 남은 공간을 모두 차지 */
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 40px 30px; /* 데스크톱 기본 패딩 */
-    display: flex; /* 메인 내부 콘텐츠를 중앙 정렬하거나 배치하기 위해 flexbox 사용 고려 */
+    display: flex;
     flex-direction: column;
-    align-items: center; /* 닉네임 변경 폼을 중앙에 배치할 때 유용 */
-    justify-content: center; /* 닉네임 변경 폼을 수직 중앙에 배치할 때 유용 (콘텐츠가 적을 때) */
-    min-height: calc(100vh - 60px - 60px); /* 헤더와 푸터의 높이를 뺀 최소 높이 (모바일에서 nav가 top:0 이므로 재조정) */
-    /* 실제 헤더와 푸터의 높이에 따라 픽셀 값을 조정해야 합니다.
-       헤더 높이 약 60px, 푸터 높이 약 60px로 가정했습니다. */
+    align-items: center;
+    justify-content: center;
+    /* min-height를 제거하여 flex-grow가 온전히 높이를 조절하도록 함 */
+    /* 필요하다면 main 내부의 특정 섹션에 min-height를 설정 */
+    
+    /* main 자체에 스크롤이 필요할 경우 (콘텐츠가 많을 때) */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
 }
-
 
 .apply-section {
     padding: 20px 0;
-    width: 100%; /* 섹션이 메인의 너비를 채우도록 */
-    max-width: 800px; /* 섹션 내부 콘텐츠 최대 너비 (선택 사항) */
+    width: 100%;
+    max-width: 800px;
 }
 
 #addApplyBtn {
@@ -142,7 +143,7 @@ main {
 
 /* --- Footer Styling --- */
 footer {
-    height: 60px;
+    height: 60px; /* 고정적인 푸터 높이 */
     border-top: 2px solid black;
     text-align: center;
     font-size: 0.9rem;
@@ -164,19 +165,30 @@ footer a {
 /* --- Navigation Styling --- */
 #nav {
     width: 230px;
-    height: 100vh;
+    /* 높이를 100vh 대신 calc()로 정확히 계산 */
+    height: calc(100% - var(--header-height)); /* 헤더 높이를 뺀 나머지 */
     background-color: #f6fff1;
     color: black;
     position: fixed;
-    top: 0; /* 항상 뷰포트 상단에 고정 */
+    /* top을 header 높이만큼 내립니다. */
+    top: 60px; /* header의 min-height에 맞춰 조정 */
     left: -230px;
     transition: left 0.3s ease;
-    padding-top: 3em;
+    padding-top: 3em; /* 이 패딩은 nav 내부 콘텐츠를 아래로 밀어줌 */
     padding-left: 2em;
     z-index: 1000;
     font-size: 24px;
-    overflow-y: auto;
+    overflow-y: auto; /* 내비게이션 메뉴 내용이 많을 때만 스크롤 허용 */
 }
+/* CSS 변수를 사용하여 헤더 높이를 관리 (선택 사항이지만 유용) */
+:root {
+    --header-height: 60px; /* 헤더의 실제 높이를 여기에 정의 */
+    --footer-height: 60px; /* 푸터의 실제 높이를 여기에 정의 */
+}
+header { height: var(--header-height); }
+footer { height: var(--footer-height); }
+#nav { top: var(--header-height); height: calc(100vh - var(--header-height)); }
+
 
 #nav li {
     margin-bottom: 2em;
@@ -234,16 +246,18 @@ form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 100%; /* 폼이 부모(main)의 너비를 채우도록 */
-    max-width: 400px; /* 폼의 최대 너비 설정 (콘텐츠 중앙 정렬에 도움) */
-    padding: 20px; /* 폼 내부 패딩 */
-    background-color: #fff; /* 폼 배경색 (필요시) */
-    border-radius: 8px; /* 폼 테두리 둥글게 */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 폼 그림자 */
-    text-align: center; /* 텍스트 중앙 정렬 */
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+    /* 폼 자체에 스크롤이 생길 수 있으므로 높이 제한을 해제하거나 신중하게 설정 */
+    /* min-height: 0; flex 컨테이너 내부에서 스크롤이 필요한 경우 */
 }
 
-form > p { /* "현재 닉네임: 닉집집에갈래" p 태그에 스타일 적용 */
+form > p {
     font-size: 1.2rem;
     font-weight: bold;
     color: #2F855A;
@@ -254,9 +268,9 @@ form > p { /* "현재 닉네임: 닉집집에갈래" p 태그에 스타일 적�
 label {
     font-size: 1rem;
     margin-bottom: 0.2rem;
-    align-self: flex-start; /* 라벨을 왼쪽 정렬 (flex-direction: column) */
+    align-self: flex-start;
     text-align: left;
-    width: 100%; /* 라벨이 가로 전체를 차지하도록 */
+    width: 100%;
 }
 
 input[type="text"] {
@@ -304,7 +318,9 @@ input[type="text"]:focus {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    /* 캐러셀 컨테이너도 flex-grow: 1과 함께 잘 동작하도록 높이를 명시적으로 주지 않거나 min-height만 사용 */
     min-height: 300px;
+    width: 100%; /* 너비를 100%로 설정 */
 }
 
 .carousel {
@@ -369,9 +385,15 @@ input[type="text"]:focus {
 
 /* ❶ 태블릿 및 소형 기기 ─ 최대 768px */
 @media (max-width: 768px) {
+    /* 헤더 높이 변수 재정의 */
+    :root {
+        --header-height: 50px; /* 태블릿 헤더 높이 */
+    }
+
     header {
         padding: 0.8rem 1rem;
-        min-height: 50px;
+        min-height: var(--header-height); /* 변수 사용 */
+        height: var(--header-height); /* 높이 고정 */
     }
 
     .logo {
@@ -394,9 +416,10 @@ input[type="text"]:focus {
     #nav {
         width: 100%;
         left: -100%;
-        top: 0;
-        height: 100vh;
-        padding: 50px 1em 2em; /* 헤더 높이(약 50px)를 고려한 상단 패딩 */
+        top: var(--header-height); /* 변수 사용 */
+        height: calc(100vh - var(--header-height)); /* 정확한 높이 계산 */
+        padding: 1em; /* 모바일에서 좌우 패딩 줄임 */
+        padding-top: 1.5em; /* 상단 패딩 조정 */
         font-size: 20px;
     }
 
@@ -407,9 +430,8 @@ input[type="text"]:focus {
 
     main {
         max-width: 100%;
-        padding: 1rem; /* 모바일에서 더 적절한 패딩 */
-        margin: 0 auto; /* 좌우 마진 자동 조정 */
-        min-height: calc(100vh - 50px - 60px); /* 태블릿 헤더(50px), 푸터(60px) 고려 */
+        padding: 1rem; /* 모바일에서 적절한 패딩 */
+        /* min-height 제거. flex-grow: 1과 overflow-y: auto로 처리 */
     }
 
     h2 {
@@ -474,6 +496,16 @@ input[type="text"]:focus {
 
 /* ❷ 모바일 폰 ─ 최대 480px */
 @media (max-width: 480px) {
+    /* 헤더 높이 변수 재정의 */
+    :root {
+        --header-height: 45px; /* 모바일 헤더 높이 */
+    }
+    
+    header {
+        min-height: var(--header-height); /* 변수 사용 */
+        height: var(--header-height); /* 높이 고정 */
+    }
+
     .menu-icon {
         font-size: 1.3rem;
         padding: 0.4rem;
@@ -498,7 +530,8 @@ input[type="text"]:focus {
     }
 
     #nav {
-        padding: 50px 0.8em 1em; /* 헤더 높이를 고려한 상단 패딩 */
+        padding: 0.8em; /* 모바일에서 좌우 패딩 더 줄임 */
+        padding-top: 1em; /* 상단 패딩 조정 */
         font-size: 18px;
     }
 
@@ -513,7 +546,7 @@ input[type="text"]:focus {
 
     main {
         padding: 0.8rem; /* 가장 작은 화면에서 더 좁은 패딩 */
-        min-height: calc(100vh - 50px - 60px); /* 모바일 헤더(50px), 푸터(60px) 고려 */
+        /* min-height 제거. flex-grow: 1과 overflow-y: auto로 처리 */
     }
 
     h2 {
@@ -537,7 +570,7 @@ input[type="text"]:focus {
     }
 
     footer {
-        flex-direction: column; /* 작은 화면에서 푸터 링크를 세로로 쌓음 */
+        flex-direction: column;
         gap: 0.5rem;
         font-size: 0.75rem;
         padding: 0.6rem;
@@ -552,17 +585,17 @@ input[type="text"]:focus {
     /* 닉네임 변경 폼 조정 */
     form {
         padding: 10px;
-        max-width: 300px; /* 더 작은 화면을 위해 최대 너비 줄임 */
+        max-width: 300px;
     }
     form > p {
-        font-size: 1rem; /* 폰트 크기 조정 */
+        font-size: 1rem;
         margin-bottom: 1rem;
     }
     label {
-        font-size: 0.9rem; /* 라벨 폰트 크기 조정 */
+        font-size: 0.9rem;
     }
     input[type="text"], #saveNicknameBtn {
-        height: 50px; /* 입력 필드 및 버튼 높이 줄임 */
+        height: 50px;
         padding: 10px 15px;
         font-size: 0.9rem;
     }
