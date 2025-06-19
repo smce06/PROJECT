@@ -5,11 +5,16 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%; /* html과 body의 높이를 100%로 설정하여 Sticky Footer 기반 마련 */
+}
+
 body {
     font-family: sans-serif;
     background-color: #ffffff;
-    /* Prevent horizontal scroll on smaller screens due to overflow */
     overflow-x: hidden;
+    display: flex; /* Sticky Footer를 위해 body를 flex 컨테이너로 만듦 */
+    flex-direction: column; /* 자식 요소들을 세로로 정렬 */
 }
 
 /* --- Header Styling --- */
@@ -19,9 +24,9 @@ header {
     justify-content: space-between;
     padding: 1rem;
     border-bottom: 2px solid black;
-    position: relative; /* For potential absolute positioning of children */
-    /* Ensure header height is consistent or adjusts gracefully */
-    min-height: 60px; /* Minimum height for better clickability/visibility */
+    position: relative;
+    min-height: 60px;
+    flex-shrink: 0; /* 헤더는 줄어들지 않음 */
 }
 
 .menu-icon {
@@ -30,66 +35,77 @@ header {
     border: none;
     cursor: pointer;
     color: #2F855A;
-    padding: 0.5rem; /* Add padding for easier clicking */
+    padding: 0.5rem;
 }
 
 .logo {
-    all: unset; /* Resets all properties to their initial values */
+    all: unset;
     cursor: pointer;
     font-size: 1.8rem;
     font-weight: bold;
     color: #2F855A;
-    /* Allow logo text to wrap if it's too long, but try to avoid it */
     white-space: nowrap;
-    text-overflow: ellipsis; /* Add ellipsis if text overflows */
-    overflow: hidden; /* Hide overflowing text */
-    flex-shrink: 1; /* Allow logo to shrink if space is tight */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex-shrink: 1;
 }
 
 .top-right {
     display: flex;
     align-items: center;
     gap: 1rem;
-    flex-shrink: 0; /* Prevent these items from shrinking */
+    flex-shrink: 0;
 }
 
 .login-box {
     background-color: #d1e7c8;
-    padding: 0.5rem 0.8rem; /* Slightly more horizontal padding */
+    padding: 0.5rem 0.8rem;
     font-size: 0.9rem;
     border-radius: 4px;
     line-height: 1.2;
-    white-space: nowrap; /* Prevent login text from wrapping */
+    white-space: nowrap;
 }
 
 .profile-icon {
     font-size: 1.8rem;
-    color: #2F855A; /* Assuming a color here */
+    color: #2F855A;
     cursor: pointer;
-    padding: 0.5rem; /* Add padding for easier clicking */
+    padding: 0.5rem;
 }
 
 
 /* --- Main Content Styling --- */
 main {
-    margin-bottom: 100px;
-    /* Max-width for larger screens, and fluid width for smaller ones */
-    max-width: 900px; /* Increased max-width for better content display on desktops */
-    margin-left: auto;
-    margin-right: auto;
-    padding: 40px 30px; /* Consistent padding */
-    width: 100%; /* Ensure it takes full width up to max-width */
+    /* 기존 margin-bottom 삭제: Sticky Footer가 처리 */
+    /* margin-bottom: 100px; */
+    
+    /* 화면에 꽉 차도록 하면서 적절한 패딩과 마진 */
+    flex-grow: 1; /* 메인 콘텐츠가 남은 공간을 모두 차지하도록 함 (Sticky Footer 핵심) */
+    width: 100%; /* 너비를 100%로 설정 */
+    max-width: 900px; /* 데스크톱에서 콘텐츠가 너무 넓어지지 않도록 최대 너비 설정 */
+    margin-left: auto; /* 중앙 정렬 */
+    margin-right: auto; /* 중앙 정렬 */
+    padding: 40px 30px; /* 데스크톱 기본 패딩 */
+    display: flex; /* 메인 내부 콘텐츠를 중앙 정렬하거나 배치하기 위해 flexbox 사용 고려 */
+    flex-direction: column;
+    align-items: center; /* 닉네임 변경 폼을 중앙에 배치할 때 유용 */
+    justify-content: center; /* 닉네임 변경 폼을 수직 중앙에 배치할 때 유용 (콘텐츠가 적을 때) */
+    min-height: calc(100vh - 60px - 60px); /* 헤더와 푸터의 높이를 뺀 최소 높이 (모바일에서 nav가 top:0 이므로 재조정) */
+    /* 실제 헤더와 푸터의 높이에 따라 픽셀 값을 조정해야 합니다.
+       헤더 높이 약 60px, 푸터 높이 약 60px로 가정했습니다. */
 }
 
+
 .apply-section {
-    padding: 20px 0; /* Adjust padding, usually content inside main handles horizontal */
+    padding: 20px 0;
+    width: 100%; /* 섹션이 메인의 너비를 채우도록 */
+    max-width: 800px; /* 섹션 내부 콘텐츠 최대 너비 (선택 사항) */
 }
 
 #addApplyBtn {
-    /* Use flexbox or adjust margin for better responsiveness */
-    display: block; /* Make it a block element to control its width and margin */
-    margin-left: auto; /* Push to the right */
-    margin-right: 0; /* Ensure it stays right */
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
     width: 100px;
     padding: 8px 16px;
     margin-bottom: 20px;
@@ -98,22 +114,20 @@ main {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    /* Remove fixed percentage margin-left as it breaks on small screens */
-    /* margin-left: 93%; */
 }
 
 .apply-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    table-layout: fixed; /* Helps in better column width distribution */
+    table-layout: fixed;
 }
 
 .apply-table th, .apply-table td {
     border: 1px solid #ccc;
     padding: 12px;
     text-align: center;
-    word-break: break-word; /* Prevents long words from overflowing cells */
+    word-break: break-word;
 }
 
 .apply-table th {
@@ -133,37 +147,34 @@ footer {
     text-align: center;
     font-size: 0.9rem;
     display: flex;
-    justify-content: space-around; /* Distribute items evenly */
+    justify-content: space-around;
     align-items: center;
     padding: 0 1rem;
     box-sizing: border-box;
-    /* Position at the bottom of the viewport if content is short */
-    /* Consider making it sticky or fixed if needed for all pages */
-    width: 100%;
+    flex-shrink: 0; /* 푸터는 줄어들지 않음 */
 }
 
 footer a {
     text-decoration: none;
     color: #000;
-    white-space: nowrap; /* Prevent footer links from wrapping unless necessary */
-    padding: 0.5rem; /* Add padding for better touch targets */
+    white-space: nowrap;
+    padding: 0.5rem;
 }
 
 /* --- Navigation Styling --- */
 #nav {
     width: 230px;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
     background-color: #f6fff1;
     color: black;
-    position: fixed; /* Fixed position relative to the viewport */
-    top: 0; /* Align to the top of the viewport */
-    left: -230px; /* Hidden initially */
-    transition: left 0.3s ease; /* Smooth slide in/out */
-    padding-top: 3em; /* Adjust based on header height */
+    position: fixed;
+    top: 0; /* 항상 뷰포트 상단에 고정 */
+    left: -230px;
+    transition: left 0.3s ease;
+    padding-top: 3em;
     padding-left: 2em;
-    z-index: 1000; /* Ensure it's on top of other content */
+    z-index: 1000;
     font-size: 24px;
-    /* Add overflow for long menus on small screens */
     overflow-y: auto;
 }
 
@@ -172,16 +183,15 @@ footer a {
 }
 
 #nav.show {
-    left: 0; /* Show the navigation */
+    left: 0;
 }
 
 #menuBtn {
     font-size: 24px;
     cursor: pointer;
-    /* Margin for button positioning */
-    margin: 0; /* Reset margin from universal selector */
-    padding: 0.5rem; /* Add padding for better click area */
-    display: flex; /* Helps vertically center icon */
+    margin: 0;
+    padding: 0.5rem;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -192,7 +202,7 @@ footer a {
     color: black;
     text-decoration: none;
     font-size: 24px;
-    white-space: nowrap; /* Keep nav links on one line */
+    white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -216,19 +226,37 @@ li {
     font-weight: bold;
     cursor: pointer;
     border-radius: 4px;
-    white-space: nowrap; /* Prevent logout button text from wrapping */
+    white-space: nowrap;
 }
 
-/* --- Form Styling (e.g., for profile.html or similar) --- */
+/* --- Form Styling (profile.html 등 닉네임 변경 폼) --- */
 form {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%; /* 폼이 부모(main)의 너비를 채우도록 */
+    max-width: 400px; /* 폼의 최대 너비 설정 (콘텐츠 중앙 정렬에 도움) */
+    padding: 20px; /* 폼 내부 패딩 */
+    background-color: #fff; /* 폼 배경색 (필요시) */
+    border-radius: 8px; /* 폼 테두리 둥글게 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 폼 그림자 */
+    text-align: center; /* 텍스트 중앙 정렬 */
 }
+
+form > p { /* "현재 닉네임: 닉집집에갈래" p 태그에 스타일 적용 */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2F855A;
+    margin-bottom: 1.5rem;
+}
+
 
 label {
     font-size: 1rem;
-    margin-bottom: 0.2rem; /* Small gap below label */
+    margin-bottom: 0.2rem;
+    align-self: flex-start; /* 라벨을 왼쪽 정렬 (flex-direction: column) */
+    text-align: left;
+    width: 100%; /* 라벨이 가로 전체를 차지하도록 */
 }
 
 input[type="text"] {
@@ -239,8 +267,7 @@ input[type="text"] {
     background-color: #f9fdfb;
     border: 1px solid #cbd5e0;
     transition: border 0.2s ease, box-shadow 0.2s ease;
-    width: 100%; /* Make input fields take full width */
-    max-width: 400px; /* Optional: limit max width for better readability */
+    width: 100%;
 }
 
 input[type="text"]:focus {
@@ -249,17 +276,7 @@ input[type="text"]:focus {
     outline: none;
 }
 
-/* Specific main for profile or similar pages */
-/* This rule seems to conflict with the general main styling.
-   Consider if you need a separate class for specific main layouts.
-   If this is for a specific page, apply it as a class to the main element. */
-/* main {
-    max-width: 600px;
-    margin: 60px auto;
-    padding: 40px 30px;
-} */
-
-/* Save Button */
+/* 저장 버튼 */
 #saveNicknameBtn {
     height: 60px;
     padding: 15px 20px;
@@ -271,9 +288,8 @@ input[type="text"]:focus {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%; /* Make button take full width */
-    max-width: 400px; /* Optional: limit max width for consistency with input */
-    margin-top: 1rem; /* Space above button */
+    width: 100%;
+    margin-top: 1rem;
 }
 
 #saveNicknameBtn:hover {
@@ -281,15 +297,14 @@ input[type="text"]:focus {
     transform: translateY(-2px);
 }
 
-/* --- Carousel Specific Styles (assuming this is on index.html) --- */
+/* --- Carousel Specific Styles (index.html에 있다고 가정) --- */
 .d-day-container {
-    /* Consider using flexbox for centering or layout */
     display: flex;
-    flex-direction: column; /* Stack cards vertically on small screens */
-    align-items: center; /* Center cards horizontally */
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     padding: 20px;
-    min-height: 300px; /* Ensure some height even with no events */
+    min-height: 300px;
 }
 
 .carousel {
@@ -297,18 +312,17 @@ input[type="text"]:focus {
     align-items: center;
     justify-content: center;
     position: relative;
-    width: 100%; /* Take full width */
-    max-width: 900px; /* Limit max width for aesthetic reasons */
-    height: 300px; /* Fixed height for consistent look on larger screens */
-    margin: 20px auto; /* Center the carousel */
-    overflow: hidden; /* Hide parts of cards not in view */
+    width: 100%;
+    max-width: 900px;
+    height: 300px;
+    margin: 20px auto;
+    overflow: hidden;
 }
 
 .d-day-card {
-    /* Cards should be positioned absolutely or handled by flexbox gaps */
-    position: absolute; /* Allows for overlapping and transformation */
-    width: 300px; /* Base width for cards */
-    height: 300px; /* Base height for cards */
+    position: absolute;
+    width: 300px;
+    height: 300px;
     background-color: #d1e7c8;
     border-radius: 15px;
     display: flex;
@@ -322,12 +336,6 @@ input[type="text"]:focus {
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, z-index 0.5s ease;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-/* These transformations are likely handled by JS for the carousel effect */
-/* .d-day-card.active {
-    transform: translateX(0) scale(1.1);
-    opacity: 1;
-    z-index: 3;
-} */
 
 .arrow {
     position: absolute;
@@ -338,9 +346,9 @@ input[type="text"]:focus {
     border: none;
     padding: 10px;
     cursor: pointer;
-    z-index: 5; /* Ensure arrows are above cards */
+    z-index: 5;
     font-size: 1.5rem;
-    border-radius: 50%; /* Make them circular */
+    border-radius: 50%;
     width: 40px;
     height: 40px;
     display: flex;
@@ -357,24 +365,17 @@ input[type="text"]:focus {
 }
 
 
-/* ========== Responsive Layout ========== */
+/* ========== 반응형 레이아웃 ========== */
 
-/* ❶ Tablet and Smaller ─ Max 768px */
+/* ❶ 태블릿 및 소형 기기 ─ 최대 768px */
 @media (max-width: 768px) {
-    /* Header: Maintain horizontal alignment */
     header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: nowrap;
         padding: 0.8rem 1rem;
-        min-height: 50px; /* Slightly smaller header on tablets */
+        min-height: 50px;
     }
 
     .logo {
         font-size: 1.3rem;
-        white-space: nowrap; /* Prevent wrapping for smaller logo */
-        flex-basis: auto; /* Allow it to take its natural size */
     }
 
     .top-right {
@@ -390,98 +391,88 @@ input[type="text"]:focus {
         font-size: 1.5rem;
     }
 
-    /* Navigation Menu */
     #nav {
-        width: 100%; /* Take full width on smaller screens */
+        width: 100%;
         left: -100%;
-        top: 0; /* Stays at the top for full screen overlay */
-        height: 100vh; /* Full viewport height */
-        padding: 60px 1em 2em; /* Padding from top to account for header, rest as before */
-        font-size: 20px; /* Slightly smaller font for tablets */
-    }
-
-    #nav.show {
-        left: 0;
+        top: 0;
+        height: 100vh;
+        padding: 50px 1em 2em; /* 헤더 높이(약 50px)를 고려한 상단 패딩 */
+        font-size: 20px;
     }
 
     .nav-link {
-        font-size: 20px; /* Consistent with #nav font-size */
+        font-size: 20px;
         padding: 12px;
     }
 
-    /* Main Content */
     main {
-        max-width: 100%; /* Occupy full width */
-        padding: 1rem; /* More consistent padding across pages */
-        margin: 0 auto 80px auto; /* Reduce bottom margin slightly for smaller screens */
+        max-width: 100%;
+        padding: 1rem; /* 모바일에서 더 적절한 패딩 */
+        margin: 0 auto; /* 좌우 마진 자동 조정 */
+        min-height: calc(100vh - 50px - 60px); /* 태블릿 헤더(50px), 푸터(60px) 고려 */
     }
 
     h2 {
         font-size: 1.4rem;
     }
 
-    /* Tables and Calendar: Ensure horizontal scroll for overflow */
     .table-wrapper,
     .calendar-box {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* Specific elements if they exist and need adjustment */
     #commentInput {
-        height: 45px; /* Slightly smaller height */
-        font-size: 0.95rem;
-    }
-
-    #commentSubmit {
-        width: 100px; /* Maintain button width */
         height: 45px;
         font-size: 0.95rem;
     }
 
-    /* Footer: Always horizontal, adjust spacing */
-    footer {
-        flex-direction: row;
-        flex-wrap: wrap; /* Allow items to wrap if space is very limited */
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        height: auto; /* Allow height to adjust if wrapping occurs */
-        padding: 0.8rem 1rem; /* More padding top/bottom */
-        font-size: 0.85rem;
-        text-align: center;
+    #commentSubmit {
+        width: 100px;
+        height: 45px;
+        font-size: 0.95rem;
     }
 
-    /* D-day Carousel */
+    footer {
+        flex-wrap: wrap;
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+    }
+
     .d-day-container {
         padding: 15px;
     }
 
     .carousel {
-        flex-direction: column; /* Stack cards vertically */
-        height: auto; /* Height adjusts to content */
-        gap: 20px; /* Space between vertically stacked cards */
-        width: 100%; /* Full width */
-        max-width: 350px; /* Limit individual card width for better appearance */
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+        max-width: 350px;
     }
 
     .d-day-card {
-        position: relative; /* Make cards flow normally within flex container */
-        transform: none !important; /* Override JS transforms for stacked layout */
-        opacity: 1 !important; /* Ensure all are visible */
-        z-index: auto !important; /* Reset z-index */
-        width: 280px; /* Adjusted card width */
+        position: relative;
+        transform: none !important;
+        opacity: 1 !important;
+        z-index: auto !important;
+        width: 280px;
         height: 280px;
         font-size: 1.5rem;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Lighter shadow for mobile */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .arrow {
-        display: none; /* Hide arrows on small screens as cards are stacked */
+        display: none;
+    }
+
+    /* 닉네임 변경 폼 조정 */
+    form {
+        padding: 15px;
+        max-width: 350px;
     }
 }
 
-/* ❷ Mobile Phone ─ Max 480px */
+/* ❷ 모바일 폰 ─ 최대 480px */
 @media (max-width: 480px) {
     .menu-icon {
         font-size: 1.3rem;
@@ -489,8 +480,8 @@ input[type="text"]:focus {
     }
 
     .logo {
-        font-size: 1.0rem;
-        margin-left: 0.5rem; /* Small margin to separate from icon */
+        font-size: 1.1rem;
+        margin-left: 0.5rem;
     }
 
     .top-right {
@@ -498,17 +489,17 @@ input[type="text"]:focus {
     }
 
     .login-box {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         padding: 0.3rem 0.5rem;
     }
 
     .profile-icon {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     #nav {
-        padding: 50px 0.8em 1em; /* Adjust padding for smaller header */
-        font-size: 18px; /* Even smaller font for phones */
+        padding: 50px 0.8em 1em; /* 헤더 높이를 고려한 상단 패딩 */
+        font-size: 18px;
     }
 
     #nav li {
@@ -521,8 +512,8 @@ input[type="text"]:focus {
     }
 
     main {
-        padding: 0.8rem;
-        margin-bottom: 60px; /* Less bottom margin on smallest screens */
+        padding: 0.8rem; /* 가장 작은 화면에서 더 좁은 패딩 */
+        min-height: calc(100vh - 50px - 60px); /* 모바일 헤더(50px), 푸터(60px) 고려 */
     }
 
     h2 {
@@ -533,40 +524,46 @@ input[type="text"]:focus {
         font-size: 0.9rem;
     }
 
-    /* Adjust table and comment font size for better fit */
     .type-table,
     .apply-table,
     #commentsList {
-        font-size: 0.75rem; /* Even smaller font for tables */
+        font-size: 0.75rem;
     }
 
-    /* Buttons take full width on mobile */
     #backBtn,
     #addBtn {
         width: 100%;
         font-size: 0.95rem;
     }
 
-    /* Footer adjustments */
     footer {
-        flex-direction: column; /* Stack footer links vertically if necessary */
+        flex-direction: column; /* 작은 화면에서 푸터 링크를 세로로 쌓음 */
         gap: 0.5rem;
         font-size: 0.75rem;
         padding: 0.6rem;
     }
 
-    /* D-day Carousel */
-    .d-day-container {
-        padding: 10px;
-    }
-
-    .carousel {
-        gap: 15px; /* Slightly less gap between cards */
-    }
-
     .d-day-card {
-        width: 220px; /* Even smaller card width */
+        width: 220px;
         height: 220px;
         font-size: 1.3rem;
+    }
+
+    /* 닉네임 변경 폼 조정 */
+    form {
+        padding: 10px;
+        max-width: 300px; /* 더 작은 화면을 위해 최대 너비 줄임 */
+    }
+    form > p {
+        font-size: 1rem; /* 폰트 크기 조정 */
+        margin-bottom: 1rem;
+    }
+    label {
+        font-size: 0.9rem; /* 라벨 폰트 크기 조정 */
+    }
+    input[type="text"], #saveNicknameBtn {
+        height: 50px; /* 입력 필드 및 버튼 높이 줄임 */
+        padding: 10px 15px;
+        font-size: 0.9rem;
     }
 }
