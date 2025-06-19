@@ -1,425 +1,431 @@
-/* myapply_add.css */
+/* schedule_add.css (일정 추가 페이지 전용으로 최적화) */
 
 /* Universal Box-Sizing and Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Base Body Styles for Full Page Layout */
 html, body {
-  height: 100%; /* html과 body가 뷰포트 전체 높이를 차지하도록 함 */
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* ✅ body의 전체 스크롤을 막음 */
+    height: 100%; /* html과 body가 뷰포트 전체 높이를 차지하도록 함 */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* body의 전체 스크롤을 막음 */
 }
 
 body {
-  font-family: sans-serif;
-  background-color: #ffffff;
-  display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
-  flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
-  min-height: 100vh; /* 바디가 최소한 뷰포트 전체 높이를 차지하도록 함 */
+    font-family: sans-serif;
+    background-color: #ffffff;
+    display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
+    flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
+}
+
+/* CSS 변수를 사용하여 헤더 및 푸터 높이를 관리합니다. */
+:root {
+    --header-height-desktop: 80px; /* 데스크톱 헤더 높이 */
+    --footer-height: 60px; /* 푸터 높이 고정 */
 }
 
 /* Header Styles */
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  border-bottom: 2px solid black;
-  position: relative; /* 자식 요소의 절대 위치 지정을 위해 */
-  height: 120px; /* 헤더 고정 높이 */
-  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 2px solid black;
+    position: relative;
+    height: var(--header-height-desktop); /* 변수를 사용하여 헤더 높이 지정 */
+    flex-shrink: 0;
 }
 
 .menu-icon {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #2F855A;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2F855A;
+    padding: 0.5rem;
 }
 
 .logo {
-  all: unset; /* 브라우저 기본 스타일 모두 초기화 */
-  cursor: pointer;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #2F855A;
+    all: unset;
+    cursor: pointer;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2F855A;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .top-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
 }
 
 .login-box {
-  background-color: #d1e7c8;
-  padding: 0.5rem;
-  font-size: 0.9rem;
-  border-radius: 4px;
-  line-height: 1.2;
+    background-color: #d1e7c8;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    line-height: 1.2;
+    white-space: nowrap;
 }
 
 .profile-icon {
-  font-size: 1.8rem;
+    font-size: 1.8rem;
+    color: #2F855A;
+    padding: 0.5rem;
 }
 
 /* Main Content Area Styles */
 main {
-  flex-grow: 1; /* main이 남은 수직 공간을 모두 차지하도록 함 */
-  overflow-y: auto; /* ✅ 콘텐츠가 넘치면 main 안에서만 수직 스크롤 활성화 */
-  min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
-  padding: 2rem; /* 일관된 패딩 */
-  box-sizing: border-box; /* 패딩을 요소의 전체 너비/높이에 포함 */
-  /* main에 margin-bottom은 이제 필요 없습니다. 푸터는 자동으로 붙습니다. */
-}
+    flex-grow: 1; /* main이 남은 수직 공간을 모두 차지하도록 함 */
+    overflow-y: auto; /* 콘텐츠가 넘치면 main 안에서만 수직 스크롤 활성화 */
+    min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
+    padding: 2rem; /* 데스크톱 기본 패딩 */
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px; /* 메인 콘텐츠의 최대 너비 설정 */
+    margin-left: auto;
+    margin-right: auto; /* 좌우 중앙 정렬 */
 
-.apply-section {
-  padding: 20px; /* 이 섹션이 main 안에 있다면 main의 padding과 중첩됨 */
-}
-
-#addBtn {
-  width: 100px;
-  padding: 8px 16px;
-  margin-bottom: 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-left: auto; /* 우측 정렬 예시 */
-  display: block; /* margin-left: auto;를 위해 블록 요소로 만듦 */
-}
-
-.apply-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-.apply-table th, .apply-table td {
-  border: 1px solid #ccc;
-  padding: 12px;
-  text-align: center;
-}
-
-.apply-table th {
-  background-color: #d1e7c8;
-}
-
-.empty-cell {
-  color: #888;
-  padding: 20px;
-  text-align: center;
+    display: flex; /* main 내부의 콘텐츠(폼 등)를 정렬하기 위해 flexbox 사용 */
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: center; /* 세로 중앙 정렬 (콘텐츠가 적을 때) */
 }
 
 /* Footer Styles */
 footer {
-  height: 60px; /* 푸터 고정 높이 */
-  flex-shrink: 0; /* 푸터가 줄어들지 않도록 방지 */
-  border-top: 2px solid black;
-  font-size: 0.9rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 1rem; /* 좌우 패딩만 */
-  box-sizing: border-box;
+    height: var(--footer-height); /* 변수를 사용하여 푸터 높이 지정 */
+    flex-shrink: 0;
+    border-top: 2px solid black;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 footer a {
-  text-decoration: none;
-  color: #000;
+    text-decoration: none;
+    color: #000;
+    white-space: nowrap;
+    padding: 0.5rem;
 }
 
 /* Navigation (Sidebar) Styles */
 #nav {
-  width: 230px;
-  height: calc(100vh - 120px); /* 헤더 높이만큼 뺀 나머지 공간을 차지하도록 수정 (헤더 height:120px 기준) */
-  background-color: #f6fff1;
-  color: black;
-  position: fixed;
-  top: 120px; /* 헤더 아래에 위치 (헤더 height:120px 기준) */
-  left: -230px; /* 기본적으로 화면 밖으로 숨김 */
-  transition: left 0.3s ease;
-  padding-top: 3em;
-  padding-left: 2em;
-  z-index: 1000;
-  font-size: 24px;
-  overflow-y: auto; /* ✅ 내비게이션 메뉴가 많아지면 내부 스크롤이 생기도록 */
+    width: 230px;
+    height: calc(100vh - var(--header-height-desktop)); /* 헤더 높이만큼 뺀 나머지 공간 차지 */
+    background-color: #f6fff1;
+    color: black;
+    position: fixed;
+    top: var(--header-height-desktop); /* 헤더 아래에 위치 */
+    left: -230px;
+    transition: left 0.3s ease;
+    padding-top: 3em;
+    padding-left: 2em;
+    z-index: 1000;
+    font-size: 24px;
+    overflow-y: auto;
 }
 
 #nav li {
-  margin-bottom: 2em;
+    margin-bottom: 2em;
 }
 
 #nav.show {
-  left: 0; /* 슬라이드 인 */
+    left: 0;
 }
 
 #menuBtn {
-  font-size: 24px;
-  cursor: pointer;
-  margin: 1em; /* 이 마진은 헤더 내에서 사용될 경우 조정 필요 */
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0.5rem;
 }
 
 .nav-link {
-  display: block;
-  padding: 10px;
-  color: black;
-  text-decoration: none;
-  font-size: 24px;
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
-  background-color: #eee;
+    background-color: #eee;
 }
 
 ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 li {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 #kakaoLoginBtn,
-#kakaoLogoutBtn { /* 두 버튼에 공통 스타일 적용 */
-  background-color: #d1e7c8;
-  border: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
+#kakaoLogoutBtn {
+    background-color: #d1e7c8;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
 }
 
-/* 폼 전용 (일정 추가 부분) */
+/* 폼 전용 (일정 추가 부분) - .add-form이 main에 직접 적용되어 있음 */
 .add-form {
-  max-width: 960px; /* ✅ 폼 너비를 넓힙니다. (원하는 값으로 변경 가능) */
-  margin: 20px auto; /* 상하 마진 유지, 좌우 중앙 정렬 */
-  padding: 40px 30px; /* 폼 내부 패딩 */
-  /* height: calc(100% - [적절한 값]); */ /* 폼 내용이 main을 넘치지 않는다는 전제 하에 고려해볼 수 있음 */
-  /* display: flex; flex-direction: column; */ /* 폼 내부 요소 정렬에 따라 고려 */
+    width: 100%;
+    max-width: 600px; /* 일정 추가 폼의 최대 너비 조정 (콘텐츠에 맞춰 적절히) */
+    margin: 20px auto; /* 상하 마진 20px, 좌우 중앙 정렬 */
+    padding: 40px 30px; /* 폼 내부 패딩 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 폼 내부 요소들 가로 중앙 정렬 */
 }
 
 .add-form h2 {
-  font-size: 1.6rem;
-  margin-top: 30px;
-  margin-bottom: 30px;
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .add-form label {
-  display: block;
-  font-size: 1.1rem;
-  margin-bottom: 15px;
-  margin-top: 30px;
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    margin-top: 30px;
+    text-align: left;
+    width: 100%; /* 라벨이 가로 전체를 차지하도록 */
 }
 
 .add-form input {
-  width: 100%;
-  padding: 15px 20px;
-  font-size: 1rem;
-  border: 1px solid #cbd5e0;
-  border-radius: 10px;
-  background: #f9fdfb;
-  margin-top: 10px;
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 10px;
+    background: #f9fdfb;
+    margin-top: 10px;
 }
 
 .add-form button {
-  margin-top: 15px;
-  padding: 15px 30px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  background: #48bb78;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: #48bb78;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .add-form button:hover {
-  background: #38a169;
+    background: #38a169;
 }
 
 /* ========== 반응형 레이아웃 ========== */
 /* ❶ 태블릿 이하 ─ 768px */
 @media (max-width: 768px) {
-  /* 헤더: 항상 가로 정렬 유지 */
-  header {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    padding: 0.8rem 1rem;
-    height: auto;
-  }
+    /* 변수 재정의 */
+    :root {
+        --header-height-desktop: 60px; /* 태블릿 헤더 높이 */
+    }
 
-  .logo {
-    font-size: 1.3rem;
-    white-space: nowrap;
-  }
+    header {
+        padding: 0.8rem 1rem;
+        height: var(--header-height-desktop);
+    }
 
-  .top-right {
-    gap: 0.5rem;
-  }
+    .logo {
+        font-size: 1.3rem;
+    }
 
-  .login-box {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.6rem;
-  }
+    .top-right {
+        gap: 0.5rem;
+    }
 
-  .profile-icon {
-    font-size: 1.5rem;
-  }
+    .login-box {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+    }
 
-  /* 네비 메뉴 */
-  #nav {
-    width: 100%;
-    left: -100%;
-    top: auto;
-    bottom: 0;
-    height: calc(100vh - 60px);
-    font-size: 18px;
-    padding: 2em 1em;
-  }
+    .profile-icon {
+        font-size: 1.5rem;
+    }
 
-  #nav.show {
-    left: 0;
-  }
+    /* 네비 메뉴 */
+    #nav {
+        width: 100%;
+        left: -100%;
+        top: var(--header-height-desktop);
+        height: calc(100vh - var(--header-height-desktop));
+        font-size: 18px;
+        padding: 1em;
+        padding-top: 2em;
+    }
 
-  .nav-link {
-    font-size: 18px;
-    padding: 12px;
-  }
+    .nav-link {
+        font-size: 18px;
+        padding: 12px;
+    }
 
-  /* 본문 */
-  main {
-    max-width: 100%;
-    padding: 1rem;
-    margin: 0 auto;
-  }
+    /* 본문 */
+    main {
+        padding: 1rem;
+        justify-content: center;
+    }
 
-  h2 {
-    font-size: 1.4rem;
-  }
+    h2 {
+        font-size: 1.4rem;
+    }
 
-  .table-wrapper,
-  .calendar-box {
-    overflow-x: auto;
-  }
+    /* 푸터 */
+    footer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+        height: auto;
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
 
-  #commentInput {
-    height: 40px;
-    font-size: 0.9rem;
-  }
-
-  #commentSubmit {
-    width: 90px;
-    height: 40px;
-    font-size: 0.9rem;
-  }
-
-  /* 푸터: 항상 가로 정렬 유지 */
-  footer {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    height: auto;
-    font-size: 0.85rem;
-    text-align: center;
-  }
-
-  /* D-day */
-  .d-day-container {
-    height: 100%;
-  }
-
-  .carousel {
-    flex-direction: column;
-    height: auto;
-    gap: 15px;
-  }
-
-  .d-day-card {
-    width: 280px;
-    height: 280px;
-    font-size: 1.5rem;
-  }
-
-  .arrow {
-    display: none;
-  }
+    /* 폼 전용 (일정 추가 부분) */
+    .add-form {
+        padding: 20px 15px;
+        margin: 15px auto;
+        max-width: 500px; /* 태블릿 폼 최대 너비 조정 */
+    }
+    .add-form h2 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    .add-form label {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+    .add-form input {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    .add-form button {
+        padding: 12px 20px;
+        font-size: 1rem;
+        margin-top: 20px;
+    }
 }
 
 /* ❷ 모바일 폰 ─ 480px */
 @media (max-width: 480px) {
-  .menu-icon {
-    font-size: 1.4rem;
-  }
+    /* 변수 재정의 */
+    :root {
+        --header-height-desktop: 50px; /* 모바일 헤더 높이 */
+    }
 
-  .logo {
-    font-size: 1.1rem;
-  }
+    header {
+        height: var(--header-height-desktop);
+    }
 
-  .top-right {
-    gap: 0.3rem;
-  }
+    .menu-icon {
+        font-size: 1.4rem;
+    }
 
-  .login-box {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.5rem;
-  }
+    .logo {
+        font-size: 1rem;
+    }
 
-  .profile-icon {
-    font-size: 1.3rem;
-  }
+    .top-right {
+        gap: 0.3rem;
+    }
 
-  #nav li {
-    margin-bottom: 1.2em;
-  }
+    .login-box {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.4rem;
+    }
 
-  main {
-    padding: 0.8rem;
-  }
+    .profile-icon {
+        font-size: 1.3rem;
+    }
 
-  h2 {
-    font-size: 1.2rem;
-  }
+    #nav {
+        top: var(--header-height-desktop);
+        height: calc(100vh - var(--header-height-desktop));
+        padding: 0.8em;
+        padding-top: 1.5em;
+        font-size: 16px;
+    }
 
-  #postWriterDate {
-    font-size: 0.9rem;
-  }
+    #nav li {
+        margin-bottom: 1em;
+    }
 
-  .type-table,
-  .apply-table,
-  #commentsList {
-    font-size: 0.8rem;
-  }
+    .nav-link {
+        font-size: 16px;
+        padding: 8px;
+    }
 
-  #backBtn,
-  #addBtn {
-    width: 100%;
-    font-size: 0.95rem;
-  }
+    main {
+        padding: 0.8rem;
+    }
 
-  footer {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 0.8rem;
-  }
+    h2 {
+        font-size: 1.2rem;
+    }
 
-  .d-day-card {
-    width: 220px;
-    height: 220px;
-    font-size: 1.3rem;
-  }
+    /* 푸터 */
+    footer {
+        flex-direction: column;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    /* 폼 전용 (일정 추가 부분) */
+    .add-form {
+        padding: 15px 10px;
+        margin: 10px auto;
+        max-width: 100%; /* 모바일 폼 최대 너비를 화면에 꽉 차도록 */
+    }
+    .add-form h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+    .add-form label {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        margin-top: 15px;
+    }
+    .add-form input {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+    .add-form button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+        margin-top: 15px;
+    }
 }

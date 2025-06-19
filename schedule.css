@@ -1,392 +1,551 @@
+/* schedule.css - 스크롤 완전 제거 버전 */
+
+/* Universal Box-Sizing and Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base Body Styles for Full Page Layout */
+html, body {
+    height: 100%; /* html과 body가 뷰포트 전체 높이를 차지하도록 함 */
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* ✅ body의 전체 스크롤을 막음 */
 }
 
 body {
-  font-family: sans-serif;
-  background-color: #ffffff;
+    font-family: sans-serif;
+    background-color: #ffffff;
+    display: flex; /* 메인 레이아웃에 플렉스박스 사용 */
+    flex-direction: column; /* 헤더, 메인, 푸터를 세로로 쌓음 */
 }
 
+/* CSS 변수를 사용하여 헤더 및 푸터 높이를 관리합니다. */
+:root {
+    --header-height-desktop: 80px; /* 데스크톱 헤더 높이 */
+    --footer-height: 60px; /* 푸터 높이 고정 */
+}
+
+/* Header Styles */
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
-  border-bottom: 2px solid black;
-  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 2px solid black;
+    position: relative;
+    height: var(--header-height-desktop); /* 변수를 사용하여 헤더 높이 지정 */
+    flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
 }
 
 .menu-icon {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #2F855A;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2F855A;
+    padding: 0.5rem;
 }
 
 .logo {
-  all: unset; 
-  cursor: pointer;
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #2F855A;
+    all: unset;
+    cursor: pointer;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2F855A;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .top-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
 }
 
 .login-box {
-  background-color: #d1e7c8;
-  padding: 0.5rem;
-  font-size: 0.9rem;
-  border-radius: 4px;
-  line-height: 1.2;
+    background-color: #d1e7c8;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    line-height: 1.2;
+    white-space: nowrap;
 }
 
 .profile-icon {
-  font-size: 1.8rem;
+    font-size: 1.8rem;
+    color: #2F855A;
+    padding: 0.5rem;
 }
 
-footer {
-  height: 60px;
-  border-top: 2px solid black;
-  text-align: center;
-  font-size: 0.9rem;
+/* Main Content Area Styles */
+/* HTML에 main 태그가 없지만, flex 컨테이너로 역할을 할 것이므로 추가합니다. */
+/* 만약 HTML에 main 태그가 있다면, 이 스타일을 main 태그에 적용하세요. */
+main {
+    flex-grow: 1; /* main이 남은 수직 공간을 모두 차지하도록 함 */
+    overflow: hidden; /* ✅ main 자체는 스크롤되지 않도록 (모든 내부 스크롤 제거) */
+    min-height: 0; /* flex-grow와 overflow가 올바르게 작동하도록 필수 */
+    display: flex; /* .container를 포함하는 flex 컨테이너 */
+    flex-direction: column; /* .container가 세로로 배치되도록 */
+    width: 100%;
+    max-width: 1200px; /* 메인 콘텐츠의 최대 너비 설정 */
+    margin-left: auto;
+    margin-right: auto; /* 좌우 중앙 정렬 */
+    padding: 0; /* main 자체의 패딩은 제거하여 .container가 모든 공간을 사용하도록 함 */
+}
 
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 1rem;
-  box-sizing: border-box;
+/* Footer Styles */
+footer {
+    height: var(--footer-height); /* 변수를 사용하여 푸터 높이 지정 */
+    flex-shrink: 0;
+    border-top: 2px solid black;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 footer a {
-  text-decoration: none;
-  color: #000;
+    text-decoration: none;
+    color: #000;
+    white-space: nowrap;
+    padding: 0.5rem;
 }
 
+/* Navigation (Sidebar) Styles */
 #nav {
-  width: 230px;
-  height: 100vh;
-  background-color: #f6fff1;
-  color: black;
-  position: fixed;
-  top: 109px;
-  left: -230px;
-  transition: left 0.3s ease;
-  padding-top: 3em;
-  padding-left: 2em;
-  z-index: 1000;
-  font-size: 24px;
+    width: 230px;
+    height: calc(100vh - var(--header-height-desktop));
+    background-color: #f6fff1;
+    color: black;
+    position: fixed;
+    top: var(--header-height-desktop);
+    left: -230px;
+    transition: left 0.3s ease;
+    padding-top: 3em;
+    padding-left: 2em;
+    z-index: 1000;
+    font-size: 24px;
+    overflow-y: auto; /* 내비게이션 메뉴가 많아지면 내부 스크롤이 생기도록 (여기만 예외) */
+}
 
-  }
-#nav li{
-  margin-bottom: 2em;
-} 
+#nav li {
+    margin-bottom: 2em;
+}
 
 #nav.show {
-  left: 0;
+    left: 0;
 }
 
 #menuBtn {
-  font-size: 24px;
-  cursor: pointer;
-  margin: 1em;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0.5rem;
 }
 
 .nav-link {
-  display: block;
-  padding: 10px;
-  color: black;
-  text-decoration: none;
-  font-size: 24px;
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    font-size: 24px;
+    white-space: nowrap;
 }
 
 .nav-link:hover {
-  background-color: #eee;
+    background-color: #eee;
 }
 
 ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 li {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
+
+#kakaoLogoutBtn {
+    background-color: #d1e7c8;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
 /* 레이아웃 */
 .container {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
-  height: calc(100vh - 120px); /* 헤더+푸터 제외 대략 */
-  box-sizing: border-box;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem; /* 컨테이너 내부 패딩 */
+    /* ✅ main이 이미 높이를 차지하므로, container는 main의 100% 높이를 가집니다. */
+    height: 100%;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 /* 달력 영역 */
 .calendar-box {
-  flex: 3;                 /* 왼쪽 넓게 */
-  display: flex;
-  flex-direction: column;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    /* ✅ 캘린더 박스 내 스크롤 제거, 내용이 잘릴 수 있음 */
+    overflow: hidden;
+    min-height: 0; /* flex 자식의 overflow: hidden을 위해 필요 */
 }
 
 .cal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+    flex-shrink: 0; /* 헤더가 줄어들지 않도록 */
 }
 
 .cal-header button {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
 #calendar {
-  width: 100%;
-  border-collapse: collapse;
-  flex: 1;
+    width: 100%;
+    border-collapse: collapse;
+    flex: 1; /* ✅ 남은 공간을 모두 차지하도록 */
+    display: flex; /* ✅ 테이블을 flex 컨테이너로 */
+    flex-direction: column; /* ✅ 세로 방향으로 */
+}
+
+#calendar thead {
+    flex-shrink: 0; /* 요일 헤더가 줄어들지 않도록 */
+}
+
+#calendar tbody {
+    flex-grow: 1; /* ✅ 요일 제외 남은 공간을 tbody가 차지 */
+    display: flex;
+    flex-direction: column;
+}
+
+#calendar tr {
+    display: flex; /* ✅ 주(row)를 flex로 */
+    flex-grow: 1; /* ✅ 각 주가 공간을 고르게 분배 */
+    width: 100%;
 }
 
 #calendar th,
 #calendar td {
-  width: 14.28%;
-  text-align: right;
-  padding: .35rem .25rem;
-  border: 1px solid #ddd;
-  vertical-align: top;
+    width: 14.28%; /* 7개 컬럼에 맞춰 너비 설정 */
+    text-align: right;
+    padding: .35rem .25rem;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    position: relative; /* 이벤트 표시 등을 위한 기준 */
+    /* ✅ 셀 높이를 강제로 늘리거나 줄일 수 있음 */
+    display: flex; /* ✅ 셀 내용을 flex로 정렬 */
+    flex-direction: column;
+    flex-grow: 1; /* ✅ 각 셀이 공간을 고르게 분배 */
+    height: 100%; /* ✅ 부모 tr의 100% 높이 */
+    overflow: hidden; /* ✅ 셀 내용이 넘치면 잘림 */
+    word-break: break-all; /* 긴 텍스트 강제 줄바꿈 */
+    font-size: 0.8rem; /* 기본 폰트 크기를 조금 줄여서 공간 확보 */
+}
+/* 날짜 텍스트는 좌상단에 */
+#calendar td div:first-child {
+    font-weight: bold;
+    font-size: 1em; /* 날짜 숫자 */
+    align-self: flex-end; /* 날짜를 우상단에 배치 (text-align: right과 함께) */
 }
 
 #calendar td.event-day {
-  background: #d1e7c8;
-  font-weight: 600;
+    background: #d1e7c8;
+    font-weight: 600;
 }
 
 /* 우측 일정 리스트 */
 .schedule-box {
-  flex: 1;                 /* 오른쪽 좁게 */
-  border-left: 2px solid #eee;
-  padding-left: 1rem;
-  overflow-y: auto;
+    flex: 1;
+    border-left: 2px solid #eee;
+    padding-left: 1rem;
+    /* ✅ 일정 목록 내 스크롤 제거, 내용이 잘릴 수 있음 */
+    overflow: hidden;
+    min-height: 0; /* flex 자식의 overflow: hidden을 위해 필요 */
+    display: flex;
+    flex-direction: column;
 }
 
 .schedule-box h2 {
-  margin-top: 0;
+    margin-top: 0;
+    flex-shrink: 0;
+}
+
+.schedule-box ul { /* ul에 스크롤을 줬던 이전과 달리 여기서 스크롤 제거 */
+    flex-grow: 1; /* 남은 공간 모두 차지 */
+    overflow: hidden; /* ✅ 목록 내용이 넘치면 잘림 */
 }
 
 .schedule-box li {
-  margin-bottom: .5rem;
-  line-height: 1.3;
+    margin-bottom: .5rem;
+    line-height: 1.3;
+    white-space: nowrap; /* 한 줄에 표시 (길면 잘림) */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 넘치면 ...으로 표시 */
 }
 
 .schedule-header{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:.5rem;
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:.5rem;
+    flex-shrink: 0;
 }
 .add-btn{
-  all:unset;          /* 기본 버튼 스타일 제거 */
-  padding:.15em .45em;
-  font-size:1.6rem;
-  line-height:1;
-  cursor:pointer;
-  border:2px solid var(--green-d,#2F855A);
-  border-radius:8px;
-  color:var(--green-d,#2F855A);
-  transition:background .25s;
+    all:unset;
+    padding:.15em .45em;
+    font-size:1.6rem;
+    line-height:1;
+    cursor:pointer;
+    border:2px solid var(--green-d,#2F855A);
+    border-radius:8px;
+    color:var(--green-d,#2F855A);
+    transition:background .25s;
 }
 .add-btn:hover{background:rgba(47,133,90,.1);}
 
-#kakaoLogoutBtn {
-  background-color: #d1e7c8;
-  border: none;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-}
 
 /* ========== 반응형 레이아웃 ========== */
 /* ❶ 태블릿 이하 ─ 768px */
 @media (max-width: 768px) {
-  /* 헤더: 항상 가로 정렬 유지 */
-  header {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    padding: 0.8rem 1rem;
-    height: auto;
-  }
+    /* 변수 재정의 */
+    :root {
+        --header-height-desktop: 60px; /* 태블릿 헤더 높이 */
+    }
 
-  .logo {
-    font-size: 1.3rem;
-    white-space: nowrap;
-  }
+    header {
+        padding: 0.8rem 1rem;
+        height: var(--header-height-desktop);
+    }
 
-  .top-right {
-    gap: 0.5rem;
-  }
+    .logo {
+        font-size: 1.3rem;
+    }
 
-  .login-box {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.6rem;
-  }
+    .top-right {
+        gap: 0.5rem;
+    }
 
-  .profile-icon {
-    font-size: 1.5rem;
-  }
+    .login-box {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+    }
 
-  /* 네비 메뉴 */
-  #nav {
-    width: 100%;
-    left: -100%;
-    top: auto;
-    bottom: 0;
-    height: calc(100vh - 60px);
-    font-size: 18px;
-    padding: 2em 1em;
-  }
+    .profile-icon {
+        font-size: 1.5rem;
+    }
 
-  #nav.show {
-    left: 0;
-  }
+    /* 네비 메뉴 */
+    #nav {
+        width: 100%;
+        left: -100%;
+        top: var(--header-height-desktop);
+        height: calc(100vh - var(--header-height-desktop));
+        font-size: 18px;
+        padding: 1em;
+        padding-top: 2em;
+    }
 
-  .nav-link {
-    font-size: 18px;
-    padding: 12px;
-  }
+    .nav-link {
+        font-size: 18px;
+        padding: 12px;
+    }
 
-  /* 본문 */
-  main {
-    max-width: 100%;
-    padding: 1rem;
-    margin: 0 auto;
-  }
+    /* main 태그에 대한 설정 (HTML에 main이 있다고 가정) */
+    main {
+        padding: 0; /* 컨테이너가 패딩을 담당하도록 main 패딩 제거 */
+    }
 
-  h2 {
-    font-size: 1.4rem;
-  }
+    /* 레이아웃 변경: 가로 분할 대신 세로 분할 */
+    .container {
+        flex-direction: column; /* 태블릿/모바일에서 세로로 쌓이도록 */
+        height: 100%; /* ✅ main의 높이 100%를 그대로 사용 */
+        padding: 0.5rem; /* 컨테이너 자체의 패딩 */
+        gap: 0.5rem; /* 세로 간격 조정 */
+    }
 
-  .table-wrapper,
-  .calendar-box {
-    overflow-x: auto;
-  }
+    /* 달력 영역 */
+    .calendar-box {
+        flex: none; /* flex 비율 제거 */
+        width: 100%;
+        /* ✅ 캘린더 박스의 높이를 고정하거나 유동적으로 조정해야 함. */
+        /* 여기서는 flex-grow를 사용하지 않고, 내용에 따라 높이를 유동적으로 조정하도록 함 */
+        /* 하지만 전체 스크롤을 없애려면 특정 높이 제한이 필요 */
+        height: 60vh; /* ✅ 캘린더 박스에 고정 높이 부여 (뷰포트 높이의 60%) */
+        overflow: hidden; /* ✅ 스크롤 제거 */
+        padding: 0.5rem;
+    }
 
-  #commentInput {
-    height: 40px;
-    font-size: 0.9rem;
-  }
+    #calendar {
+        font-size: 0.9rem;
+    }
 
-  #commentSubmit {
-    width: 90px;
-    height: 40px;
-    font-size: 0.9rem;
-  }
+    #calendar th,
+    #calendar td {
+        padding: .2rem .1rem;
+        font-size: 0.75rem; /* 셀 폰트 크기 더 줄임 */
+    }
 
-  /* 푸터: 항상 가로 정렬 유지 */
-  footer {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    height: auto;
-    font-size: 0.85rem;
-    text-align: center;
-  }
+    /* 우측 일정 리스트 */
+    .schedule-box {
+        flex: none; /* flex 비율 제거 */
+        width: 100%;
+        border-left: none;
+        border-top: 2px solid #eee;
+        padding: 0.5rem;
+        /* ✅ 일정 박스에 고정 높이 부여 (남은 공간을 비율로 나눔) */
+        height: calc(40vh - 1.5rem); /* ✅ 남은 뷰포트 높이의 40% (컨테이너 패딩 고려) */
+        overflow: hidden; /* ✅ 스크롤 제거 */
+    }
+    .schedule-box ul {
+        overflow: hidden; /* ✅ 목록 스크롤 제거 */
+    }
+    .schedule-box li {
+        font-size: 0.9rem;
+    }
 
-  /* D-day */
-  .d-day-container {
-    height: 100%;
-  }
 
-  .carousel {
-    flex-direction: column;
-    height: auto;
-    gap: 15px;
-  }
+    .cal-header button {
+        font-size: 1.3rem;
+    }
 
-  .d-day-card {
-    width: 280px;
-    height: 280px;
-    font-size: 1.5rem;
-  }
+    .add-btn {
+        font-size: 1.4rem;
+        padding: .1em .3em;
+    }
 
-  .arrow {
-    display: none;
-  }
+    /* 푸터 */
+    footer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.8rem;
+        height: auto;
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+
+    /* 불필요한 기존 반응형 규칙 제거 */
+    /* table-wrapper, commentInput, commentSubmit, postWriterDate, type-table, apply-table, commentsList, backBtn, addBtn, d-day-container, carousel, d-day-card, arrow 등은 이 HTML에 없음 */
+    .table-wrapper, #commentInput, #commentSubmit, #postWriterDate, .type-table, .apply-table, #commentsList, #backBtn, #addBtn, .d-day-container, .carousel, .d-day-card, .arrow { display: none; }
 }
 
 /* ❷ 모바일 폰 ─ 480px */
 @media (max-width: 480px) {
-  .menu-icon {
-    font-size: 1.4rem;
-  }
+    /* 변수 재정의 */
+    :root {
+        --header-height-desktop: 50px; /* 모바일 헤더 높이 */
+    }
 
-  .logo {
-    font-size: 1.1rem;
-  }
+    header {
+        height: var(--header-height-desktop);
+    }
 
-  .top-right {
-    gap: 0.3rem;
-  }
+    .menu-icon {
+        font-size: 1.4rem;
+    }
 
-  .login-box {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.5rem;
-  }
+    .logo {
+        font-size: 1rem;
+    }
 
-  .profile-icon {
-    font-size: 1.3rem;
-  }
+    .top-right {
+        gap: 0.3rem;
+    }
 
-  #nav li {
-    margin-bottom: 1.2em;
-  }
+    .login-box {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.4rem;
+    }
 
-  main {
-    padding: 0.8rem;
-  }
+    .profile-icon {
+        font-size: 1.3rem;
+    }
 
-  h2 {
-    font-size: 1.2rem;
-  }
+    #nav {
+        top: var(--header-height-desktop);
+        height: calc(100vh - var(--header-height-desktop));
+        padding: 0.8em;
+        padding-top: 1.5em;
+        font-size: 16px;
+    }
 
-  #postWriterDate {
-    font-size: 0.9rem;
-  }
+    #nav li {
+        margin-bottom: 1em;
+    }
 
-  .type-table,
-  .apply-table,
-  #commentsList {
-    font-size: 0.8rem;
-  }
+    .nav-link {
+        font-size: 16px;
+        padding: 8px;
+    }
 
-  #backBtn,
-  #addBtn {
-    width: 100%;
-    font-size: 0.95rem;
-  }
+    .container {
+        padding: 0.3rem; /* 모바일 컨테이너 패딩 더 줄임 */
+        gap: 0.3rem;
+    }
 
-  footer {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 0.8rem;
-  }
+    h2 {
+        font-size: 1.2rem;
+    }
 
-  .d-day-card {
-    width: 220px;
-    height: 220px;
-    font-size: 1.3rem;
-  }
+    /* 달력 영역 */
+    .calendar-box {
+        height: 55vh; /* ✅ 모바일 캘린더 박스 높이 조정 */
+        padding: 0.3rem;
+    }
+
+    #calendar {
+        font-size: 0.75rem;
+    }
+    #calendar th,
+    #calendar td {
+        padding: .1rem .05rem; /* ✅ 셀 패딩 더 줄임 */
+        font-size: 0.7rem; /* 셀 폰트 크기 더 줄임 */
+    }
+    #calendar td div:first-child {
+        font-size: 0.9em; /* 날짜 숫자 폰트 크기 조정 */
+    }
+
+    /* 우측 일정 리스트 */
+    .schedule-box {
+        padding: 0.3rem;
+        height: calc(45vh - 0.9rem); /* ✅ 모바일 일정 박스 높이 조정 (컨테이너 패딩 고려) */
+    }
+    .schedule-box li {
+        font-size: 0.8rem;
+    }
+
+
+    .cal-header button {
+        font-size: 1.2rem;
+    }
+    .add-btn {
+        font-size: 1.2rem;
+        padding: .05em .2em;
+    }
+
+    /* 푸터 */
+    footer {
+        flex-direction: column;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+    }
 }
