@@ -85,13 +85,13 @@ function getCookie(name) {
     return parts.length === 2 ? parts.pop().split(";").shift() : null;
 }
 
-// ✅ 페이지 로드 시 로그인 상태 반영
+// 페이지 로드 시 로그인 상태 반영
 window.addEventListener("load", () => {
     const token = getCookie("kakaoToken");
     updateLoginUI(!!token);
 });
 
-// ✅ 로그아웃 버튼에 이벤트 등록
+// 로그아웃 버튼에 이벤트 등록
 document.addEventListener("DOMContentLoaded", () => {
     const logoutBtn = document.getElementById("kakaoLogoutBtn");
     if (logoutBtn) {
@@ -99,5 +99,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// ✅ 전역에서 호출 가능하게
+// 전역에서 호출 가능하게
 window.kakaoLogin = kakaoLogin;

@@ -1,4 +1,3 @@
-/* Universal Box-Sizing and Reset */
 * {
   margin: 0;
   padding: 0;
@@ -6,28 +5,26 @@
 }
 
 html {
-  height: 100%; /* html이 뷰포트 높이 100%를 차지하도록 */
-  overflow: hidden; /* html에 스크롤 생기는 것을 방지 */
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
-  height: 100vh; /* ✅ body가 뷰포트 전체 높이를 정확히 차지하도록 명시 */
+  height: 100vh; 
   margin: 0;
   padding: 0;
-  overflow: hidden; /* ✅ 가장 중요! body의 전체 스크롤을 완벽히 방지 */
+  overflow: hidden; 
 
   font-family: sans-serif;
   background-color: #ffffff;
   color: #000;
-  display: flex; /* 메인, 헤더, 푸터를 위한 Flexbox 컨테이너 */
-  flex-direction: column; /* 자식 요소들을 세로로 정렬 */
-  /* min-height: 100vh; 는 height: 100vh; 와 함께 필요하지 않습니다. */
+  display: flex;
+  flex-direction: column; 
 }
 
 header {
-  height: 109px; /* ✅ 헤더 높이 고정 (nav top 기준에 맞춤) */
-  flex-shrink: 0; /* 헤더가 줄어들지 않도록 방지 */
-  /* 기타 스타일 유지 */
+  height: 109px; 
+  flex-shrink: 0; 
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -50,9 +47,8 @@ main {
 }
 
 footer {
-  height: 60px; /* 푸터 고정 높이 */
-  flex-shrink: 0; /* 푸터가 줄어들지 않도록 방지 */
-  /* 기타 스타일 유지 */
+  height: 60px; 
+  flex-shrink: 0;
   border-top: 2px solid black;
   text-align: center;
   font-size: 0.9rem;
@@ -63,30 +59,22 @@ footer {
   box-sizing: border-box;
 }
 
-/* ==================================================================== */
-/* Navigation (Sidebar) Styles */
-/* ==================================================================== */
 #nav {
   width: 230px;
-  /* ✅ nav 높이 계산: 뷰포트 높이 - 헤더 높이 */
-  height: calc(100vh - 109px); /* ✅ 헤더 높이 109px 고려 */
+  height: calc(100vh - 109px); 
   background-color: #f6fff1;
   color: black;
   position: fixed;
-  top: 109px; /* ✅ 헤더 높이 109px에 맞춰 조정 */
+  top: 109px; 
   left: -230px;
   transition: left 0.3s ease;
   padding-top: 3em;
   padding-left: 2em;
   z-index: 1000;
   font-size: 24px;
-  overflow-y: auto; /* 내비게이션 메뉴가 많아지면 내부 스크롤 허용 */
+  overflow-y: auto; 
 }
 
-
-/* ==================================================================== */
-/* 나머지 스타일 (위에서 레이아웃에 영향을 주는 속성은 조정되었음) */
-/* ==================================================================== */
 .menu-icon {
   font-size: 1.5rem;
   background: none;
@@ -122,10 +110,10 @@ footer {
 }
 
 h2{
-  font-size: 1.5rem; /* ✅ 이 h2는 main 내부의 h2이므로, margin-top: 0으로 조정 */
-  margin-top: 0; /* ✅ main의 상단 padding으로 충분하므로 h2의 margin-top 제거 */
+  font-size: 1.5rem;
+  margin-top: 0; 
   margin-left: 10px;
-  margin-bottom: 40px; /* 기존 margin-bottom 유지 */
+  margin-bottom: 40px; 
 }
 
 footer a {
@@ -144,7 +132,7 @@ footer a {
 #menuBtn {
   font-size: 24px;
   cursor: pointer;
-  margin: 1em; /* 헤더 내부에 있다면 헤더 패딩이 있으므로 이 마진 조정 필요할 수 있음 */
+  margin: 1em; 
 }
 
 .nav-link {
@@ -210,7 +198,7 @@ button[type="submit"],
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-top: 10px; /* ✅ form 내 버튼의 margin-top 유지 */
+  margin-top: 10px; 
 }
 
 button[type="submit"]:hover,
@@ -259,10 +247,9 @@ textarea#content:focus{
 }
 
 
-/* ========== 반응형 레이아웃 ========== */
-/* ❶ 태블릿 이하 ─ 768px */
+/*반응형 레이아웃 */
+
 @media (max-width: 768px) {
-  /* 헤더: 항상 가로 정렬 유지 */
   header {
     flex-direction: row;
     align-items: center;
@@ -290,7 +277,6 @@ textarea#content:focus{
     font-size: 1.5rem;
   }
 
-  /* 네비 메뉴 */
   #nav {
     width: 100%;
     left: -100%;
@@ -337,7 +323,6 @@ textarea#content:focus{
     font-size: 0.9rem;
   }
 
-  /* 푸터: 항상 가로 정렬 유지 */
   footer {
     flex-direction: row;
     flex-wrap: wrap;
@@ -349,7 +334,6 @@ textarea#content:focus{
     text-align: center;
   }
 
-  /* D-day */
   .d-day-container {
     height: 100%;
   }
@@ -371,7 +355,6 @@ textarea#content:focus{
   }
 }
 
-/* ❷ 모바일 폰 ─ 480px */
 @media (max-width: 480px) {
   .menu-icon {
     font-size: 1.4rem;

@@ -1,4 +1,3 @@
-/* ========== 글 작성 폼 처리 ========== */
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("addForm");
 
@@ -13,17 +12,15 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    /* 오늘 날짜 yyyy-mm-dd */
     const today  = new Date().toISOString().slice(0, 10);
     const nicknameMap = JSON.parse(localStorage.getItem("nicknameMap") || "{}");
     const token = getCookie("kakaoToken");
-    let author = "익명";  // 기본값
+    let author = "익명";  
 
     if (token && nicknameMap[token]) {
-      author = nicknameMap[token];  // 사용자가 저장한 닉네임
+      author = nicknameMap[token]; 
     }
 
-    /* 기존 글 목록 불러오기 */
     const posts = JSON.parse(localStorage.getItem("communityPosts") || "[]");
 
     posts.push({ title, content, author, date: today });
